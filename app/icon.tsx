@@ -12,30 +12,19 @@ export default async function Icon() {
     (
       <div
         style={{
-          background: '#ffffff',
+          fontSize: 14,
+          background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          color: 'white',
+          borderRadius: '50%',
+          fontWeight: 'bold',
         }}
       >
-        <div
-          style={{
-            fontSize: 14,
-            background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
-            width: 28,
-            height: 28,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            borderRadius: '50%',
-            fontWeight: 'bold',
-          }}
-        >
-          DH
-        </div>
+        DH
       </div>
     ),
     {

@@ -12,30 +12,19 @@ export default async function AppleIcon() {
     (
       <div
         style={{
-          background: '#ffffff',
+          fontSize: 72,
+          background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          color: 'white',
+          borderRadius: '50%',
+          fontWeight: 'bold',
         }}
       >
-        <div
-          style={{
-            fontSize: 72,
-            background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
-            width: 160,
-            height: 160,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            borderRadius: '50%',
-            fontWeight: 'bold',
-          }}
-        >
-          DH
-        </div>
+        DH
       </div>
     ),
     {
