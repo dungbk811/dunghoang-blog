@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
-import Comments from '@/components/Comments';
+// import Comments from '@/components/Comments';
 import 'highlight.js/styles/github-dark.css';
 
 type Props = {
@@ -165,8 +165,8 @@ export default async function BlogPost({ params }: Props) {
           </nav>
         )}
 
-        {/* Comments */}
-        <Comments />
+        {/* Comments - Temporarily hidden until Giscus is configured */}
+        {/* <Comments /> */}
       </article>
     </div>
   );
