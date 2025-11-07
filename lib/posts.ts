@@ -21,9 +21,19 @@ export interface Post extends PostMetadata {
   content: string;
 }
 
-// Helper function to filter out hidden posts for public view
+// Helper function to filter out hidden posts and scheduled posts (future dates) for public view
 export function getPublicPosts(posts: PostMetadata[]): PostMetadata[] {
-  return posts.filter(post => !post.hidden);
+  const now = new Date();
+  return posts.filter(post => {
+    // Filter out hidden posts
+    if (post.hidden) return false;
+
+    // Filter out scheduled posts (posts with future dates)
+    const postDate = new Date(post.date);
+    if (postDate > now) return false;
+
+    return true;
+  });
 }
 
 export function getAllPosts(): PostMetadata[] {

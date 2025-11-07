@@ -28,7 +28,7 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [visibilityFilter, setVisibilityFilter] = useState<'all' | 'visible' | 'hidden'>('all');
+  const [visibilityFilter, setVisibilityFilter] = useState<'all' | 'visible' | 'hidden' | 'scheduled'>('all');
 
   // Category management states
   const [renamingCategory, setRenamingCategory] = useState<string | null>(null);
@@ -49,10 +49,12 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
         (selectedCategory === 'uncategorized' && !post.category) ||
         post.category === selectedCategory;
 
+      const isScheduled = new Date(post.date) > new Date();
       const matchesVisibility =
         visibilityFilter === 'all' ||
-        (visibilityFilter === 'visible' && !post.hidden) ||
-        (visibilityFilter === 'hidden' && post.hidden);
+        (visibilityFilter === 'visible' && !post.hidden && !isScheduled) ||
+        (visibilityFilter === 'hidden' && post.hidden) ||
+        (visibilityFilter === 'scheduled' && isScheduled);
 
       return matchesSearch && matchesCategory && matchesVisibility;
     });
@@ -61,8 +63,9 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
   // Stats
   const stats = {
     total: posts.length,
-    visible: posts.filter((p) => !p.hidden).length,
+    visible: posts.filter((p) => !p.hidden && new Date(p.date) <= new Date()).length,
     hidden: posts.filter((p) => p.hidden).length,
+    scheduled: posts.filter((p) => new Date(p.date) > new Date()).length,
   };
 
   // Category stats
@@ -238,7 +241,7 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
       </div>
 
       {/* Top Filter Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <button
           onClick={() => setVisibilityFilter('all')}
           style={visibilityFilter === 'all' ? { borderColor: 'rgb(168 85 247)' } : {}}
@@ -325,6 +328,36 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
             <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
               <svg className="w-6 h-6 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+              </svg>
+            </div>
+          </div>
+        </button>
+        <button
+          onClick={() => setVisibilityFilter('scheduled')}
+          style={visibilityFilter === 'scheduled' ? { borderColor: 'rgb(59 130 246)' } : {}}
+          className={`rounded-lg p-6 border-2 transition-all hover:shadow-md relative focus:outline-none focus-visible:outline-none focus:ring-0 ${
+            visibilityFilter === 'scheduled'
+              ? 'bg-blue-50 dark:bg-blue-900/20'
+              : 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800'
+          }`}
+        >
+          {visibilityFilter === 'scheduled' && (
+            <div className="absolute top-3 right-3">
+              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+          )}
+          <div className="flex items-center justify-between">
+            <div className="text-left">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1 font-medium">Scheduled</p>
+              <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">{stats.scheduled}</p>
+            </div>
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
           </div>
@@ -594,6 +627,11 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
                         {post.hidden && (
                           <span className="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
                             {t.common.hidden}
+                          </span>
+                        )}
+                        {new Date(post.date) > new Date() && (
+                          <span className="px-3 py-1.5 text-xs font-medium rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                            📅 Scheduled
                           </span>
                         )}
                       </div>
