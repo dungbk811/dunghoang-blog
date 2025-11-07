@@ -12,7 +12,7 @@ export default async function Icon() {
     (
       <div
         style={{
-          fontSize: 14,
+          fontSize: 12,
           background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
           width: '100%',
           height: '100%',
