@@ -1,0 +1,46 @@
+'use client';
+
+import { useI18n } from '@/lib/i18n';
+
+interface LearningHeaderProps {
+  onSearchToggle: () => void;
+  isSearchOpen: boolean;
+}
+
+export default function LearningHeader({
+  onSearchToggle,
+  isSearchOpen,
+}: LearningHeaderProps) {
+  const { t } = useI18n();
+
+  return (
+    <div className="flex items-start justify-between gap-4">
+      <div className="flex-1">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
+          {t.learning.pageTitle}
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+          {t.learning.subtitle}
+        </p>
+      </div>
+      <button
+        onClick={onSearchToggle}
+        className={`flex-shrink-0 p-3 rounded-lg transition-all ${
+          isSearchOpen
+            ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+        }`}
+        aria-label="Toggle search and filters"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+}
