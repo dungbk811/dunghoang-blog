@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
+import { commitFile, isGitHubConfigured } from '@/lib/github';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -146,8 +147,17 @@ export async function POST(request: NextRequest) {
     // Replace the old item block with the updated one
     content = content.replace(match[0], itemBlock);
 
-    // Write back to file
-    await fs.writeFile(roadmapPath, content, 'utf-8');
+    // Commit to GitHub if configured, otherwise write to local file
+    if (isGitHubConfigured()) {
+      await commitFile(
+        'lib/roadmap.ts',
+        content,
+        `Update roadmap item: ${itemId} [via admin]`
+      );
+    } else {
+      // Fallback to local file (development)
+      await fs.writeFile(roadmapPath, content, 'utf-8');
+    }
 
     return NextResponse.json({ success: true, message: 'Item updated successfully' });
   } catch (error) {
@@ -236,8 +246,17 @@ export async function PUT(request: NextRequest) {
     const replacement = `${match[1]}${match[2]}\n${newItemStr}${match[3]}`;
     content = content.replace(arrayRegex, replacement);
 
-    // Write back to file
-    await fs.writeFile(roadmapPath, content, 'utf-8');
+    // Commit to GitHub if configured, otherwise write to local file
+    if (isGitHubConfigured()) {
+      await commitFile(
+        'lib/roadmap.ts',
+        content,
+        `Add new ${type} item: ${newItem.title} [via admin]`
+      );
+    } else {
+      // Fallback to local file (development)
+      await fs.writeFile(roadmapPath, content, 'utf-8');
+    }
 
     return NextResponse.json({ success: true, message: 'Item added successfully', item: newItem });
   } catch (error) {
@@ -286,8 +305,17 @@ export async function DELETE(request: NextRequest) {
     // Remove the item
     content = content.replace(itemRegex, '');
 
-    // Write back to file
-    await fs.writeFile(roadmapPath, content, 'utf-8');
+    // Commit to GitHub if configured, otherwise write to local file
+    if (isGitHubConfigured()) {
+      await commitFile(
+        'lib/roadmap.ts',
+        content,
+        `Delete roadmap item: ${itemId} [via admin]`
+      );
+    } else {
+      // Fallback to local file (development)
+      await fs.writeFile(roadmapPath, content, 'utf-8');
+    }
 
     return NextResponse.json({ success: true, message: 'Item deleted successfully' });
   } catch (error) {

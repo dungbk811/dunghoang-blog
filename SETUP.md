@@ -62,7 +62,40 @@ category: "Category Name"
 Viết nội dung ở đây...
 ```
 
-## 5. Deploy lên Vercel
+## 5. Setup Admin Panel & GitHub Integration
+
+### Bước 1: Tạo GitHub Personal Access Token
+
+Admin panel cần GitHub token để lưu changes vào repository (tránh mất data khi redeploy):
+
+1. Vào https://github.com/settings/tokens
+2. Click "Generate new token" → "Generate new token (classic)"
+3. Đặt tên: "Vercel Admin Panel"
+4. Chọn quyền: `repo` (Full control of private repositories)
+5. Click "Generate token"
+6. **Copy token** (chỉ hiện 1 lần!)
+
+### Bước 2: Setup Environment Variables
+
+Tạo file `.env.local` cho development:
+
+```bash
+# Copy từ .env.example
+cp .env.example .env.local
+```
+
+Cập nhật các giá trị:
+
+```env
+ADMIN_PASSWORD=your-secure-password
+GITHUB_TOKEN=ghp_your_token_here
+GITHUB_OWNER=dungbk811
+GITHUB_REPO=dunghoang-blog
+```
+
+**Lưu ý:** File `.env.local` không được commit vào Git (đã có trong `.gitignore`)
+
+## 6. Deploy lên Vercel
 
 ### Cách 1: Deploy qua GitHub
 
@@ -70,7 +103,17 @@ Viết nội dung ở đây...
 2. Truy cập [vercel.com](https://vercel.com)
 3. Click "New Project"
 4. Import repository từ GitHub
-5. Click "Deploy"
+5. **Thêm Environment Variables:**
+   - `ADMIN_PASSWORD`: Mật khẩu admin của bạn
+   - `GITHUB_TOKEN`: Token vừa tạo ở bước 5
+   - `GITHUB_OWNER`: dungbk811
+   - `GITHUB_REPO`: dunghoang-blog
+6. Click "Deploy"
+
+**Cách hoạt động:**
+- Khi edit trong admin panel → Tự động commit vào GitHub
+- GitHub trigger Vercel → Auto redeploy (~30s)
+- Data được lưu vĩnh viễn trong Git!
 
 ### Cách 2: Deploy qua CLI
 

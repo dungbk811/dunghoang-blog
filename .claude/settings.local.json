@@ -9,7 +9,12 @@
       "Read(///**)",
       "Bash(npm run dev:*)",
       "Bash(node:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Read(//Users/dunght/.ssh/**)",
+      "Bash(git remote remove:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(cat:*)",
+      "Bash(pbcopy)"
     ],
     "deny": [],
     "ask": []
