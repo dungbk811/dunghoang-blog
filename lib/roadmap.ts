@@ -58,7 +58,7 @@ export const learningRoadmap: RoadmapItem[] = [
     category: 'Giao Tiếp & Giọng Nói',
     subcategory: 'Luyện Giọng & Phát Âm',
     status: 'planned',
-    hidden: true,
+    hidden: false,
     priority: 'high',
     startDate: '2025-11-01',
     tags: ['voice', 'communication', 'japanese-client'],
