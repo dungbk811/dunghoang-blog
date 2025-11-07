@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getAllPosts, getPostBySlug } from '@/lib/posts';
+import { getAllPosts, getPostBySlug, getPublicPosts } from '@/lib/posts';
 import { calculateReadingTime, formatDate } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: Props) {
   }
 
   const readingTime = calculateReadingTime(post.content);
-  const allPosts = getAllPosts();
+  const allPosts = getPublicPosts(getAllPosts()); // Filter out hidden posts
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const previousPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;

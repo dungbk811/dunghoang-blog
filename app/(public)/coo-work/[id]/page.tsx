@@ -1,5 +1,5 @@
 import { cooRoadmap } from '@/lib/roadmap';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, getPublicPosts } from '@/lib/posts';
 import { getTopicContent } from '@/lib/topics';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -42,8 +42,8 @@ export default async function TaskDetailPage({ params }: PageProps) {
   // Get topic MDX content
   const topicContent = getTopicContent(id);
 
-  // Get all posts for this task
-  const allPosts = getAllPosts();
+  // Get all posts for this task (filter out hidden posts)
+  const allPosts = getPublicPosts(getAllPosts());
   const taskPosts = allPosts.filter((post) => post.topic === task.id);
 
   return (
