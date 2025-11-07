@@ -23,7 +23,7 @@ export default async function AppleIcon() {
         <div
           style={{
             fontSize: 72,
-            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%)',
+            background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
             width: 160,
             height: 160,
             display: 'flex',

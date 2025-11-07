@@ -23,7 +23,7 @@ export default async function Icon() {
         <div
           style={{
             fontSize: 14,
-            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%)',
+            background: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #fbbf24 100%)',
             width: 28,
             height: 28,
             display: 'flex',
