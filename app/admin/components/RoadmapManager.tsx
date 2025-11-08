@@ -265,6 +265,19 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
     return acc;
   }, {} as Record<string, number>);
 
+  // Calculate level-specific category counts (category count at each level)
+  const getLevelCategoryCount = (category: string, level: SkillLevel) => {
+    return allItems.filter(item => {
+      const matchesCategory = item.category === category;
+      const matchesLevel = item.level === level;
+      const matchesVisibility =
+        visibilityFilter === 'all' ||
+        (visibilityFilter === 'visible' && !item.hidden) ||
+        (visibilityFilter === 'hidden' && item.hidden);
+      return matchesCategory && matchesLevel && matchesVisibility;
+    }).length;
+  };
+
   // Calculate level counts (count number of categories, not topics)
   const levelCounts = {
     beginner: Array.from(new Set(allItems.filter(item => {
@@ -509,7 +522,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category]}
+                            {getLevelCategoryCount(category, 'beginner')}
                           </span>
                         </button>
                       ))
@@ -555,7 +568,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category]}
+                            {getLevelCategoryCount(category, 'intermediate')}
                           </span>
                         </button>
                       ))
@@ -601,7 +614,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category]}
+                            {getLevelCategoryCount(category, 'advanced')}
                           </span>
                         </button>
                       ))
@@ -647,7 +660,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category]}
+                            {getLevelCategoryCount(category, 'expert')}
                           </span>
                         </button>
                       ))
