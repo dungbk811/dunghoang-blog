@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
+import { readFileContent, writeFileContent, deleteFileContent, isGitHubConfigured } from '@/lib/github';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -18,10 +19,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Topic ID is required' }, { status: 400 });
     }
 
-    const topicPath = path.join(process.cwd(), 'content', 'topics', `${topicId}.mdx`);
+    const topicPath = `content/topics/${topicId}.mdx`;
 
     try {
-      const content = await fs.readFile(topicPath, 'utf-8');
+      const content = await readFileContent(topicPath);
       return NextResponse.json({ content, exists: true });
     } catch (error) {
       // File doesn't exist yet
@@ -50,22 +51,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const topicsDir = path.join(process.cwd(), 'content', 'topics');
-    const topicPath = path.join(topicsDir, `${topicId}.mdx`);
+    const topicPath = `content/topics/${topicId}.mdx`;
 
-    // Ensure topics directory exists
-    try {
-      await fs.access(topicsDir);
-    } catch {
-      await fs.mkdir(topicsDir, { recursive: true });
+    // Ensure topics directory exists (only needed for local filesystem)
+    if (!isGitHubConfigured()) {
+      const topicsDir = path.join(process.cwd(), 'content', 'topics');
+      try {
+        await fs.access(topicsDir);
+      } catch {
+        await fs.mkdir(topicsDir, { recursive: true });
+      }
     }
 
     // Write content to file
-    await fs.writeFile(topicPath, content, 'utf-8');
+    await writeFileContent(
+      topicPath,
+      content,
+      `Update topic content: ${topicId} [via admin]`
+    );
+
+    const requiresRebuild = isGitHubConfigured();
 
     return NextResponse.json({
       success: true,
-      message: 'Topic content saved successfully'
+      message: 'Topic content saved successfully',
+      requiresRebuild
     });
   } catch (error) {
     console.error('Write topic error:', error);
@@ -91,13 +101,17 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Topic ID is required' }, { status: 400 });
     }
 
-    const topicPath = path.join(process.cwd(), 'content', 'topics', `${topicId}.mdx`);
+    const topicPath = `content/topics/${topicId}.mdx`;
 
     try {
-      await fs.unlink(topicPath);
+      await deleteFileContent(topicPath, `Delete topic content: ${topicId} [via admin]`);
+
+      const requiresRebuild = isGitHubConfigured();
+
       return NextResponse.json({
         success: true,
-        message: 'Topic content deleted successfully'
+        message: 'Topic content deleted successfully',
+        requiresRebuild
       });
     } catch (error) {
       return NextResponse.json({ error: 'Topic file not found' }, { status: 404 });

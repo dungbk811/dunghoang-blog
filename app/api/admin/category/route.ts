@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import fs from 'fs/promises';
-import path from 'path';
+import { readFileContent, writeFileContent, isGitHubConfigured } from '@/lib/github';
 
 // DELETE: Delete a category
 export async function DELETE(request: NextRequest) {
@@ -22,8 +21,8 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Read the roadmap file
-    const roadmapPath = path.join(process.cwd(), 'lib', 'roadmap.ts');
-    let content = await fs.readFile(roadmapPath, 'utf-8');
+    const roadmapPath = 'lib/roadmap.ts';
+    let content = await readFileContent(roadmapPath);
 
     // Determine which roadmap array to work with
     const arrayName = type === 'learning' ? 'learningRoadmap' : 'cooRoadmap';
@@ -53,9 +52,19 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Write back to file
-    await fs.writeFile(roadmapPath, content, 'utf-8');
+    await writeFileContent(
+      roadmapPath,
+      content,
+      `Delete category: ${category} from ${type} roadmap [via admin]`
+    );
 
-    return NextResponse.json({ success: true, message: 'Category deleted successfully' });
+    const requiresRebuild = isGitHubConfigured();
+
+    return NextResponse.json({
+      success: true,
+      message: 'Category deleted successfully',
+      requiresRebuild
+    });
   } catch (error) {
     console.error('Delete error:', error);
     return NextResponse.json(
@@ -84,8 +93,8 @@ export async function PATCH(request: NextRequest) {
     }
 
     // Read the roadmap file
-    const roadmapPath = path.join(process.cwd(), 'lib', 'roadmap.ts');
-    let content = await fs.readFile(roadmapPath, 'utf-8');
+    const roadmapPath = 'lib/roadmap.ts';
+    let content = await readFileContent(roadmapPath);
 
     // Replace all occurrences of the old category with the new one
     const categoryRegex = new RegExp(
@@ -96,9 +105,19 @@ export async function PATCH(request: NextRequest) {
     content = content.replace(categoryRegex, `category: '${newCategory}'`);
 
     // Write back to file
-    await fs.writeFile(roadmapPath, content, 'utf-8');
+    await writeFileContent(
+      roadmapPath,
+      content,
+      `Rename category: ${oldCategory} → ${newCategory} in ${type} roadmap [via admin]`
+    );
 
-    return NextResponse.json({ success: true, message: 'Category renamed successfully' });
+    const requiresRebuild = isGitHubConfigured();
+
+    return NextResponse.json({
+      success: true,
+      message: 'Category renamed successfully',
+      requiresRebuild
+    });
   } catch (error) {
     console.error('Rename error:', error);
     return NextResponse.json(
