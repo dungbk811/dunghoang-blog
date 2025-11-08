@@ -144,6 +144,62 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Update relatedWorkIds (for Learning items)
+    if (updates.relatedWorkIds !== undefined) {
+      if (itemBlock.includes('relatedWorkIds:')) {
+        if (updates.relatedWorkIds.length === 0) {
+          // Remove relatedWorkIds if empty
+          itemBlock = itemBlock.replace(/,?\s*relatedWorkIds:\s*\[[^\]]*\],?/, '');
+        } else {
+          itemBlock = itemBlock.replace(
+            /relatedWorkIds:\s*\[[^\]]*\]/,
+            `relatedWorkIds: [${updates.relatedWorkIds.map((id: string) => `'${id}'`).join(', ')}]`
+          );
+        }
+      } else if (updates.relatedWorkIds.length > 0) {
+        // Add relatedWorkIds after tags if exists, otherwise after hidden
+        if (itemBlock.includes('tags:')) {
+          itemBlock = itemBlock.replace(
+            /tags:\s*\[[^\]]*\],/,
+            `$&\n    relatedWorkIds: [${updates.relatedWorkIds.map((id: string) => `'${id}'`).join(', ')}],`
+          );
+        } else {
+          itemBlock = itemBlock.replace(
+            /hidden:\s*(true|false),/,
+            `$&\n    relatedWorkIds: [${updates.relatedWorkIds.map((id: string) => `'${id}'`).join(', ')}],`
+          );
+        }
+      }
+    }
+
+    // Update relatedLearningIds (for COO items)
+    if (updates.relatedLearningIds !== undefined) {
+      if (itemBlock.includes('relatedLearningIds:')) {
+        if (updates.relatedLearningIds.length === 0) {
+          // Remove relatedLearningIds if empty
+          itemBlock = itemBlock.replace(/,?\s*relatedLearningIds:\s*\[[^\]]*\],?/, '');
+        } else {
+          itemBlock = itemBlock.replace(
+            /relatedLearningIds:\s*\[[^\]]*\]/,
+            `relatedLearningIds: [${updates.relatedLearningIds.map((id: string) => `'${id}'`).join(', ')}]`
+          );
+        }
+      } else if (updates.relatedLearningIds.length > 0) {
+        // Add relatedLearningIds after tags if exists, otherwise after hidden
+        if (itemBlock.includes('tags:')) {
+          itemBlock = itemBlock.replace(
+            /tags:\s*\[[^\]]*\],/,
+            `$&\n    relatedLearningIds: [${updates.relatedLearningIds.map((id: string) => `'${id}'`).join(', ')}],`
+          );
+        } else {
+          itemBlock = itemBlock.replace(
+            /hidden:\s*(true|false),/,
+            `$&\n    relatedLearningIds: [${updates.relatedLearningIds.map((id: string) => `'${id}'`).join(', ')}],`
+          );
+        }
+      }
+    }
+
     // Replace the old item block with the updated one
     content = content.replace(match[0], itemBlock);
 
@@ -199,6 +255,8 @@ export async function PUT(request: NextRequest) {
       ...(item.startDate && { startDate: item.startDate }),
       ...(item.targetDate && { targetDate: item.targetDate }),
       ...(item.tags && item.tags.length > 0 && { tags: item.tags }),
+      ...(item.relatedWorkIds && item.relatedWorkIds.length > 0 && { relatedWorkIds: item.relatedWorkIds }),
+      ...(item.relatedLearningIds && item.relatedLearningIds.length > 0 && { relatedLearningIds: item.relatedLearningIds }),
     };
 
     // Read the roadmap file
@@ -239,6 +297,12 @@ export async function PUT(request: NextRequest) {
     }
     if (newItem.tags && newItem.tags.length > 0) {
       newItemStr += `    tags: [${newItem.tags.map((tag: string) => `'${tag}'`).join(', ')}],\n`;
+    }
+    if (newItem.relatedWorkIds && newItem.relatedWorkIds.length > 0) {
+      newItemStr += `    relatedWorkIds: [${newItem.relatedWorkIds.map((id: string) => `'${id}'`).join(', ')}],\n`;
+    }
+    if (newItem.relatedLearningIds && newItem.relatedLearningIds.length > 0) {
+      newItemStr += `    relatedLearningIds: [${newItem.relatedLearningIds.map((id: string) => `'${id}'`).join(', ')}],\n`;
     }
     newItemStr += `  },`;
 

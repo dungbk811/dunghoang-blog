@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { RoadmapItem, RoadmapStatus, Priority } from '@/lib/roadmap';
+import { learningRoadmap, cooRoadmap } from '@/lib/roadmap';
 import toast from 'react-hot-toast';
 
 interface EditItemModalProps {
@@ -24,6 +25,13 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
   const [targetDate, setTargetDate] = useState(item?.targetDate || '');
   const [saving, setSaving] = useState(false);
 
+  // Relationships
+  const [relatedWorkIds, setRelatedWorkIds] = useState<string[]>(item?.relatedWorkIds || []);
+  const [relatedLearningIds, setRelatedLearningIds] = useState<string[]>(item?.relatedLearningIds || []);
+
+  // Get available items for relationship selection
+  const availableItems = type === 'learning' ? cooRoadmap : learningRoadmap;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -42,6 +50,8 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
           subcategory: subcategory || undefined,
           startDate: startDate || undefined,
           targetDate: targetDate || undefined,
+          relatedWorkIds: type === 'learning' ? relatedWorkIds : undefined,
+          relatedLearningIds: type === 'coo' ? relatedLearningIds : undefined,
         });
       } else {
         // Edit mode: pass itemId and updates
@@ -52,6 +62,8 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
           subcategory: subcategory || undefined,
           startDate: startDate || undefined,
           targetDate: targetDate || undefined,
+          relatedWorkIds: type === 'learning' ? relatedWorkIds : undefined,
+          relatedLearningIds: type === 'coo' ? relatedLearningIds : undefined,
         });
       }
 
@@ -237,6 +249,84 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
               </div>
             </div>
           )}
+
+          {/* Relationships */}
+          <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+              {type === 'learning' ? 'Related COO Work' : 'Related Learning Topics'}
+              <span className="text-xs text-gray-500 dark:text-gray-400 ml-2 font-normal">
+                (Select items that are related to this topic)
+              </span>
+            </label>
+            <div className="max-h-64 overflow-y-auto border border-gray-300 dark:border-gray-700 rounded-lg p-4 bg-gray-50 dark:bg-gray-800/50">
+              {availableItems.length === 0 ? (
+                <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
+                  No items available
+                </p>
+              ) : (
+                <div className="space-y-2">
+                  {availableItems.map((relatedItem) => {
+                    const isSelected = type === 'learning'
+                      ? relatedWorkIds.includes(relatedItem.id)
+                      : relatedLearningIds.includes(relatedItem.id);
+
+                    const handleToggle = () => {
+                      if (type === 'learning') {
+                        setRelatedWorkIds(prev =>
+                          isSelected
+                            ? prev.filter(id => id !== relatedItem.id)
+                            : [...prev, relatedItem.id]
+                        );
+                      } else {
+                        setRelatedLearningIds(prev =>
+                          isSelected
+                            ? prev.filter(id => id !== relatedItem.id)
+                            : [...prev, relatedItem.id]
+                        );
+                      }
+                    };
+
+                    return (
+                      <label
+                        key={relatedItem.id}
+                        className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all ${
+                          isSelected
+                            ? 'bg-purple-50 dark:bg-purple-900/20 border border-purple-300 dark:border-purple-700'
+                            : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={handleToggle}
+                          className="mt-1 w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-gray-900 dark:text-white">
+                            {relatedItem.title}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            {relatedItem.category}
+                            {relatedItem.subcategory && ` • ${relatedItem.subcategory}`}
+                          </div>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            {type === 'learning' && relatedWorkIds.length > 0 && (
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                {relatedWorkIds.length} related work item{relatedWorkIds.length > 1 ? 's' : ''} selected
+              </p>
+            )}
+            {type === 'coo' && relatedLearningIds.length > 0 && (
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                {relatedLearningIds.length} related learning topic{relatedLearningIds.length > 1 ? 's' : ''} selected
+              </p>
+            )}
+          </div>
 
           {/* Actions */}
           <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
