@@ -88,6 +88,11 @@ export default function COOWorkClient({
     expert: levelGroups.expert.length,
   }), [levelGroups]);
 
+  // Calculate level-specific category counts (category count at each level)
+  const getLevelCategoryCount = (category: string, level: SkillLevel) => {
+    return roadmapWithCounts.filter(({ item }) => item.category === category && item.level === level).length;
+  };
+
   // Filter and sort items
   const filteredAndSortedItems = useMemo(() => {
     let filtered = roadmapWithCounts;
@@ -269,7 +274,7 @@ export default function COOWorkClient({
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category] || 0}
+                            {getLevelCategoryCount(category, 'beginner')}
                           </span>
                         </button>
                       ))
@@ -318,7 +323,7 @@ export default function COOWorkClient({
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category] || 0}
+                            {getLevelCategoryCount(category, 'intermediate')}
                           </span>
                         </button>
                       ))
@@ -367,7 +372,7 @@ export default function COOWorkClient({
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category] || 0}
+                            {getLevelCategoryCount(category, 'advanced')}
                           </span>
                         </button>
                       ))
@@ -416,7 +421,7 @@ export default function COOWorkClient({
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
-                            {categoryCounts[category] || 0}
+                            {getLevelCategoryCount(category, 'expert')}
                           </span>
                         </button>
                       ))
