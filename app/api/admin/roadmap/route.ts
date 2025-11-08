@@ -369,6 +369,55 @@ export async function DELETE(request: NextRequest) {
     // Remove the item
     content = content.replace(itemRegex, '');
 
+    // Clean up relationships: Remove this itemId from any related items
+    if (type === 'learning') {
+      // If deleting a Learning item, remove its ID from COO items' relatedLearningIds
+      const relatedLearningRegex = new RegExp(
+        `(relatedLearningIds:\\s*\\[)([^\\]]*)\\]`,
+        'g'
+      );
+      content = content.replace(relatedLearningRegex, (match, prefix, ids) => {
+        // Remove the deleted itemId from the array
+        const cleanedIds = ids
+          .split(',')
+          .map((id: string) => id.trim())
+          .filter((id: string) => id && !id.includes(itemId))
+          .join(', ');
+
+        // If array is empty after removal, remove the entire field
+        if (!cleanedIds) {
+          return '';
+        }
+        return `${prefix}${cleanedIds}]`;
+      });
+
+      // Clean up any trailing commas or empty relatedLearningIds lines
+      content = content.replace(/,?\s*relatedLearningIds:\s*\[\s*\],?/g, '');
+    } else if (type === 'coo') {
+      // If deleting a COO item, remove its ID from Learning items' relatedWorkIds
+      const relatedWorkRegex = new RegExp(
+        `(relatedWorkIds:\\s*\\[)([^\\]]*)\\]`,
+        'g'
+      );
+      content = content.replace(relatedWorkRegex, (match, prefix, ids) => {
+        // Remove the deleted itemId from the array
+        const cleanedIds = ids
+          .split(',')
+          .map((id: string) => id.trim())
+          .filter((id: string) => id && !id.includes(itemId))
+          .join(', ');
+
+        // If array is empty after removal, remove the entire field
+        if (!cleanedIds) {
+          return '';
+        }
+        return `${prefix}${cleanedIds}]`;
+      });
+
+      // Clean up any trailing commas or empty relatedWorkIds lines
+      content = content.replace(/,?\s*relatedWorkIds:\s*\[\s*\],?/g, '');
+    }
+
     // Commit to GitHub if configured, otherwise write to local file
     if (isGitHubConfigured()) {
       await commitFile(
