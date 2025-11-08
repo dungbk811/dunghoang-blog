@@ -22,8 +22,7 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-  const [status, setStatus] = useState<'draft' | 'published'>('draft');
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true); // Default: hidden when creating
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [existingCategories, setExistingCategories] = useState<string[]>([]);
 
@@ -68,7 +67,6 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
         setCategory(data.post.category || '');
         setTags(data.post.tags?.join(', ') || '');
         setDate(data.post.date || '');
-        setStatus(data.post.status || 'published');
         setHidden(data.post.hidden || false);
       }
     } catch (error) {
@@ -103,7 +101,6 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
         date,
         category: category.trim() || undefined,
         tags: tags.split(',').map(t => t.trim()).filter(Boolean),
-        status,
         hidden,
       };
 
@@ -253,37 +250,6 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder={t.blogEditor.tagsPlaceholder}
               />
-            </div>
-
-            {/* Status */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Status
-              </label>
-              <div className="flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => setStatus('draft')}
-                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    status === 'draft'
-                      ? 'bg-yellow-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  Draft
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setStatus('published')}
-                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    status === 'published'
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  Published
-                </button>
-              </div>
             </div>
 
             {/* Visibility Toggle */}
