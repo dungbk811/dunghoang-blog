@@ -254,14 +254,14 @@ export default function LearningClient({
                             setIsSidebarOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'beginner'
                               ? 'bg-blue-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'beginner'
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -303,14 +303,14 @@ export default function LearningClient({
                             setIsSidebarOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'intermediate'
                               ? 'bg-blue-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'intermediate'
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -352,14 +352,14 @@ export default function LearningClient({
                             setIsSidebarOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'advanced'
                               ? 'bg-blue-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'advanced'
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -401,14 +401,14 @@ export default function LearningClient({
                             setIsSidebarOpen(false);
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'expert'
                               ? 'bg-blue-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            activeCategory === category
+                            activeCategory === category && selectedLevel === 'expert'
                               ? 'bg-blue-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>

@@ -525,14 +525,14 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                           key={category}
                           onClick={() => handleCategoryChangeWithLevel(category, 'beginner')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'beginner'
                               ? 'bg-purple-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'beginner'
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -571,14 +571,14 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                           key={category}
                           onClick={() => handleCategoryChangeWithLevel(category, 'intermediate')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'intermediate'
                               ? 'bg-purple-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'intermediate'
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -617,14 +617,14 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                           key={category}
                           onClick={() => handleCategoryChangeWithLevel(category, 'advanced')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'advanced'
                               ? 'bg-purple-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'advanced'
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
@@ -663,14 +663,14 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                           key={category}
                           onClick={() => handleCategoryChangeWithLevel(category, 'expert')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'expert'
                               ? 'bg-purple-600 text-white font-medium'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
                           }`}
                         >
                           <span className="flex-1 text-left truncate">{category}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                            filterCategory === category
+                            filterCategory === category && selectedLevel === 'expert'
                               ? 'bg-purple-700 text-white'
                               : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
                           }`}>
