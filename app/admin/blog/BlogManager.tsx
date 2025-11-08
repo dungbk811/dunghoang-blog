@@ -198,8 +198,18 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
 
       if (!response.ok) throw new Error('Failed to update');
 
-      toast.success(t.toast.itemUpdated, { id: loadingToast });
-      router.refresh();
+      const data = await response.json();
+
+      // Show different messages based on whether rebuild is required
+      if (data.requiresRebuild) {
+        toast.success(
+          'Updated! Changes will be live after deployment (~2-3 minutes)',
+          { id: loadingToast, duration: 5000 }
+        );
+      } else {
+        toast.success(t.toast.itemUpdated, { id: loadingToast });
+        router.refresh();
+      }
     } catch (error) {
       console.error('Update error:', error);
       toast.error(t.toast.updateFailed, { id: loadingToast });

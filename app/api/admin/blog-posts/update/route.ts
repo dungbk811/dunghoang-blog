@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import { readFileContent, writeFileContent } from '@/lib/github';
+import { readFileContent, writeFileContent, isGitHubConfigured } from '@/lib/github';
 import matter from 'gray-matter';
 
 export async function POST(request: NextRequest) {
@@ -51,7 +51,14 @@ export async function POST(request: NextRequest) {
     const updatedContent = matter.stringify(content, updatedData);
     await writeFileContent(filePath, updatedContent, `Update blog post: ${slug} [via admin]`);
 
-    return NextResponse.json({ success: true, message: 'Post updated successfully' });
+    // Check if using GitHub (production) or local filesystem (development)
+    const requiresRebuild = isGitHubConfigured();
+
+    return NextResponse.json({
+      success: true,
+      message: 'Post updated successfully',
+      requiresRebuild // true if changes need deployment to be visible
+    });
   } catch (error) {
     console.error('Update error:', error);
     return NextResponse.json(
