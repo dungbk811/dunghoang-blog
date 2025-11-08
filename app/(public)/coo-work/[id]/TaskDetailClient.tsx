@@ -47,11 +47,6 @@ export default function TaskDetailClient({ task, topicContent, taskPosts }: Task
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {task.category}
               </span>
-              {task.priority && (
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  • {t.topic.priority}: {task.priority}
-                </span>
-              )}
             </div>
           </div>
 

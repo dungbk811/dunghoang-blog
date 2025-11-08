@@ -457,7 +457,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
       {/* Main Content with Sidebar */}
       <div className="flex gap-8">
         {/* Left Sidebar - Categories by Level */}
-        <aside className="w-64 flex-shrink-0">
+        <aside className="w-72 flex-shrink-0">
           <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 sticky top-8">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">
               {type === 'learning' ? t.learning.categories : t.cooWork.categories}

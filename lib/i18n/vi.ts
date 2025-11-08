@@ -21,6 +21,7 @@ export const vi = {
     readMore: 'Đọc thêm',
     viewDetails: 'Xem chi tiết',
     viewAll: 'Xem tất cả',
+    level: 'Cấp độ',
   },
 
   // Status

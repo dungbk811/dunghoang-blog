@@ -21,6 +21,7 @@ export const en = {
     readMore: 'Read more',
     viewDetails: 'View details',
     viewAll: 'View all',
+    level: 'Level',
   },
 
   // Status

@@ -364,7 +364,7 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
       {/* Main Content with Sidebar */}
       <div className="flex gap-8">
         {/* Left Sidebar - Categories */}
-        <aside className="w-64 flex-shrink-0">
+        <aside className="w-72 flex-shrink-0">
           <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 sticky top-8">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider">

@@ -47,11 +47,6 @@ export default function TopicDetailClient({ topic, topicContent, topicPosts }: T
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {topic.category}
               </span>
-              {topic.priority && (
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  • {t.topic.priority}: {topic.priority}
-                </span>
-              )}
             </div>
           </div>
 

@@ -36,7 +36,7 @@ export default function LearningClient({
     'in-progress',
     'completed',
   ]);
-  const [sortBy, setSortBy] = useState<'priority' | 'date' | 'title'>('priority');
+  const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
   const [itemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const [expandedLevels, setExpandedLevels] = useState<Record<SkillLevel, boolean>>({
@@ -54,6 +54,9 @@ export default function LearningClient({
   const handleCategoryChangeWithLevel = (category: string, level?: SkillLevel) => {
     onCategoryChange(category);
     setSelectedLevel(level || 'all');
+    if (level) {
+      setExpandedLevels(prev => ({ ...prev, [level]: true }));
+    }
     setCurrentPage(1);
   };
 
@@ -127,12 +130,7 @@ export default function LearningClient({
       }
 
       // Then apply secondary sort
-      if (sortBy === 'priority') {
-        const priorityOrder = { high: 0, medium: 1, low: 2 };
-        const aPriority = a.item.priority ? priorityOrder[a.item.priority] : 3;
-        const bPriority = b.item.priority ? priorityOrder[b.item.priority] : 3;
-        return aPriority - bPriority;
-      } else if (sortBy === 'date') {
+      if (sortBy === 'date') {
         const aDate = a.item.startDate ? new Date(a.item.startDate).getTime() : 0;
         const bDate = b.item.startDate ? new Date(b.item.startDate).getTime() : 0;
         return bDate - aDate;
@@ -191,7 +189,7 @@ export default function LearningClient({
           {/* Left Sidebar - Categories */}
           <aside className={`${
             isSidebarOpen ? 'block' : 'hidden'
-          } lg:block fixed lg:sticky top-16 lg:top-24 left-0 w-64 lg:w-64 flex-shrink-0 h-[calc(100vh-4rem)] lg:h-auto bg-white dark:bg-slate-900 border-r lg:border-r-0 lg:border border-slate-200 dark:border-slate-800 lg:rounded-xl p-4 overflow-y-auto z-20`}>
+          } lg:block fixed lg:sticky top-16 lg:top-24 left-0 w-72 lg:w-72 flex-shrink-0 h-[calc(100vh-4rem)] lg:h-auto bg-white dark:bg-slate-900 border-r lg:border-r-0 lg:border border-slate-200 dark:border-slate-800 lg:rounded-xl p-4 overflow-y-auto z-20`}>
             {/* Close button for mobile */}
             <button
               onClick={() => setIsSidebarOpen(false)}
@@ -237,7 +235,7 @@ export default function LearningClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.beginner ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 1: {t.learning.levels.beginner}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 1: {t.learning.levels.beginner}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.beginner}
@@ -286,7 +284,7 @@ export default function LearningClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.intermediate ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 2: {t.learning.levels.intermediate}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 2: {t.learning.levels.intermediate}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.intermediate}
@@ -335,7 +333,7 @@ export default function LearningClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.advanced ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 3: {t.learning.levels.advanced}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 3: {t.learning.levels.advanced}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.advanced}
@@ -384,7 +382,7 @@ export default function LearningClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.expert ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 4: {t.learning.levels.expert}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 4: {t.learning.levels.expert}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.expert}
@@ -523,7 +521,6 @@ export default function LearningClient({
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {[
-                        { value: 'priority' as const, label: t.sort.priority },
                         { value: 'date' as const, label: t.sort.date },
                         { value: 'title' as const, label: t.sort.title },
                       ].map((sort) => (

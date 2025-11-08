@@ -21,6 +21,7 @@ export const ja = {
     readMore: '続きを読む',
     viewDetails: '詳細を見る',
     viewAll: 'すべて見る',
+    level: 'レベル',
   },
 
   // Status

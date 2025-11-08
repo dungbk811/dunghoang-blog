@@ -1,5 +1,4 @@
 export type RoadmapStatus = 'planned' | 'in-progress' | 'completed';
-export type Priority = 'high' | 'medium' | 'low';
 export type ResourceType = 'doc' | 'video' | 'course' | 'article' | 'github';
 export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
 
@@ -33,7 +32,6 @@ export interface RoadmapItem {
   subcategory?: string;
   status: RoadmapStatus;
   level: SkillLevel; // Beginner, Intermediate, Advanced, Expert
-  priority?: Priority;
   startDate?: string;
   targetDate?: string;
   tags?: string[];
@@ -62,7 +60,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: false,
-    priority: 'high',
     startDate: '2025-11-01',
     tags: ['voice', 'communication', 'japanese-client'],
     notes: 'Đang học các bài tập về phát âm và hơi thở. Có thể viết bài chia sẻ trải nghiệm, bài tập thực tế, thách thức, cải thiện',
@@ -76,7 +73,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['voice', 'breathing', 'speaking'],
   },
   {
@@ -88,7 +84,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['articulation', 'pronunciation'],
   },
   {
@@ -100,7 +95,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['japanese-business', 'culture', 'etiquette'],
     relatedWorkIds: ['japanese-client-relations-work'],
   },
@@ -113,7 +107,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['writing', 'email', 'documentation'],
   },
   {
@@ -125,7 +118,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['feedback', 'negotiation', 'conflict'],
   },
   {
@@ -137,7 +129,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['presentation', 'executive', 'public-speaking'],
   },
   {
@@ -149,7 +140,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['executive', 'c-level', 'leadership'],
   },
 
@@ -163,7 +153,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     startDate: '2025-10-01',
     tags: ['performance', 'kpi', 'evaluation', 'redmine'],
     relatedWorkIds: ['performance-review-process-work', 'redmine-kpi-system-work'],
@@ -178,7 +167,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['okr', 'smart', 'goal-setting'],
   },
   {
@@ -190,7 +178,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['career', 'development', 'growth'],
   },
   {
@@ -202,7 +189,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['culture', 'team-building', 'engagement'],
     relatedWorkIds: ['team-building-activities-work', 'culture-initiatives-work'],
   },
@@ -215,7 +201,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['onboarding', 'hiring', 'retention'],
   },
   {
@@ -227,7 +212,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['engagement', 'retention', 'culture'],
     relatedWorkIds: ['employee-engagement-programs-work', 'thanks-bonus-program-work'],
   },
@@ -240,7 +224,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['conflict', 'mediation', 'team'],
   },
   {
@@ -252,7 +235,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['coaching', 'mentoring', 'development'],
   },
   {
@@ -264,7 +246,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['psychological-safety', 'culture', 'feedback'],
   },
   {
@@ -276,7 +257,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['emotional-intelligence', 'eq', 'self-awareness', 'empathy'],
   },
   {
@@ -288,7 +268,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['change-management', 'transformation', 'leadership'],
   },
   {
@@ -300,7 +279,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['stakeholder', 'relationship', 'expectation'],
   },
   {
@@ -312,7 +290,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['cross-functional', 'collaboration', 'leadership'],
   },
 
@@ -326,7 +303,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     startDate: '2025-09-01',
     tags: ['ai', 'ml', 'automation', 'multi-agent'],
     relatedWorkIds: ['ai-workflow-management-work'],
@@ -341,7 +317,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['ai', 'roadmap', 'strategy'],
   },
   {
@@ -353,7 +328,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['prompt-engineering', 'ai', 'productivity'],
   },
   {
@@ -365,7 +339,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['devops', 'ci-cd', 'gitlab', 'automation'],
     relatedWorkIds: ['devops-optimization-work'],
     notes: 'Đã triển khai chiến lược quản lý branch, quy trình code review. Có thể viết bài về GitLab workflow cho team, chiến lược branch',
@@ -379,7 +352,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['cloud', 'aws', 'azure', 'gcp'],
   },
   {
@@ -391,7 +363,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['iso27001', 'security', 'compliance', 'audit'],
     relatedWorkIds: ['iso27001-compliance-work'],
     notes: 'Đang duy trì compliance, chu kỳ tái chứng nhận hàng năm. Có thể viết bài về quy trình tuân thủ, tips chuẩn bị audit',
@@ -405,7 +376,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['information-security', 'data-privacy', 'access-control'],
   },
   {
@@ -417,7 +387,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['compliance', 'governance', 'internal-controls'],
   },
 
@@ -431,7 +400,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['qa', 'quality', 'testing'],
   },
   {
@@ -443,7 +411,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['project-management', 'agile', 'scrum', 'outsourcing'],
     relatedWorkIds: ['est-vs-actual-tracking-work', 'weekly-reporting-system-work', 'change-request-management-work'],
   },
@@ -456,7 +423,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['portfolio', 'prioritization', 'resource-allocation'],
   },
   {
@@ -468,7 +434,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['resource-planning', 'capacity', 'allocation'],
   },
   {
@@ -480,7 +445,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['vendor', 'procurement', 'contracts'],
   },
   {
@@ -492,7 +456,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['service-delivery', 'excellence', 'quality'],
   },
   {
@@ -504,7 +467,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['sla', 'slo', 'service-level'],
     relatedWorkIds: ['sla-compliance-tracking-work', 'sla-reporting-work', 'sla-performance-improvement-work'],
   },
@@ -517,7 +479,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['escalation', 'incident', 'response'],
     relatedWorkIds: ['escalation-process-work', 'critical-issue-resolution-work', 'major-escalation-handling-work'],
   },
@@ -530,7 +491,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['post-mortem', 'incident', 'learning'],
   },
 
@@ -544,7 +504,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['strategy', 'frameworks', 'planning'],
     relatedWorkIds: ['annual-operating-plan-work', 'quarterly-okr-work'],
   },
@@ -557,7 +516,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['scenario-planning', 'contingency', 'risk'],
   },
   {
@@ -569,7 +527,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     startDate: '2025-10-01',
     tags: ['partnership', 'business-development', 'recruitment'],
     relatedWorkIds: ['vti-academy-partnership-work'],
@@ -584,7 +541,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['market-analysis', 'positioning', 'competition'],
   },
   {
@@ -596,7 +552,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['expansion', 'growth', 'services'],
   },
   {
@@ -608,7 +563,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['finance', 'p&l', 'budget'],
     relatedWorkIds: ['pl-ownership-work', 'annual-budget-planning-work'],
   },
@@ -621,7 +575,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['investment', 'roi', 'npv'],
   },
   {
@@ -633,7 +586,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['customer-success', 'health-score', 'retention'],
   },
   {
@@ -645,7 +597,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['churn', 'retention', 'analysis'],
   },
   {
@@ -657,7 +608,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['upsell', 'expansion', 'growth'],
   },
   {
@@ -669,7 +619,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['customer-lifecycle', 'journey', 'retention'],
   },
 
@@ -683,7 +632,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['time-management', 'productivity', 'executive'],
   },
   {
@@ -695,7 +643,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['decision-making', 'uncertainty', 'frameworks'],
   },
 
@@ -709,7 +656,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['p&l', 'profit', 'loss'],
   },
   {
@@ -721,7 +667,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['financial-statements', 'accounting', 'analysis'],
   },
   {
@@ -733,7 +678,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['profitability', 'accountability', 'margins'],
   },
   {
@@ -745,7 +689,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['budget', 'planning', 'control'],
   },
   {
@@ -757,7 +700,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['cost-optimization', 'efficiency', 'savings'],
   },
   {
@@ -769,7 +711,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['forecasting', 'revenue', 'costs'],
   },
   {
@@ -781,7 +722,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['cash-flow', 'liquidity', 'working-capital'],
     relatedWorkIds: ['cash-flow-management-work'],
   },
@@ -794,7 +734,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['pricing', 'strategy', 'value'],
   },
   {
@@ -806,7 +745,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['unit-economics', 'profitability', 'metrics'],
   },
   {
@@ -818,7 +756,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['project-profitability', 'margins', 'analysis'],
   },
   {
@@ -830,7 +767,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['pricing', 'decision-making', 'negotiation'],
   },
 
@@ -844,7 +780,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['risk', 'erm', 'framework'],
   },
   {
@@ -856,7 +791,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['risk-assessment', 'mitigation', 'analysis'],
   },
   {
@@ -868,7 +802,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['insurance', 'liability', 'risk'],
   },
   {
@@ -880,7 +813,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['bcp', 'continuity', 'disaster-recovery'],
     relatedWorkIds: ['bcp-plan-work'],
   },
@@ -893,7 +825,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['crisis', 'emergency', 'response'],
     relatedWorkIds: ['crisis-response-protocol-work', 'crisis-communication-work'],
   },
@@ -906,7 +837,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['disaster-recovery', 'dr', 'backup'],
     relatedWorkIds: ['dr-plan-work'],
   },
@@ -919,7 +849,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['crisis', 'scenario-planning', 'preparation'],
   },
   {
@@ -931,7 +860,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['crisis-communication', 'stakeholder', 'transparency'],
   },
 
@@ -945,7 +873,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['change', 'communication', 'adoption'],
   },
   {
@@ -957,7 +884,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['change', 'resistance', 'adoption'],
   },
   {
@@ -969,7 +895,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['digital-transformation', 'technology', 'change'],
   },
   {
@@ -981,7 +906,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['process', 'change', 'optimization'],
   },
 
@@ -995,7 +919,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['demand-forecasting', 'capacity', 'planning'],
     relatedWorkIds: ['quarterly-demand-forecast-work', 'pipeline-analysis-work'],
   },
@@ -1008,7 +931,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['pipeline', 'analysis', 'forecasting'],
   },
   {
@@ -1020,7 +942,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['seasonal', 'planning', 'demand'],
   },
   {
@@ -1032,7 +953,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['capacity', 'modeling', 'planning'],
     relatedWorkIds: ['capacity-models-work', 'utilization-tracking-work'],
   },
@@ -1045,7 +965,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['utilization', 'optimization', 'capacity'],
   },
   {
@@ -1057,7 +976,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['bench', 'idle-resources', 'planning'],
   },
   {
@@ -1069,7 +987,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['hiring', 'forecasting', 'recruitment'],
   },
 
@@ -1083,7 +1000,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['contract', 'negotiation', 'legal'],
     relatedWorkIds: ['client-contract-negotiation-work', 'vendor-contract-negotiation-work', 'terms-conditions-negotiation-work'],
   },
@@ -1096,7 +1012,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['contract', 'structure', 'terms'],
   },
   {
@@ -1108,7 +1023,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['msa', 'sow', 'contracts'],
   },
   {
@@ -1120,7 +1034,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['legal', 'risk', 'compliance'],
   },
   {
@@ -1132,7 +1045,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['ip', 'nda', 'confidentiality'],
   },
   {
@@ -1144,7 +1056,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['labor-law', 'compliance', 'hr'],
   },
   {
@@ -1156,7 +1067,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['dispute', 'resolution', 'legal'],
   },
 
@@ -1170,7 +1080,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['bi', 'analytics', 'data'],
   },
   {
@@ -1182,7 +1091,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['data-driven', 'decision-making', 'analytics'],
   },
   {
@@ -1194,7 +1102,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['data-governance', 'quality', 'security'],
   },
 
@@ -1208,7 +1115,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['recruitment', 'talent', 'hiring'],
     relatedWorkIds: ['hiring-pipeline-management-work', 'pipeline-based-hiring-forecast-work', 'hiring-timing-decisions-work'],
   },
@@ -1221,7 +1127,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['employer-brand', 'recruitment', 'marketing'],
   },
   {
@@ -1233,7 +1138,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['recruitment', 'funnel', 'conversion'],
   },
   {
@@ -1245,7 +1149,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['interview', 'hiring', 'assessment'],
   },
   {
@@ -1257,7 +1160,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['compensation', 'benchmarking', 'market'],
   },
   {
@@ -1269,7 +1171,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['compensation', 'philosophy', 'strategy'],
   },
   {
@@ -1281,7 +1182,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['benefits', 'perks', 'retention'],
   },
   {
@@ -1293,7 +1193,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['bonus', 'incentive', 'performance'],
   },
   {
@@ -1305,7 +1204,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['succession', 'risk', 'retention'],
   },
   {
@@ -1317,7 +1215,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['leadership', 'succession', 'development'],
   },
   {
@@ -1329,7 +1226,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['knowledge-transfer', 'documentation', 'continuity'],
   },
   {
@@ -1341,7 +1237,6 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['backup', 'succession', 'continuity'],
   },
 ];
@@ -1358,7 +1253,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     startDate: '2024-01-01',
     targetDate: '2026-12-31',
     tags: ['transformation', 'ai-ml', 'strategy', 'upskilling'],
@@ -1373,7 +1267,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['scaling', 'recruitment', 'growth', 'pipeline'],
     notes: 'Đã thảo luận partnership với VTI Academy. Có thể viết bài về chiến lược recruitment cho IT outsourcing, hiring mix, onboarding',
   },
@@ -1386,7 +1279,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['expansion', 'services', 'strategy'],
   },
   {
@@ -1398,7 +1290,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['planning', 'aop', 'strategy'],
     relatedLearningIds: ['strategic-planning-frameworks-learning'],
   },
@@ -1411,7 +1302,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['okr', 'goals', 'quarterly'],
     relatedLearningIds: ['strategic-planning-frameworks-learning'],
   },
@@ -1424,7 +1314,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['competition', 'market', 'analysis'],
   },
 
@@ -1438,7 +1327,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['team-management', 'leadership', 'remote', 'culture'],
     notes: 'Thách thức: Giao tiếp giữa distributed teams, duy trì văn hóa remote. Có thể viết bài về cấu trúc teams, quản lý multiple teams, best practices 1-on-1',
   },
@@ -1451,7 +1339,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['kpi', 'redmine', 'metrics', 'tracking'],
     relatedLearningIds: ['performance-evaluation-framework-learning'],
     notes: 'Có thể viết bài về cách extract KPIs từ Redmine, metrics quan trọng cho IT outsourcing, thiết kế dashboard',
@@ -1465,7 +1352,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['performance', 'evaluation', '360-feedback', 'calibration'],
     relatedLearningIds: ['performance-evaluation-framework-learning'],
     notes: 'Có thể viết bài về evaluation framework chi tiết cho từng role, triển khai 360 feedback, calibration sessions',
@@ -1479,7 +1365,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['training', 'development', 'upskilling'],
   },
   {
@@ -1491,7 +1376,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['team-building', 'engagement', 'culture'],
     relatedLearningIds: ['team-building-culture-learning'],
   },
@@ -1504,7 +1388,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['feedback', 'communication', 'culture'],
   },
 
@@ -1518,7 +1401,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     targetDate: '2026-06-30',
     tags: ['ai', 'workflow', 'automation', 'integration'],
     relatedLearningIds: ['ai-ml-workflow-automation-learning'],
@@ -1533,7 +1415,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['devops', 'ci-cd', 'gitlab', 'automation'],
     relatedLearningIds: ['devops-best-practices-learning'],
     notes: 'Có thể viết bài về hành trình tối ưu CI/CD, quyết định branch strategy, automation wins, thách thức team adoption',
@@ -1547,7 +1428,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['pwa', 'offline-first', 'mobile', 'web'],
     notes: 'Có thể viết bài về lợi ích PWA cho clients, architecture patterns, thiết kế offline-first, thách thức, giáo dục khách hàng',
   },
@@ -1560,7 +1440,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['technology', 'modernization', 'stack'],
   },
   {
@@ -1572,7 +1451,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['innovation', 'r&d', 'time-allocation'],
   },
 
@@ -1586,7 +1464,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['iso27001', 'compliance', 'security', 'audit'],
     relatedLearningIds: ['iso27001-cybersecurity-learning'],
     notes: 'Có thể viết bài về quy trình tuân thủ ISO 27001, tips chuẩn bị audit, yêu cầu tài liệu, bài học từ các audits',
@@ -1600,7 +1477,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['gdpr', 'data-protection', 'compliance'],
   },
   {
@@ -1612,7 +1488,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['estimation', 'tracking', 'variance', 'accuracy'],
     notes: 'Có thể viết bài về tại sao EST vs Actual quan trọng, cách track trong Redmine, cách tiếp cận phân tích variance',
     relatedLearningIds: ['it-project-management-learning'],
@@ -1626,7 +1501,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['reporting', 'automation', 'transparency', 'communication'],
     notes: 'Có thể viết bài về thiết kế report template, cách tiếp cận automation, những gì cần đưa vào các loại report khác nhau',
     relatedLearningIds: ['it-project-management-learning'],
@@ -1640,7 +1514,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['change-request', 'scope', 'impact-assessment', 'approval'],
     notes: 'Có thể viết bài về thiết kế quy trình CR, framework đánh giá impact, tiêu chí approval, cách từ chối một cách nhẹ nhàng',
     relatedLearningIds: ['it-project-management-learning'],
@@ -1654,7 +1527,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['quality', 'metrics', 'improvement'],
   },
   {
@@ -1666,7 +1538,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['documentation', 'process', 'standardization'],
   },
   {
@@ -1678,7 +1549,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['automation', 'efficiency', 'optimization'],
   },
 
@@ -1692,7 +1562,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['client-relations', 'japanese', 'qbr', 'account-management'],
     notes: 'Có thể viết bài về best practices quản lý khách hàng Nhật, cân nhắc văn hóa, cấu trúc QBR',
     relatedLearningIds: ['japanese-client-communication-learning'],
@@ -1706,7 +1575,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['retention', 'churn', 'customer-success'],
   },
   {
@@ -1718,7 +1586,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     targetDate: '2026-03-31',
     tags: ['partnership', 'recruitment', 'academy', 'talent-pipeline'],
     relatedLearningIds: ['partnership-development-learning'],
@@ -1733,7 +1600,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['conference', 'branding', 'networking', 'recruitment'],
     notes: 'Có thể viết bài về cách đánh giá ROI hội nghị, booth setup vs speaking, chiến lược tạo leads',
   },
@@ -1746,7 +1612,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['market', 'expansion', 'growth'],
   },
   {
@@ -1758,7 +1623,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'high',
     tags: ['proposal', 'quality', 'sales'],
   },
   {
@@ -1770,7 +1634,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     hidden: true,
-    priority: 'medium',
     tags: ['presales', 'technical', 'sales-support'],
   },
 
@@ -1784,7 +1647,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['recognition', 'bonus', 'culture', 'engagement'],
     notes: 'Có thể viết bài về thiết kế chương trình ghi nhận, định nghĩa tiêu chí, triển khai đề cử từ đồng nghiệp, impact lên văn hóa',
     relatedLearningIds: ['employee-engagement-learning'],
@@ -1798,7 +1660,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'low',
     tags: ['recognition', 'retention', 'loyalty'],
   },
   {
@@ -1810,7 +1671,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['communication', 'transparency', 'engagement'],
   },
   {
@@ -1822,7 +1682,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['all-hands', 'communication', 'transparency'],
   },
   {
@@ -1834,7 +1693,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['culture', 'values', 'engagement'],
     relatedLearningIds: ['team-building-culture-learning'],
   },
@@ -1847,7 +1705,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['engagement', 'retention', 'culture'],
     relatedLearningIds: ['employee-engagement-learning'],
   },
@@ -1860,7 +1717,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['remote-work', 'best-practices', 'productivity'],
   },
 
@@ -1874,7 +1730,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['p&l', 'financial', 'accountability'],
     relatedLearningIds: ['financial-management-coo-learning'],
   },
@@ -1887,7 +1742,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['revenue', 'profitability', 'analysis'],
   },
   {
@@ -1899,7 +1753,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['margin', 'profitability', 'optimization'],
   },
   {
@@ -1911,7 +1764,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['budget', 'planning', 'annual'],
     relatedLearningIds: ['financial-management-coo-learning'],
   },
@@ -1924,7 +1776,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['budget', 'control', 'variance'],
   },
   {
@@ -1936,7 +1787,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['cost', 'optimization', 'efficiency'],
   },
   {
@@ -1948,7 +1798,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['approval', 'spending', 'control'],
   },
   {
@@ -1960,7 +1809,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['pricing', 'decision', 'approval'],
   },
   {
@@ -1972,7 +1820,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['project', 'profitability', 'analysis'],
   },
   {
@@ -1984,7 +1831,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['unit-economics', 'optimization', 'efficiency'],
   },
   {
@@ -1996,7 +1842,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['revenue', 'forecast', 'quarterly'],
   },
   {
@@ -2008,7 +1853,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['cost', 'forecast', 'planning'],
   },
   {
@@ -2020,7 +1864,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['cash-flow', 'liquidity', 'working-capital'],
     relatedLearningIds: ['cash-flow-management-learning'],
   },
@@ -2035,7 +1878,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['risk', 'assessment', 'periodic'],
   },
   {
@@ -2047,7 +1889,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['risk', 'mitigation', 'planning'],
   },
   {
@@ -2059,7 +1900,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['operational-risk', 'capacity', 'quality'],
   },
   {
@@ -2071,7 +1911,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['insurance', 'liability', 'coverage'],
   },
   {
@@ -2083,7 +1922,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['bcp', 'continuity', 'disaster-recovery'],
     relatedLearningIds: ['business-continuity-planning-learning'],
   },
@@ -2096,7 +1934,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['disaster-recovery', 'backup', 'continuity'],
     relatedLearningIds: ['disaster-recovery-learning'],
   },
@@ -2109,7 +1946,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['testing', 'drill', 'continuity'],
   },
   {
@@ -2121,7 +1957,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['crisis', 'response', 'protocol'],
     relatedLearningIds: ['crisis-management-learning'],
   },
@@ -2134,7 +1969,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['escalation', 'crisis', 'client'],
     relatedLearningIds: ['escalation-management-learning'],
   },
@@ -2147,7 +1981,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['dispute', 'client', 'resolution'],
   },
   {
@@ -2159,7 +1992,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['crisis', 'communication', 'stakeholder'],
     relatedLearningIds: ['crisis-management-learning'],
   },
@@ -2174,7 +2006,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['sla', 'compliance', 'monitoring'],
     relatedLearningIds: ['sla-slo-management-learning'],
   },
@@ -2187,7 +2018,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'high',
     tags: ['sla', 'reporting', 'client'],
     relatedLearningIds: ['sla-slo-management-learning'],
   },
@@ -2200,7 +2030,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['sla', 'improvement', 'performance'],
     relatedLearningIds: ['sla-slo-management-learning'],
   },
@@ -2213,7 +2042,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['escalation', 'process', 'incident'],
     relatedLearningIds: ['escalation-management-learning'],
   },
@@ -2226,7 +2054,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['critical', 'issue', 'resolution'],
     relatedLearningIds: ['escalation-management-learning'],
   },
@@ -2239,7 +2066,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['rca', 'root-cause', 'analysis'],
   },
   {
@@ -2251,7 +2077,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     hidden: true,
-    priority: 'medium',
     tags: ['post-mortem', 'incident', 'learning'],
   },
   {
@@ -2263,7 +2088,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['customer-health', 'monitoring', 'retention'],
   },
   {
@@ -2275,7 +2099,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['service-quality', 'improvement', 'excellence'],
   },
 
@@ -2289,7 +2112,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['contract', 'negotiation', 'client'],
     relatedLearningIds: ['contract-negotiation-learning'],
   },
@@ -2302,7 +2124,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['terms', 'conditions', 'negotiation'],
     relatedLearningIds: ['contract-negotiation-learning'],
   },
@@ -2315,7 +2136,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['contract', 'approval', 'review'],
   },
   {
@@ -2327,7 +2147,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['vendor', 'contract', 'negotiation'],
     relatedLearningIds: ['contract-negotiation-learning'],
   },
@@ -2340,7 +2159,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['contract', 'review', 'vendor'],
   },
   {
@@ -2352,7 +2170,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'medium',
     tags: ['renewal', 'contract', 'vendor'],
   },
   {
@@ -2364,7 +2181,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['legal', 'dispute', 'resolution'],
   },
   {
@@ -2376,7 +2192,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['ip', 'policy', 'protection'],
   },
   {
@@ -2388,7 +2203,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     hidden: true,
-    priority: 'high',
     tags: ['labor-law', 'compliance', 'hr'],
   },
 
@@ -2402,7 +2216,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['demand', 'forecast', 'quarterly'],
     relatedLearningIds: ['demand-forecasting-learning'],
   },
@@ -2415,7 +2228,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['pipeline', 'analysis', 'forecasting'],
     relatedLearningIds: ['demand-forecasting-learning'],
   },
@@ -2428,7 +2240,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'medium',
     tags: ['seasonal', 'demand', 'planning'],
   },
   {
@@ -2440,7 +2251,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['capacity', 'modeling', 'planning'],
     relatedLearningIds: ['capacity-modeling-learning'],
   },
@@ -2453,7 +2263,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['utilization', 'tracking', 'optimization'],
     relatedLearningIds: ['capacity-modeling-learning'],
   },
@@ -2466,7 +2275,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['bench', 'idle', 'capacity'],
   },
   {
@@ -2478,7 +2286,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['hiring', 'forecast', 'pipeline'],
     relatedLearningIds: ['talent-acquisition-learning'],
   },
@@ -2491,7 +2298,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['hiring', 'timing', 'planning'],
     relatedLearningIds: ['talent-acquisition-learning'],
   },
@@ -2504,7 +2310,6 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     hidden: true,
-    priority: 'high',
     tags: ['hiring', 'pipeline', 'recruitment'],
     relatedLearningIds: ['talent-acquisition-learning'],
   },
