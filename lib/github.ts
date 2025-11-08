@@ -1,4 +1,6 @@
 import { Octokit } from '@octokit/rest';
+import fs from 'fs/promises';
+import path from 'path';
 
 // Initialize Octokit with GitHub token
 const octokit = new Octokit({
@@ -87,4 +89,30 @@ export async function readFile(path: string): Promise<string> {
  */
 export function isGitHubConfigured(): boolean {
   return !!(process.env.GITHUB_TOKEN && process.env.GITHUB_REPO);
+}
+
+/**
+ * Helper wrapper for read/write file operations
+ * Automatically uses GitHub API on production, falls back to filesystem on local
+ */
+export async function readFileContent(filePath: string): Promise<string> {
+  if (isGitHubConfigured()) {
+    return readFile(filePath);
+  } else {
+    const localPath = path.join(process.cwd(), filePath);
+    return fs.readFile(localPath, 'utf-8');
+  }
+}
+
+export async function writeFileContent(
+  filePath: string,
+  content: string,
+  commitMessage: string
+): Promise<void> {
+  if (isGitHubConfigured()) {
+    await commitFile(filePath, content, commitMessage);
+  } else {
+    const localPath = path.join(process.cwd(), filePath);
+    await fs.writeFile(localPath, content, 'utf-8');
+  }
 }

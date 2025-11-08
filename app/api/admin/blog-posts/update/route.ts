@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import fs from 'fs/promises';
-import path from 'path';
+import { readFileContent, writeFileContent } from '@/lib/github';
 import matter from 'gray-matter';
 
 export async function POST(request: NextRequest) {
@@ -21,27 +20,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find the post file
-    const postsDir = path.join(process.cwd(), 'content/posts');
-    const mdxPath = path.join(postsDir, `${slug}.mdx`);
-    const mdPath = path.join(postsDir, `${slug}.md`);
+    // Try to find and read the post file (.mdx or .md)
+    const mdxPath = `content/posts/${slug}.mdx`;
+    const mdPath = `content/posts/${slug}.md`;
 
-    let filePath: string | null = null;
+    let filePath: string;
+    let fileContents: string;
 
     try {
-      await fs.access(mdxPath);
+      fileContents = await readFileContent(mdxPath);
       filePath = mdxPath;
     } catch {
       try {
-        await fs.access(mdPath);
+        fileContents = await readFileContent(mdPath);
         filePath = mdPath;
       } catch {
         return NextResponse.json({ error: 'Post not found' }, { status: 404 });
       }
     }
 
-    // Read the file
-    const fileContents = await fs.readFile(filePath, 'utf-8');
     const { data, content } = matter(fileContents);
 
     // Update metadata
@@ -52,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     // Write back to file
     const updatedContent = matter.stringify(content, updatedData);
-    await fs.writeFile(filePath, updatedContent, 'utf-8');
+    await writeFileContent(filePath, updatedContent, `Update blog post: ${slug} [via admin]`);
 
     return NextResponse.json({ success: true, message: 'Post updated successfully' });
   } catch (error) {
