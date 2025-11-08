@@ -26,13 +26,18 @@ export async function POST(request: NextRequest) {
     const mdxPath = path.join(postsDir, `${slug}.mdx`);
     const mdPath = path.join(postsDir, `${slug}.md`);
 
-    let filePath: string;
-    if (await fs.access(mdxPath).then(() => true).catch(() => false)) {
+    let filePath: string | null = null;
+
+    try {
+      await fs.access(mdxPath);
       filePath = mdxPath;
-    } else if (await fs.access(mdPath).then(() => true).catch(() => false)) {
-      filePath = mdPath;
-    } else {
-      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    } catch {
+      try {
+        await fs.access(mdPath);
+        filePath = mdPath;
+      } catch {
+        return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+      }
     }
 
     // Read the file

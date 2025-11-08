@@ -61,11 +61,7 @@ export async function POST(request: NextRequest) {
     const postPath = path.join(postsDir, `${slug}.mdx`);
 
     // Ensure posts directory exists
-    try {
-      await fs.access(postsDir);
-    } catch {
-      await fs.mkdir(postsDir, { recursive: true });
-    }
+    await fs.mkdir(postsDir, { recursive: true });
 
     // Check if file already exists when creating
     if (mode === 'create') {
