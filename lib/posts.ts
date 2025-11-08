@@ -14,6 +14,7 @@ export interface PostMetadata {
   topic?: string; // Optional: Can link to Learning/COO topic ID (preserved for backward compatibility)
   coverImage?: string; // Cover image URL or path
   content?: string;
+  status?: 'draft' | 'published'; // Post status (draft = hidden from public)
   hidden?: boolean; // Hide from public view (admin only)
 }
 
@@ -25,6 +26,9 @@ export interface Post extends PostMetadata {
 export function getPublicPosts(posts: PostMetadata[]): PostMetadata[] {
   const now = new Date();
   return posts.filter(post => {
+    // Filter out draft posts
+    if (post.status === 'draft') return false;
+
     // Filter out hidden posts
     if (post.hidden) return false;
 
