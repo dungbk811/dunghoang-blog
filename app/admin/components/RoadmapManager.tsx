@@ -39,10 +39,23 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
     advanced: true,
     expert: true,
   });
+  const [selectedLevel, setSelectedLevel] = useState<SkillLevel | 'all'>('all');
   const itemsPerPage = 10;
 
   const toggleLevel = (level: SkillLevel) => {
     setExpandedLevels(prev => ({ ...prev, [level]: !prev[level] }));
+  };
+
+  const handleCategoryChangeWithLevel = (category: string, level?: SkillLevel) => {
+    setFilterCategory(category);
+    setSelectedLevel(level || 'all');
+    setCurrentPage(1);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setFilterCategory(category);
+    setSelectedLevel('all');
+    setCurrentPage(1);
   };
 
   // Fetch post counts for each topic
@@ -317,6 +330,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
   const filteredItems = allItems.filter((item) => {
     const matchesStatus = filterStatus === 'all' || item.status === filterStatus;
     const matchesCategory = filterCategory === 'all' || item.category === filterCategory;
+    const matchesLevel = selectedLevel === 'all' || item.level === selectedLevel;
     const matchesSearch =
       searchQuery === '' ||
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -329,7 +343,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
       (visibilityFilter === 'visible' && !item.hidden) ||
       (visibilityFilter === 'hidden' && item.hidden);
 
-    return matchesStatus && matchesCategory && matchesSearch && matchesVisibility;
+    return matchesStatus && matchesCategory && matchesLevel && matchesSearch && matchesVisibility;
   });
 
   // Reset to page 1 when filters change
@@ -464,7 +478,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
             </h3>
             <div className="space-y-1">
               <button
-                onClick={() => setFilterCategory('all')}
+                onClick={() => handleCategoryChange('all')}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   filterCategory === 'all'
                     ? 'bg-purple-600 text-white'
@@ -509,7 +523,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                       levelGroups.beginner.map((category) => (
                         <button
                           key={category}
-                          onClick={() => setFilterCategory(category)}
+                          onClick={() => handleCategoryChangeWithLevel(category, 'beginner')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
                             filterCategory === category
                               ? 'bg-purple-600 text-white font-medium'
@@ -555,7 +569,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                       levelGroups.intermediate.map((category) => (
                         <button
                           key={category}
-                          onClick={() => setFilterCategory(category)}
+                          onClick={() => handleCategoryChangeWithLevel(category, 'intermediate')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
                             filterCategory === category
                               ? 'bg-purple-600 text-white font-medium'
@@ -601,7 +615,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                       levelGroups.advanced.map((category) => (
                         <button
                           key={category}
-                          onClick={() => setFilterCategory(category)}
+                          onClick={() => handleCategoryChangeWithLevel(category, 'advanced')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
                             filterCategory === category
                               ? 'bg-purple-600 text-white font-medium'
@@ -647,7 +661,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                       levelGroups.expert.map((category) => (
                         <button
                           key={category}
-                          onClick={() => setFilterCategory(category)}
+                          onClick={() => handleCategoryChangeWithLevel(category, 'expert')}
                           className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
                             filterCategory === category
                               ? 'bg-purple-600 text-white font-medium'
