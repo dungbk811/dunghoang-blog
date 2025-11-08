@@ -50,6 +50,13 @@ export const en = {
     posts: 'posts',
     recentLearning: 'Recent Learning',
     allTopics: 'Learning Roadmap',
+    levels: {
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced',
+      expert: 'Expert',
+    },
+    noTopicsYet: 'No topics yet',
   },
 
   // COO page
@@ -68,6 +75,13 @@ export const en = {
     planned: 'Planned',
     recentCOO: 'Recent Work',
     allTasks: 'COO Journey',
+    levels: {
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced',
+      expert: 'Expert',
+    },
+    noTopicsYet: 'No topics yet',
   },
 
   // Dashboard

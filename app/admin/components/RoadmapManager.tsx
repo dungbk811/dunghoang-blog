@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { learningRoadmap, cooRoadmap, type RoadmapItem } from '@/lib/roadmap';
+import { learningRoadmap, cooRoadmap, type RoadmapItem, type SkillLevel } from '@/lib/roadmap';
 import EditItemModal from './EditItemModal';
 import TopicContentEditor from './TopicContentEditor';
 import Link from 'next/link';
@@ -33,7 +33,17 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
   const [editingCategoryName, setEditingCategoryName] = useState<string | null>(null);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [visibilityFilter, setVisibilityFilter] = useState<'all' | 'visible' | 'hidden'>('all');
+  const [expandedLevels, setExpandedLevels] = useState<Record<SkillLevel, boolean>>({
+    beginner: true,
+    intermediate: true,
+    advanced: true,
+    expert: true,
+  });
   const itemsPerPage = 10;
+
+  const toggleLevel = (level: SkillLevel) => {
+    setExpandedLevels(prev => ({ ...prev, [level]: !prev[level] }));
+  };
 
   // Fetch post counts for each topic
   useEffect(() => {
@@ -234,6 +244,14 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
   // Get unique categories
   const categories = Array.from(new Set(allItems.map((item) => item.category)));
 
+  // Group categories by level
+  const levelGroups = {
+    beginner: Array.from(new Set(allItems.filter(item => item.level === 'beginner').map(item => item.category))),
+    intermediate: Array.from(new Set(allItems.filter(item => item.level === 'intermediate').map(item => item.category))),
+    advanced: Array.from(new Set(allItems.filter(item => item.level === 'advanced').map(item => item.category))),
+    expert: Array.from(new Set(allItems.filter(item => item.level === 'expert').map(item => item.category))),
+  };
+
   // Calculate category counts based on visibility filter
   const categoryCounts = categories.reduce((acc, category) => {
     acc[category] = allItems.filter(item => {
@@ -246,6 +264,42 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
     }).length;
     return acc;
   }, {} as Record<string, number>);
+
+  // Calculate level counts (count number of categories, not topics)
+  const levelCounts = {
+    beginner: Array.from(new Set(allItems.filter(item => {
+      const matchesLevel = item.level === 'beginner';
+      const matchesVisibility =
+        visibilityFilter === 'all' ||
+        (visibilityFilter === 'visible' && !item.hidden) ||
+        (visibilityFilter === 'hidden' && item.hidden);
+      return matchesLevel && matchesVisibility;
+    }).map(item => item.category))).length,
+    intermediate: Array.from(new Set(allItems.filter(item => {
+      const matchesLevel = item.level === 'intermediate';
+      const matchesVisibility =
+        visibilityFilter === 'all' ||
+        (visibilityFilter === 'visible' && !item.hidden) ||
+        (visibilityFilter === 'hidden' && item.hidden);
+      return matchesLevel && matchesVisibility;
+    }).map(item => item.category))).length,
+    advanced: Array.from(new Set(allItems.filter(item => {
+      const matchesLevel = item.level === 'advanced';
+      const matchesVisibility =
+        visibilityFilter === 'all' ||
+        (visibilityFilter === 'visible' && !item.hidden) ||
+        (visibilityFilter === 'hidden' && item.hidden);
+      return matchesLevel && matchesVisibility;
+    }).map(item => item.category))).length,
+    expert: Array.from(new Set(allItems.filter(item => {
+      const matchesLevel = item.level === 'expert';
+      const matchesVisibility =
+        visibilityFilter === 'all' ||
+        (visibilityFilter === 'visible' && !item.hidden) ||
+        (visibilityFilter === 'hidden' && item.hidden);
+      return matchesLevel && matchesVisibility;
+    }).map(item => item.category))).length,
+  };
 
   const filteredItems = allItems.filter((item) => {
     const matchesStatus = filterStatus === 'all' || item.status === filterStatus;
@@ -389,7 +443,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
 
       {/* Main Content with Sidebar */}
       <div className="flex gap-8">
-        {/* Left Sidebar - Categories */}
+        {/* Left Sidebar - Categories by Level */}
         <aside className="w-64 flex-shrink-0">
           <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 sticky top-8">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">
@@ -419,26 +473,190 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                   }).length}
                 </span>
               </button>
-              {categories.map((category) => (
+
+              {/* Beginner Level - Always show */}
+              <div className="mt-3">
                 <button
-                  key={category}
-                  onClick={() => setFilterCategory(category)}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors text-left ${
-                    filterCategory === category
-                      ? 'bg-purple-600 text-white'
-                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                  }`}
+                  onClick={() => toggleLevel('beginner')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                 >
-                  <span className="flex-1 text-left">{category}</span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${
-                    filterCategory === category
-                      ? 'bg-purple-700 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
-                  }`}>
-                    {categoryCounts[category]}
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.beginner ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 1: Beginner</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.beginner}
                   </span>
                 </button>
-              ))}
+                {expandedLevels.beginner && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.beginner.length > 0 ? (
+                      levelGroups.beginner.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => setFilterCategory(category)}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            filterCategory === category
+                              ? 'bg-purple-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            filterCategory === category
+                              ? 'bg-purple-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category]}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">No topics yet</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Intermediate Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('intermediate')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.intermediate ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 2: Intermediate</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.intermediate}
+                  </span>
+                </button>
+                {expandedLevels.intermediate && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.intermediate.length > 0 ? (
+                      levelGroups.intermediate.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => setFilterCategory(category)}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            filterCategory === category
+                              ? 'bg-purple-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            filterCategory === category
+                              ? 'bg-purple-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category]}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">No topics yet</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Advanced Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('advanced')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.advanced ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 3: Advanced</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.advanced}
+                  </span>
+                </button>
+                {expandedLevels.advanced && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.advanced.length > 0 ? (
+                      levelGroups.advanced.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => setFilterCategory(category)}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            filterCategory === category
+                              ? 'bg-purple-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            filterCategory === category
+                              ? 'bg-purple-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category]}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">No topics yet</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Expert Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('expert')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.expert ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 4: Expert</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.expert}
+                  </span>
+                </button>
+                {expandedLevels.expert && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.expert.length > 0 ? (
+                      levelGroups.expert.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => setFilterCategory(category)}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            filterCategory === category
+                              ? 'bg-purple-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            filterCategory === category
+                              ? 'bg-purple-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category]}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">No topics yet</p>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </aside>
@@ -566,6 +784,19 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                               {t.common.hidden}
                             </span>
                           )}
+                          <span
+                            className={`px-2 py-1 text-xs font-semibold rounded ${
+                              item.level === 'beginner'
+                                ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                                : item.level === 'intermediate'
+                                ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                                : item.level === 'advanced'
+                                ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                                : 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
+                            }`}
+                          >
+                            {item.level === 'beginner' ? '🟢 Beginner' : item.level === 'intermediate' ? '🟡 Intermediate' : item.level === 'advanced' ? '🔴 Advanced' : '💎 Expert'}
+                          </span>
                           <span
                             className={`px-2 py-1 text-xs font-semibold rounded-full ${
                               item.status === 'completed'

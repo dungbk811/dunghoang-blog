@@ -128,6 +128,22 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Update level
+    if (updates.level) {
+      if (itemBlock.includes('level:')) {
+        itemBlock = itemBlock.replace(
+          /level:\s*'[^']*'/,
+          `level: '${updates.level}'`
+        );
+      } else {
+        // Add level field after status
+        itemBlock = itemBlock.replace(
+          /status:\s*'[^']*',/,
+          `status: '${updates.status || 'planned'}',\n    level: '${updates.level}',`
+        );
+      }
+    }
+
     // Update hidden
     if (updates.hidden !== undefined) {
       if (itemBlock.includes('hidden:')) {
@@ -136,10 +152,12 @@ export async function POST(request: NextRequest) {
           `hidden: ${updates.hidden}`
         );
       } else {
-        // Add hidden field after status
+        // Add hidden field after level or status
+        const insertAfter = updates.level ? 'level' : 'status';
+        const insertValue = updates.level || updates.status || 'planned';
         itemBlock = itemBlock.replace(
-          /status:\s*'[^']*',/,
-          `status: '${updates.status || 'planned'}',\n    hidden: ${updates.hidden},`
+          new RegExp(`${insertAfter}:\\\\s*'[^']*',`),
+          `${insertAfter}: '${insertValue}',\n    hidden: ${updates.hidden},`
         );
       }
     }
@@ -249,6 +267,7 @@ export async function PUT(request: NextRequest) {
       description: item.description || '',
       category: item.category || 'Uncategorized',
       status: item.status || 'planned',
+      level: item.level || 'beginner',
       hidden: item.hidden !== undefined ? item.hidden : true,
       ...(item.subcategory && { subcategory: item.subcategory }),
       ...(item.priority && { priority: item.priority }),
@@ -285,6 +304,7 @@ export async function PUT(request: NextRequest) {
       newItemStr += `    subcategory: '${newItem.subcategory}',\n`;
     }
     newItemStr += `    status: '${newItem.status}',\n`;
+    newItemStr += `    level: '${newItem.level}',\n`;
     newItemStr += `    hidden: ${newItem.hidden},\n`;
     if (newItem.priority) {
       newItemStr += `    priority: '${newItem.priority}',\n`;

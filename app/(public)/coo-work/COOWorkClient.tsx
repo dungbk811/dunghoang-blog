@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { RoadmapItem, RoadmapStatus } from '@/lib/roadmap';
+import { RoadmapItem, RoadmapStatus, SkillLevel } from '@/lib/roadmap';
 import SearchAndFilter from '@/components/dashboard/SearchAndFilter';
 import TopicCard from '@/components/dashboard/TopicCard';
 import RelatedCategories from '@/components/RelatedCategories';
@@ -39,6 +39,23 @@ export default function COOWorkClient({
   const [sortBy, setSortBy] = useState<'priority' | 'date' | 'title'>('priority');
   const [itemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
+  const [expandedLevels, setExpandedLevels] = useState<Record<SkillLevel, boolean>>({
+    beginner: true,
+    intermediate: true,
+    advanced: true,
+    expert: true,
+  });
+  const [selectedLevel, setSelectedLevel] = useState<SkillLevel | 'all'>('all');
+
+  const toggleLevel = (level: SkillLevel) => {
+    setExpandedLevels(prev => ({ ...prev, [level]: !prev[level] }));
+  };
+
+  const handleCategoryChangeWithLevel = (category: string, level?: SkillLevel) => {
+    onCategoryChange(category);
+    setSelectedLevel(level || 'all');
+    setCurrentPage(1);
+  };
 
   // Get all unique categories
   const categories = useMemo(() => {
@@ -55,6 +72,22 @@ export default function COOWorkClient({
     return counts;
   }, [roadmapWithCounts, t.common.all]);
 
+  // Group categories by level
+  const levelGroups = useMemo(() => ({
+    beginner: Array.from(new Set(roadmapWithCounts.filter(({ item }) => item.level === 'beginner').map(({ item }) => item.category))),
+    intermediate: Array.from(new Set(roadmapWithCounts.filter(({ item }) => item.level === 'intermediate').map(({ item }) => item.category))),
+    advanced: Array.from(new Set(roadmapWithCounts.filter(({ item }) => item.level === 'advanced').map(({ item }) => item.category))),
+    expert: Array.from(new Set(roadmapWithCounts.filter(({ item }) => item.level === 'expert').map(({ item }) => item.category))),
+  }), [roadmapWithCounts]);
+
+  // Calculate level counts (count number of categories, not topics)
+  const levelCounts = useMemo(() => ({
+    beginner: levelGroups.beginner.length,
+    intermediate: levelGroups.intermediate.length,
+    advanced: levelGroups.advanced.length,
+    expert: levelGroups.expert.length,
+  }), [levelGroups]);
+
   // Filter and sort items
   const filteredAndSortedItems = useMemo(() => {
     let filtered = roadmapWithCounts;
@@ -62,6 +95,11 @@ export default function COOWorkClient({
     // Filter by category
     if (activeCategory !== t.common.all) {
       filtered = filtered.filter(({ item }) => item.category === activeCategory);
+    }
+
+    // Filter by level
+    if (selectedLevel !== 'all') {
+      filtered = filtered.filter(({ item }) => item.level === selectedLevel);
     }
 
     // Filter by status
@@ -107,7 +145,7 @@ export default function COOWorkClient({
     });
 
     return sorted;
-  }, [roadmapWithCounts, activeCategory, selectedStatuses, searchQuery, sortBy, t.common.all]);
+  }, [roadmapWithCounts, activeCategory, selectedLevel, selectedStatuses, searchQuery, sortBy, t.common.all]);
 
   // Pagination
   const totalPages = Math.ceil(filteredAndSortedItems.length / itemsPerPage);
@@ -125,6 +163,7 @@ export default function COOWorkClient({
 
   const handleCategoryChange = (category: string) => {
     onCategoryChange(category);
+    setSelectedLevel('all');
     setCurrentPage(1);
   };
 
@@ -171,29 +210,222 @@ export default function COOWorkClient({
               {t.coo.allTasks}
             </h3>
             <nav className="space-y-1 mb-6">
-              {categories.map((category) => (
+              <button
+                onClick={() => {
+                  handleCategoryChange(t.common.all);
+                  setIsSidebarOpen(false);
+                }}
+                className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left ${
+                  activeCategory === t.common.all
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                <span className="flex-1 text-left">{t.common.all}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${
+                  activeCategory === t.common.all
+                    ? 'bg-blue-700 text-white'
+                    : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                }`}>
+                  {categoryCounts[t.common.all] || 0}
+                </span>
+              </button>
+
+              {/* Beginner Level - Always show */}
+              <div className="mt-3">
                 <button
-                  key={category}
-                  onClick={() => {
-                    handleCategoryChange(category);
-                    setIsSidebarOpen(false);
-                  }}
-                  className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left ${
-                    activeCategory === category
-                      ? 'bg-blue-600 text-white'
-                      : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
-                  }`}
+                  onClick={() => toggleLevel('beginner')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                 >
-                  <span className="flex-1 text-left">{category}</span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${
-                    activeCategory === category
-                      ? 'bg-blue-700 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
-                  }`}>
-                    {categoryCounts[category] || 0}
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.beginner ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 1: {t.coo.levels.beginner}</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.beginner}
                   </span>
                 </button>
-              ))}
+                {expandedLevels.beginner && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.beginner.length > 0 ? (
+                      levelGroups.beginner.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            handleCategoryChangeWithLevel(category, 'beginner');
+                            setIsSidebarOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            activeCategory === category
+                              ? 'bg-blue-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            activeCategory === category
+                              ? 'bg-blue-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category] || 0}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Intermediate Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('intermediate')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.intermediate ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 2: {t.coo.levels.intermediate}</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.intermediate}
+                  </span>
+                </button>
+                {expandedLevels.intermediate && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.intermediate.length > 0 ? (
+                      levelGroups.intermediate.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            handleCategoryChangeWithLevel(category, 'intermediate');
+                            setIsSidebarOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            activeCategory === category
+                              ? 'bg-blue-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            activeCategory === category
+                              ? 'bg-blue-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category] || 0}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Advanced Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('advanced')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.advanced ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 3: {t.coo.levels.advanced}</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.advanced}
+                  </span>
+                </button>
+                {expandedLevels.advanced && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.advanced.length > 0 ? (
+                      levelGroups.advanced.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            handleCategoryChangeWithLevel(category, 'advanced');
+                            setIsSidebarOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            activeCategory === category
+                              ? 'bg-blue-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            activeCategory === category
+                              ? 'bg-blue-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category] || 0}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Expert Level - Always show */}
+              <div className="mt-2">
+                <button
+                  onClick={() => toggleLevel('expert')}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.expert ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">Level 4: {t.coo.levels.expert}</span>
+                  </div>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                    {levelCounts.expert}
+                  </span>
+                </button>
+                {expandedLevels.expert && (
+                  <div className="mt-1 space-y-0.5">
+                    {levelGroups.expert.length > 0 ? (
+                      levelGroups.expert.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            handleCategoryChangeWithLevel(category, 'expert');
+                            setIsSidebarOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2 ml-6 rounded-lg text-sm transition-all ${
+                            activeCategory === category
+                              ? 'bg-blue-600 text-white font-medium'
+                              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{category}</span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            activeCategory === category
+                              ? 'bg-blue-700 text-white'
+                              : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {categoryCounts[category] || 0}
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                    )}
+                  </div>
+                )}
+              </div>
             </nav>
 
             {/* Status Filters */}
@@ -210,19 +442,19 @@ export default function COOWorkClient({
                   <button
                     key={status.value}
                     onClick={() => handleStatusToggle(status.value)}
-                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left ${
+                    className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors text-left ${
                       selectedStatuses.includes(status.value)
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-blue-50/50 dark:bg-blue-950/20 text-blue-900 dark:text-blue-100'
                         : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                     }`}
                   >
-                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
+                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                       selectedStatuses.includes(status.value)
-                        ? 'bg-white border-white'
+                        ? 'bg-blue-600/80 border-blue-600/80'
                         : 'border-slate-300 dark:border-slate-600'
                     }`}>
                       {selectedStatuses.includes(status.value) && (
-                        <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
                       )}

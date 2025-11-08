@@ -50,6 +50,13 @@ export const vi = {
     posts: 'bài viết',
     recentLearning: 'Kiến thức gần đây',
     allTopics: 'Lộ trình học tập',
+    levels: {
+      beginner: 'Cơ bản',
+      intermediate: 'Trung cấp',
+      advanced: 'Nâng cao',
+      expert: 'Chuyên gia',
+    },
+    noTopicsYet: 'Chưa có chủ đề',
   },
 
   // COO page
@@ -68,6 +75,13 @@ export const vi = {
     planned: 'Dự kiến',
     recentCOO: 'Công việc gần đây',
     allTasks: 'Hành trình COO',
+    levels: {
+      beginner: 'Cơ bản',
+      intermediate: 'Trung cấp',
+      advanced: 'Nâng cao',
+      expert: 'Chuyên gia',
+    },
+    noTopicsYet: 'Chưa có chủ đề',
   },
 
   // Dashboard

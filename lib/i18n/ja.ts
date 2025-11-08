@@ -50,6 +50,13 @@ export const ja = {
     posts: '記事',
     recentLearning: '最近の学習',
     allTopics: '学習ロードマップ',
+    levels: {
+      beginner: '初級',
+      intermediate: '中級',
+      advanced: '上級',
+      expert: 'エキスパート',
+    },
+    noTopicsYet: 'トピックなし',
   },
 
   // COO page
@@ -68,6 +75,13 @@ export const ja = {
     planned: '予定',
     recentCOO: '最近の業務',
     allTasks: 'COOの道',
+    levels: {
+      beginner: '初級',
+      intermediate: '中級',
+      advanced: '上級',
+      expert: 'エキスパート',
+    },
+    noTopicsYet: 'トピックなし',
   },
 
   // Dashboard

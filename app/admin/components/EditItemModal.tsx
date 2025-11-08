@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { RoadmapItem, RoadmapStatus, Priority } from '@/lib/roadmap';
+import type { RoadmapItem, RoadmapStatus, Priority, SkillLevel } from '@/lib/roadmap';
 import { learningRoadmap, cooRoadmap } from '@/lib/roadmap';
 import toast from 'react-hot-toast';
 
@@ -18,6 +18,7 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
   const [title, setTitle] = useState(item?.title || '');
   const [description, setDescription] = useState(item?.description || '');
   const [status, setStatus] = useState<RoadmapStatus>(item?.status || 'planned');
+  const [level, setLevel] = useState<SkillLevel>(item?.level || 'beginner');
   const [priority, setPriority] = useState<Priority | undefined>(item?.priority);
   const [category, setCategory] = useState(item?.category || '');
   const [subcategory, setSubcategory] = useState(item?.subcategory || '');
@@ -45,6 +46,7 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
           title,
           description,
           status,
+          level,
           priority,
           category,
           subcategory: subcategory || undefined,
@@ -57,6 +59,7 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
         // Edit mode: pass itemId and updates
         await onSave(item!.id, {
           status,
+          level,
           priority,
           category,
           subcategory: subcategory || undefined,
@@ -185,6 +188,24 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
               <option value="planned">Planned</option>
               <option value="in-progress">In Progress</option>
               <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          {/* Level */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Level <span className="text-red-500">*</span>
+            </label>
+            <select
+              value={level}
+              onChange={(e) => setLevel(e.target.value as SkillLevel)}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              required
+            >
+              <option value="beginner">🟢 Beginner (Sơ Cấp)</option>
+              <option value="intermediate">🟡 Intermediate (Trung Cấp)</option>
+              <option value="advanced">🔴 Advanced (Cao Cấp)</option>
+              <option value="expert">💎 Expert (Chuyên Gia)</option>
             </select>
           </div>
 
