@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
 import { getAllPosts } from '@/lib/posts';
-import fs from 'fs/promises';
-import path from 'path';
+import { deleteFileContent, isGitHubConfigured } from '@/lib/github';
 
 // GET - List all posts
 export async function GET(request: NextRequest) {
@@ -35,13 +34,17 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
-    const postPath = path.join(process.cwd(), 'content', 'posts', `${slug}.mdx`);
+    const postPath = `content/posts/${slug}.mdx`;
 
     try {
-      await fs.unlink(postPath);
+      await deleteFileContent(postPath, `Delete blog post: ${slug} [via admin]`);
+
+      const requiresRebuild = isGitHubConfigured();
+
       return NextResponse.json({
         success: true,
-        message: 'Post deleted successfully'
+        message: 'Post deleted successfully',
+        requiresRebuild
       });
     } catch (error) {
       return NextResponse.json({ error: 'Post file not found' }, { status: 404 });

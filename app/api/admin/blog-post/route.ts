@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import fs from 'fs/promises';
-import path from 'path';
+import { readFileContent, writeFileContent, isGitHubConfigured } from '@/lib/github';
 import matter from 'gray-matter';
 
 // GET - Read a single post
@@ -19,10 +18,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
-    const postPath = path.join(process.cwd(), 'content', 'posts', `${slug}.mdx`);
+    const postPath = `content/posts/${slug}.mdx`;
 
     try {
-      const fileContent = await fs.readFile(postPath, 'utf-8');
+      const fileContent = await readFileContent(postPath);
       const { data: frontmatter, content } = matter(fileContent);
 
       return NextResponse.json({
@@ -57,16 +56,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const postsDir = path.join(process.cwd(), 'content', 'posts');
-    const postPath = path.join(postsDir, `${slug}.mdx`);
-
-    // Ensure posts directory exists
-    await fs.mkdir(postsDir, { recursive: true });
+    const postPath = `content/posts/${slug}.mdx`;
 
     // Check if file already exists when creating
     if (mode === 'create') {
       try {
-        await fs.access(postPath);
+        await readFileContent(postPath);
         return NextResponse.json(
           { error: 'Post with this slug already exists' },
           { status: 409 }
@@ -94,13 +89,19 @@ ${frontmatterString}
 
 ${content}`;
 
-    // Write to file
-    await fs.writeFile(postPath, fullContent, 'utf-8');
+    // Write to file (uses GitHub API on production, local filesystem on development)
+    const commitMessage = mode === 'create'
+      ? `Create blog post: ${slug} [via admin]`
+      : `Update blog post: ${slug} [via admin]`;
+    await writeFileContent(postPath, fullContent, commitMessage);
+
+    const requiresRebuild = isGitHubConfigured();
 
     return NextResponse.json({
       success: true,
       message: mode === 'create' ? 'Post created successfully' : 'Post updated successfully',
-      slug
+      slug,
+      requiresRebuild
     });
   } catch (error) {
     console.error('Write post error:', error);

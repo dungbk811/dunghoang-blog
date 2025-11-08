@@ -116,3 +116,33 @@ export async function writeFileContent(
     await fs.writeFile(localPath, content, 'utf-8');
   }
 }
+
+export async function deleteFileContent(
+  filePath: string,
+  commitMessage: string
+): Promise<void> {
+  if (isGitHubConfigured()) {
+    // Get file SHA first
+    const { data } = await octokit.repos.getContent({
+      owner: process.env.GITHUB_OWNER || 'dungbk811',
+      repo: process.env.GITHUB_REPO || 'dunghoang-blog',
+      path: filePath,
+      ref: process.env.GITHUB_BRANCH || 'main',
+    });
+
+    if ('sha' in data) {
+      // Delete file via GitHub API
+      await octokit.repos.deleteFile({
+        owner: process.env.GITHUB_OWNER || 'dungbk811',
+        repo: process.env.GITHUB_REPO || 'dunghoang-blog',
+        path: filePath,
+        message: commitMessage,
+        sha: data.sha,
+        branch: process.env.GITHUB_BRANCH || 'main',
+      });
+    }
+  } else {
+    const localPath = path.join(process.cwd(), filePath);
+    await fs.unlink(localPath);
+  }
+}
