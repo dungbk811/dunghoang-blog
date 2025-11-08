@@ -8,6 +8,7 @@ import TopicContentEditor from './TopicContentEditor';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
+import { handleApiResponse } from '@/lib/admin-helpers';
 
 type RoadmapType = 'learning' | 'coo';
 type FilterStatus = 'all' | 'planned' | 'in-progress' | 'completed';
@@ -108,13 +109,8 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
         body: JSON.stringify({ type, item: newItem }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to add item');
-      }
-
-      toast.success(t.toast.itemAdded, { id: loadingToast });
+      await handleApiResponse(response, loadingToast, t.toast.itemAdded, router);
       setAddingNewItem(false);
-      router.refresh();
     } catch (error) {
       console.error('Failed to add item:', error);
       toast.error(t.toast.addFailed, { id: loadingToast });
@@ -142,12 +138,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
         method: 'DELETE',
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to delete item');
-      }
-
-      toast.success(t.toast.itemDeleted, { id: loadingToast });
-      router.refresh();
+      await handleApiResponse(response, loadingToast, t.toast.itemDeleted, router);
     } catch (error) {
       console.error('Failed to delete item:', error);
       toast.error(t.toast.deleteFailed, { id: loadingToast });
@@ -165,8 +156,13 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
     const loadingToast = toast.loading(t.common.saving);
 
     try {
-      await handleSaveItem(item.id, { hidden: newHiddenState });
-      toast.success(t.toast.itemUpdated, { id: loadingToast });
+      const response = await fetch('/api/admin/roadmap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemId: item.id, type, updates: { hidden: newHiddenState } }),
+      });
+
+      await handleApiResponse(response, loadingToast, t.toast.itemUpdated);
     } catch (error) {
       console.error('Failed to toggle visibility:', error);
       // Revert optimistic update on error
@@ -206,13 +202,8 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to delete category');
-      }
-
-      toast.success(t.toast.categoryDeleted, { id: loadingToast });
+      await handleApiResponse(response, loadingToast, t.toast.categoryDeleted, router);
       setFilterCategory('all');
-      router.refresh();
     } catch (error) {
       console.error('Failed to delete category:', error);
       toast.error(t.toast.deleteFailed, { id: loadingToast });
@@ -235,15 +226,10 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to rename category');
-      }
-
-      toast.success(t.toast.categoryRenamed, { id: loadingToast });
+      await handleApiResponse(response, loadingToast, t.toast.categoryRenamed, router);
       setFilterCategory(newCategoryName.trim());
       setEditingCategoryName(null);
       setNewCategoryName('');
-      router.refresh();
     } catch (error) {
       console.error('Failed to rename category:', error);
       toast.error(t.toast.updateFailed, { id: loadingToast });

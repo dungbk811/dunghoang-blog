@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import type { RoadmapItem } from '@/lib/roadmap';
 import toast from 'react-hot-toast';
+import { handleApiResponse } from '@/lib/admin-helpers';
 
 interface TopicContentEditorProps {
   item: RoadmapItem | null;
@@ -89,13 +90,16 @@ Các ghi chú bổ sung...
         body: JSON.stringify({ topicId: item.id, content }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to save');
-      }
-
-      toast.success('Content saved successfully!', { id: loadingToast });
-      onSave();
-      onClose();
+      await handleApiResponse(
+        response,
+        loadingToast,
+        'Content saved successfully!',
+        undefined,
+        () => {
+          onSave();
+          onClose();
+        }
+      );
     } catch (error) {
       console.error('Save error:', error);
       toast.error('Failed to save content. Please try again.', { id: loadingToast });
@@ -115,13 +119,16 @@ Các ghi chú bổ sung...
         method: 'DELETE',
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to delete');
-      }
-
-      toast.success('Content deleted successfully!', { id: loadingToast });
-      onSave();
-      onClose();
+      await handleApiResponse(
+        response,
+        loadingToast,
+        'Content deleted successfully!',
+        undefined,
+        () => {
+          onSave();
+          onClose();
+        }
+      );
     } catch (error) {
       console.error('Delete error:', error);
       toast.error('Failed to delete content. Please try again.', { id: loadingToast });

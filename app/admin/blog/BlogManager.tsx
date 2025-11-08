@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
+import { handleApiResponse } from '@/lib/admin-helpers';
 
 interface BlogPost {
   slug: string;
@@ -198,18 +199,7 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
 
       if (!response.ok) throw new Error('Failed to update');
 
-      const data = await response.json();
-
-      // Show different messages based on whether rebuild is required
-      if (data.requiresRebuild) {
-        toast.success(
-          'Updated! Changes will be live after deployment (~2-3 minutes)',
-          { id: loadingToast, duration: 5000 }
-        );
-      } else {
-        toast.success(t.toast.itemUpdated, { id: loadingToast });
-        router.refresh();
-      }
+      await handleApiResponse(response, loadingToast, t.toast.itemUpdated, router);
     } catch (error) {
       console.error('Update error:', error);
       toast.error(t.toast.updateFailed, { id: loadingToast });
@@ -226,10 +216,7 @@ export default function BlogManager({ posts, categories, tags }: BlogManagerProp
         method: 'DELETE',
       });
 
-      if (!response.ok) throw new Error('Failed to delete');
-
-      toast.success(t.toast.itemDeleted, { id: loadingToast });
-      router.refresh();
+      await handleApiResponse(response, loadingToast, t.toast.itemDeleted, router);
     } catch (error) {
       console.error('Delete error:', error);
       toast.error(t.blog.deleteFailed, { id: loadingToast });
