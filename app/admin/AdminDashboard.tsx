@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { learningRoadmap, cooRoadmap, type RoadmapItem } from '@/lib/roadmap';
+import { useUserProfile } from '@/contexts/PositionContext';
 import EditItemModal from './EditItemModal';
 import toast from 'react-hot-toast';
 
@@ -11,6 +13,7 @@ type FilterStatus = 'all' | 'planned' | 'in-progress' | 'completed';
 
 export default function AdminDashboard() {
   const router = useRouter();
+  const { profile } = useUserProfile();
   const [activeTab, setActiveTab] = useState<TabType>('learning');
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -160,7 +163,7 @@ export default function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-800">
             <div className="flex items-center justify-between">
               <div>
@@ -200,6 +203,20 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
+          <Link href="/admin/contact" className="bg-white dark:bg-gray-900 rounded-lg p-6 border border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 transition-all group">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-purple-600 dark:text-purple-400 mb-1">Contact Info</p>
+                <p className="text-lg font-semibold text-purple-700 dark:text-purple-300 truncate">{profile.email}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{profile.phone}</p>
+              </div>
+              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* Tabs & Filters */}
