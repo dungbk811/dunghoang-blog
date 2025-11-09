@@ -6,10 +6,12 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useI18n } from '@/lib/i18n';
+import { usePosition } from '@/contexts/PositionContext';
 
 export default function Header() {
   const pathname = usePathname();
   const { t } = useI18n();
+  const { position } = usePosition();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
@@ -48,7 +50,7 @@ export default function Header() {
                 Dung Hoang
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                COO
+                {position}
               </div>
             </div>
           </Link>

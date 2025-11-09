@@ -1,10 +1,20 @@
 'use client';
 
+import { useState } from 'react';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
+import { usePosition } from '@/contexts/PositionContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
   const { t } = useAdminLanguage();
+  const { position, setPosition } = usePosition();
+  const [customPosition, setCustomPosition] = useState(position);
+
+  const handleSavePosition = () => {
+    setPosition(customPosition);
+    toast.success('Position saved successfully!');
+  };
 
   return (
     <div className="p-8">
@@ -40,7 +50,70 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* More settings can be added here */}
+        {/* Position Settings */}
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Position Settings
+              </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Set your job title/position to be displayed throughout the site
+              </p>
+
+              {/* Position Input */}
+              <div className="max-w-md space-y-3">
+                <div>
+                  <label htmlFor="position" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Your Position
+                  </label>
+                  <input
+                    type="text"
+                    id="position"
+                    value={customPosition}
+                    onChange={(e) => setCustomPosition(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    placeholder="e.g., COO, CEO, CTO, Developer"
+                  />
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    Current: <span className="font-semibold text-purple-600 dark:text-purple-400">{position}</span>
+                  </p>
+                </div>
+
+                {/* Quick Select Buttons */}
+                <div className="flex flex-wrap gap-2">
+                  {['COO', 'CEO', 'CTO', 'Developer', 'Designer', 'Manager'].map((pos) => (
+                    <button
+                      key={pos}
+                      onClick={() => setCustomPosition(pos)}
+                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                        customPosition === pos
+                          ? 'bg-purple-600 text-white border-purple-600'
+                          : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500'
+                      }`}
+                    >
+                      {pos}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleSavePosition}
+                  className="w-full px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors"
+                >
+                  Save Position
+                </button>
+              </div>
+            </div>
+            <div className="ml-4">
+              <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Appearance Settings */}
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
           <div className="flex items-start justify-between">
             <div className="flex-1">
