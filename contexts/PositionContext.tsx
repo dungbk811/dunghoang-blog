@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { userProfile as defaultProfile } from '@/lib/profile';
 
 type UserProfile = {
   name: string;
@@ -16,14 +17,6 @@ type UserProfileContextType = {
   // Legacy compatibility
   position: string;
   setPosition: (position: string) => void;
-};
-
-const defaultProfile: UserProfile = {
-  name: 'Dung Hoang',
-  position: 'COO',
-  phone: '0977 096 665',
-  email: 'dungbk811@gmail.com',
-  linkedin: 'https://linkedin.com/in/dung-hoang-18092654',
 };
 
 const UserProfileContext = createContext<UserProfileContextType | undefined>(undefined);

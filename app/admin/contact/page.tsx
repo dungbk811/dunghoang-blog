@@ -20,9 +20,32 @@ export default function ContactPage() {
     setLinkedin(profile.linkedin);
   }, [profile.phone, profile.email, profile.linkedin]);
 
-  const handleSave = () => {
-    updateProfile({ phone, email, linkedin });
-    toast.success(t.contact.saveSuccess);
+  const handleSave = async () => {
+    try {
+      // Update localStorage first
+      updateProfile({ phone, email, linkedin });
+
+      // Then persist to file via API
+      const response = await fetch('/api/admin/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, email, linkedin }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save contact info');
+      }
+
+      const data = await response.json();
+      toast.success(t.contact.saveSuccess);
+
+      if (data.requiresRebuild) {
+        toast.success('Changes saved! Site will rebuild automatically.', { duration: 5000 });
+      }
+    } catch (error) {
+      console.error('Failed to save contact:', error);
+      toast.error('Failed to save contact information');
+    }
   };
 
   return (

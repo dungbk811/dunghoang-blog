@@ -18,9 +18,32 @@ export default function SettingsPage() {
     setEditPosition(profile.position);
   }, [profile.name, profile.position]);
 
-  const handleSaveProfile = () => {
-    updateProfile({ name: editName, position: editPosition });
-    toast.success('Profile updated successfully!');
+  const handleSaveProfile = async () => {
+    try {
+      // Update localStorage first
+      updateProfile({ name: editName, position: editPosition });
+
+      // Then persist to file via API
+      const response = await fetch('/api/admin/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: editName, position: editPosition }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save profile');
+      }
+
+      const data = await response.json();
+      toast.success('Profile updated successfully!');
+
+      if (data.requiresRebuild) {
+        toast.success('Changes saved! Site will rebuild automatically.', { duration: 5000 });
+      }
+    } catch (error) {
+      console.error('Failed to save profile:', error);
+      toast.error('Failed to save profile changes');
+    }
   };
 
   return (
