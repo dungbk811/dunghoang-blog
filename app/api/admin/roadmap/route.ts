@@ -80,22 +80,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Update priority
-    if (updates.priority) {
-      if (itemBlock.includes('priority:')) {
-        itemBlock = itemBlock.replace(
-          /priority:\s*'[^']*'/,
-          `priority: '${updates.priority}'`
-        );
-      } else {
-        // Add priority field if it doesn't exist
-        itemBlock = itemBlock.replace(
-          /status:\s*'[^']*',/,
-          `status: '${updates.status || 'planned'}',\n    priority: '${updates.priority}',`
-        );
-      }
-    }
-
     // Update startDate
     if (updates.startDate) {
       if (itemBlock.includes('startDate:')) {
@@ -105,8 +89,8 @@ export async function POST(request: NextRequest) {
         );
       } else {
         itemBlock = itemBlock.replace(
-          /priority:\s*'[^']*',/,
-          `priority: '${updates.priority || 'medium'}',\n    startDate: '${updates.startDate}',`
+          /status:\s*'[^']*',/,
+          `status: '${updates.status || 'planned'}',\n    startDate: '${updates.startDate}',`
         );
       }
     }
@@ -119,8 +103,8 @@ export async function POST(request: NextRequest) {
           `targetDate: '${updates.targetDate}'`
         );
       } else {
-        const insertAfter = updates.startDate ? 'startDate' : 'priority';
-        const insertValue = updates.startDate || updates.priority || 'medium';
+        const insertAfter = updates.startDate ? 'startDate' : 'status';
+        const insertValue = updates.startDate || updates.status || 'planned';
         itemBlock = itemBlock.replace(
           new RegExp(`${insertAfter}:\\s*'[^']*',`),
           `${insertAfter}: '${insertValue}',\n    targetDate: '${updates.targetDate}',`
@@ -271,7 +255,6 @@ export async function PUT(request: NextRequest) {
       level: item.level || 'beginner',
       hidden: item.hidden !== undefined ? item.hidden : true,
       ...(item.subcategory && { subcategory: item.subcategory }),
-      ...(item.priority && { priority: item.priority }),
       ...(item.startDate && { startDate: item.startDate }),
       ...(item.targetDate && { targetDate: item.targetDate }),
       ...(item.tags && item.tags.length > 0 && { tags: item.tags }),
@@ -307,9 +290,6 @@ export async function PUT(request: NextRequest) {
     newItemStr += `    status: '${newItem.status}',\n`;
     newItemStr += `    level: '${newItem.level}',\n`;
     newItemStr += `    hidden: ${newItem.hidden},\n`;
-    if (newItem.priority) {
-      newItemStr += `    priority: '${newItem.priority}',\n`;
-    }
     if (newItem.startDate) {
       newItemStr += `    startDate: '${newItem.startDate}',\n`;
     }

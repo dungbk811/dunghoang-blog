@@ -330,9 +330,6 @@ export default function AdminDashboard() {
                     Status
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Priority
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -363,9 +360,6 @@ export default function AdminDashboard() {
                       >
                         {item.status}
                       </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                      {item.priority || '-'}
                     </td>
                     <td className="px-6 py-4">
                       <button
@@ -423,15 +417,6 @@ export default function AdminDashboard() {
                             >
                               {item.status === 'completed' ? 'Hoàn thành' : item.status === 'in-progress' ? 'Đang thực hiện' : 'Dự kiến'}
                             </span>
-                            {item.priority && (
-                              <span className={`px-2 py-1 text-xs font-medium rounded flex-shrink-0 ${
-                                item.priority === 'high' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' :
-                                item.priority === 'medium' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
-                                'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400'
-                              }`}>
-                                {item.priority}
-                              </span>
-                            )}
                           </div>
                           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                             {item.description}

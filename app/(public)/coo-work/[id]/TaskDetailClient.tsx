@@ -6,6 +6,7 @@ import RelatedCategories from '@/components/RelatedCategories';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { useI18n } from '@/lib/i18n';
 import type { RoadmapItem } from '@/lib/roadmap';
+import { learningRoadmap } from '@/lib/roadmap';
 
 interface TaskDetailClientProps {
   task: RoadmapItem;
@@ -21,6 +22,11 @@ interface TaskDetailClientProps {
 
 export default function TaskDetailClient({ task, topicContent, taskPosts }: TaskDetailClientProps) {
   const { t } = useI18n();
+
+  // Get related Learning topics
+  const relatedLearningItems = task.relatedLearningIds
+    ? learningRoadmap.filter(item => task.relatedLearningIds?.includes(item.id))
+    : [];
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -196,6 +202,66 @@ export default function TaskDetailClient({ task, topicContent, taskPosts }: Task
           </div>
         )}
       </section>
+
+      {/* Related Learning Topics Section */}
+      {relatedLearningItems.length > 0 && (
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-t-xl p-6 border border-gray-200 dark:border-gray-800 border-b-0">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  Related Learning Topics
+                </h2>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-emerald-600 dark:bg-emerald-500 text-white font-bold text-lg">
+                {relatedLearningItems.length}
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+              Các chủ đề học tập liên quan đến công việc này
+            </p>
+          </div>
+
+          <div className="bg-white dark:bg-gray-900 rounded-b-xl border border-gray-200 dark:border-gray-800 border-t-0 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedLearningItems.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/learning/${item.id}`}
+                  className="block group"
+                >
+                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-4 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                      {item.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                      <span>📁 {item.category}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                        item.level === 'beginner' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                        item.level === 'intermediate' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400' :
+                        item.level === 'advanced' ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' :
+                        'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400'
+                      }`}>
+                        {item.level === 'beginner' ? '🟢 Beginner' :
+                         item.level === 'intermediate' ? '🟡 Intermediate' :
+                         item.level === 'advanced' ? '🔴 Advanced' :
+                         '💎 Expert'}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Related Categories Section */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">

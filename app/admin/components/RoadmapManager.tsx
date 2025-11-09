@@ -821,15 +821,6 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                           >
                             {item.status === 'completed' ? t.status.completed : item.status === 'in-progress' ? t.status.inProgress : t.status.planned}
                           </span>
-                          {item.priority && (
-                            <span className={`px-2 py-1 text-xs font-medium rounded ${
-                              item.priority === 'high' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' :
-                              item.priority === 'medium' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
-                              'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400'
-                            }`}>
-                              {item.priority === 'high' ? t.priority.high : item.priority === 'medium' ? t.priority.medium : t.priority.low}
-                            </span>
-                          )}
                           {!loadingPosts && postCounts[item.id] && (
                             <Link
                               href={`/admin/blog?topic=${item.id}`}

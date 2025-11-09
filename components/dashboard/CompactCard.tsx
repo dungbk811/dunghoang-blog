@@ -14,18 +14,6 @@ interface CompactCardProps {
 export default function CompactCard({ item, postCount, type }: CompactCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const priorityColors = {
-    high: 'text-red-600 dark:text-red-400',
-    medium: 'text-amber-600 dark:text-amber-400',
-    low: 'text-gray-600 dark:text-gray-400',
-  };
-
-  const priorityLabel = {
-    high: 'Cao',
-    medium: 'Trung bình',
-    low: 'Thấp',
-  };
-
   return (
     <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-md">
       {/* Card Header - Always Visible */}
@@ -40,11 +28,6 @@ export default function CompactCard({ item, postCount, type }: CompactCardProps)
             </h3>
             <div className="flex items-center gap-2 flex-wrap">
               <StatusBadge status={item.status} />
-              {item.priority && (
-                <span className={`text-xs font-medium ${priorityColors[item.priority]}`}>
-                  • {priorityLabel[item.priority]}
-                </span>
-              )}
               {postCount > 0 && (
                 <span className="text-xs text-gray-600 dark:text-gray-400">
                   • 📝 {postCount} bài viết

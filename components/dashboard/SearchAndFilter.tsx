@@ -8,8 +8,8 @@ interface SearchAndFilterProps {
   onSearchChange: (query: string) => void;
   selectedStatuses: RoadmapStatus[];
   onStatusToggle: (status: RoadmapStatus) => void;
-  sortBy: 'priority' | 'date' | 'title';
-  onSortChange: (sort: 'priority' | 'date' | 'title') => void;
+  sortBy: 'date' | 'title';
+  onSortChange: (sort: 'date' | 'title') => void;
 }
 
 export default function SearchAndFilter({
@@ -95,7 +95,6 @@ export default function SearchAndFilter({
           </span>
           <div className="flex flex-wrap gap-2">
             {[
-              { value: 'priority' as const, label: t.sort.priority },
               { value: 'date' as const, label: t.sort.date },
               { value: 'title' as const, label: t.sort.title },
             ].map((sort) => (

@@ -17,19 +17,6 @@ export default function RoadmapCard({ item, type, postCount }: RoadmapCardProps)
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <StatusBadge status={item.status} />
-            {item.priority && (
-              <span
-                className={`px-2 py-0.5 rounded text-xs font-medium ${
-                  item.priority === 'high'
-                    ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
-                    : item.priority === 'medium'
-                    ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                }`}
-              >
-                {item.priority === 'high' ? '🎯 High' : item.priority === 'medium' ? '📌 Medium' : '📍 Low'}
-              </span>
-            )}
           </div>
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {item.title}
