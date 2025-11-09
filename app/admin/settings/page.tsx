@@ -1,19 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
-import { usePosition } from '@/contexts/PositionContext';
+import { useUserProfile } from '@/contexts/PositionContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
   const { t } = useAdminLanguage();
-  const { position, setPosition } = usePosition();
-  const [customPosition, setCustomPosition] = useState(position);
+  const { profile, updateProfile } = useUserProfile();
+  const [editName, setEditName] = useState(profile.name);
+  const [editPosition, setEditPosition] = useState(profile.position);
 
-  const handleSavePosition = () => {
-    setPosition(customPosition);
-    toast.success('Position saved successfully!');
+  // Sync edit state with profile
+  useEffect(() => {
+    setEditName(profile.name);
+    setEditPosition(profile.position);
+  }, [profile.name, profile.position]);
+
+  const handleSaveProfile = () => {
+    updateProfile({ name: editName, position: editPosition });
+    toast.success('Profile updated successfully!');
   };
 
   return (
@@ -50,58 +57,80 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Position Settings */}
+        {/* Profile Settings */}
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Position Settings
+                Profile Settings
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Set your job title/position to be displayed throughout the site
+                Update your name and position displayed throughout the site
               </p>
 
-              {/* Position Input */}
-              <div className="max-w-md space-y-3">
+              <div className="space-y-4">
+                {/* Name Input */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    placeholder="Enter your full name"
+                  />
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    Current: <span className="font-semibold text-purple-600 dark:text-purple-400">{profile.name}</span>
+                  </p>
+                </div>
+
+                {/* Position Input */}
                 <div>
                   <label htmlFor="position" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Your Position
+                    Position
                   </label>
                   <input
                     type="text"
                     id="position"
-                    value={customPosition}
-                    onChange={(e) => setCustomPosition(e.target.value)}
+                    value={editPosition}
+                    onChange={(e) => setEditPosition(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="e.g., COO, CEO, CTO, Developer"
                   />
                   <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                    Current: <span className="font-semibold text-purple-600 dark:text-purple-400">{position}</span>
+                    Current: <span className="font-semibold text-purple-600 dark:text-purple-400">{profile.position}</span>
                   </p>
                 </div>
 
-                {/* Quick Select Buttons */}
-                <div className="flex flex-wrap gap-2">
-                  {['COO', 'CEO', 'CTO', 'Developer', 'Designer', 'Manager'].map((pos) => (
-                    <button
-                      key={pos}
-                      onClick={() => setCustomPosition(pos)}
-                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
-                        customPosition === pos
-                          ? 'bg-purple-600 text-white border-purple-600'
-                          : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500'
-                      }`}
-                    >
-                      {pos}
-                    </button>
-                  ))}
+                {/* Quick Select Position Buttons */}
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick select position:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['COO', 'CEO', 'CTO', 'Developer', 'Designer', 'Manager'].map((pos) => (
+                      <button
+                        key={pos}
+                        onClick={() => setEditPosition(pos)}
+                        className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                          editPosition === pos
+                            ? 'bg-purple-600 text-white border-purple-600'
+                            : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500'
+                        }`}
+                      >
+                        {pos}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
+                {/* Save Button */}
                 <button
-                  onClick={handleSavePosition}
+                  onClick={handleSaveProfile}
                   className="w-full px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors"
                 >
-                  Save Position
+                  Save Profile
                 </button>
               </div>
             </div>

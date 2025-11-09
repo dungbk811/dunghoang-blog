@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { learningRoadmap, cooRoadmap, type RoadmapItem } from '@/lib/roadmap';
-import { useUserProfile } from '@/contexts/PositionContext';
 import EditItemModal from './EditItemModal';
 import toast from 'react-hot-toast';
 
@@ -12,7 +11,6 @@ type FilterStatus = 'all' | 'planned' | 'in-progress' | 'completed';
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const { profile, updateProfile } = useUserProfile();
   const [activeTab, setActiveTab] = useState<TabType>('learning');
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -22,16 +20,6 @@ export default function AdminDashboard() {
   const [viewMode, setViewMode] = useState<'table' | 'grouped'>('table');
   const itemsPerPage = 20;
 
-  // Profile editing
-  const [editName, setEditName] = useState(profile.name);
-  const [editPosition, setEditPosition] = useState(profile.position);
-  const [showProfileEdit, setShowProfileEdit] = useState(false);
-
-  // Sync edit state with profile
-  useEffect(() => {
-    setEditName(profile.name);
-    setEditPosition(profile.position);
-  }, [profile.name, profile.position]);
 
   const handleLogout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
@@ -212,118 +200,6 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Profile Settings */}
-        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden mb-8">
-          <button
-            onClick={() => setShowProfileEdit(!showProfileEdit)}
-            className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <div className="text-left">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-                  Profile Settings
-                </h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {profile.name} • {profile.position}
-                </p>
-              </div>
-            </div>
-            <svg
-              className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform ${showProfileEdit ? 'rotate-180' : ''}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {showProfileEdit && (
-            <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-800 pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Name Input */}
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-
-                {/* Position Input */}
-                <div>
-                  <label htmlFor="position" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Position
-                  </label>
-                  <input
-                    type="text"
-                    id="position"
-                    value={editPosition}
-                    onChange={(e) => setEditPosition(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="e.g., COO, CEO, CTO, Developer"
-                  />
-                </div>
-              </div>
-
-              {/* Quick Select Position Buttons */}
-              <div className="mt-4">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick select position:</p>
-                <div className="flex flex-wrap gap-2">
-                  {['COO', 'CEO', 'CTO', 'Developer', 'Designer', 'Manager'].map((pos) => (
-                    <button
-                      key={pos}
-                      onClick={() => setEditPosition(pos)}
-                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
-                        editPosition === pos
-                          ? 'bg-purple-600 text-white border-purple-600'
-                          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500'
-                      }`}
-                    >
-                      {pos}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Save Button */}
-              <div className="mt-6 flex gap-3">
-                <button
-                  onClick={() => {
-                    updateProfile({ name: editName, position: editPosition });
-                    toast.success('Profile updated successfully!');
-                    setShowProfileEdit(false);
-                  }}
-                  className="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors"
-                >
-                  Save Changes
-                </button>
-                <button
-                  onClick={() => {
-                    setEditName(profile.name);
-                    setEditPosition(profile.position);
-                    setShowProfileEdit(false);
-                  }}
-                  className="px-6 py-2.5 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-lg transition-colors"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Tabs & Filters */}
