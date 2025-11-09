@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
+import { useUserProfile } from '@/contexts/PositionContext';
 
 interface DashboardContentProps {
   learningStats: {
@@ -25,6 +26,7 @@ interface DashboardContentProps {
 
 export default function DashboardContent({ learningStats, cooStats, postStats }: DashboardContentProps) {
   const { t } = useAdminLanguage();
+  const { profile } = useUserProfile();
 
   return (
     <div className="p-8">
@@ -89,18 +91,20 @@ export default function DashboardContent({ learningStats, cooStats, postStats }:
           </div>
         </Link>
 
-        <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-6 text-white">
+        <Link href="/admin/contact" className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 hover:border-purple-500 dark:hover:border-purple-500 transition-all hover:shadow-lg">
           <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <span className="text-3xl font-bold">{learningStats.inProgress + cooStats.inProgress}</span>
           </div>
-          <h3 className="text-sm font-medium mb-2 opacity-90">{t.dashboard.activeItems}</h3>
-          <p className="text-xs opacity-75">{t.dashboard.currentlyInProgress}</p>
-        </div>
+          <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t.contact.title}</h3>
+          <div className="text-xs space-y-1">
+            <div className="text-purple-600 dark:text-purple-400 font-medium truncate">{profile.email}</div>
+            <div className="text-gray-600 dark:text-gray-400">{profile.phone}</div>
+          </div>
+        </Link>
       </div>
 
       {/* Recent Activity */}
