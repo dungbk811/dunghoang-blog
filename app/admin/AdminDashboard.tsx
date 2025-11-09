@@ -3,13 +3,16 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { learningRoadmap, cooRoadmap, type RoadmapItem } from '@/lib/roadmap';
+import { useUserProfile } from '@/contexts/PositionContext';
 import EditItemModal from './EditItemModal';
+import toast from 'react-hot-toast';
 
 type TabType = 'learning' | 'coo';
 type FilterStatus = 'all' | 'planned' | 'in-progress' | 'completed';
 
 export default function AdminDashboard() {
   const router = useRouter();
+  const { profile, updateProfile } = useUserProfile();
   const [activeTab, setActiveTab] = useState<TabType>('learning');
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -18,6 +21,11 @@ export default function AdminDashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [viewMode, setViewMode] = useState<'table' | 'grouped'>('table');
   const itemsPerPage = 20;
+
+  // Profile editing
+  const [editName, setEditName] = useState(profile.name);
+  const [editPosition, setEditPosition] = useState(profile.position);
+  const [showProfileEdit, setShowProfileEdit] = useState(false);
 
   const handleLogout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
