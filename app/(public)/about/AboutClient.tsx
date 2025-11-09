@@ -1,9 +1,9 @@
 'use client';
 
-import { usePosition } from '@/contexts/PositionContext';
+import { useUserProfile } from '@/contexts/PositionContext';
 
 export default function AboutClient() {
-  const { position } = usePosition();
+  const { profile } = useUserProfile();
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -15,7 +15,7 @@ export default function AboutClient() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Giới thiệu</h2>
           <p>
-            Xin chào! Tôi là <strong>Dung Hoang</strong>, hiện đang là {position} (Chief Operating Officer)
+            Xin chào! Tôi là <strong>{profile.name}</strong>, hiện đang là {profile.position} (Chief Operating Officer)
             tại một công ty công nghệ.
           </p>
           <p>
@@ -27,7 +27,7 @@ export default function AboutClient() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4">Công việc hiện tại</h2>
           <p>
-            Với vai trò {position}, tôi chịu trách nhiệm về:
+            Với vai trò {profile.position}, tôi chịu trách nhiệm về:
           </p>
           <ul>
             <li>Quản lý vận hành công ty</li>
@@ -44,7 +44,7 @@ export default function AboutClient() {
           </p>
           <ul>
             <li><strong>Chia sẻ kiến thức</strong>: Những gì tôi đang học, đã học và sắp học trong IT</li>
-            <li><strong>Kinh nghiệm công việc</strong>: Chia sẻ về vai trò {position} và quản lý trong tech</li>
+            <li><strong>Kinh nghiệm công việc</strong>: Chia sẻ về vai trò {profile.position} và quản lý trong tech</li>
             <li><strong>Định hướng nghề nghiệp</strong>: Giúp những bạn trẻ tìm được hướng đi phù hợp</li>
             <li><strong>Cập nhật liên tục</strong>: Xây dựng và chia sẻ kiến thức theo thời gian</li>
           </ul>
@@ -81,9 +81,9 @@ export default function AboutClient() {
             Nếu bạn có câu hỏi hoặc muốn trao đổi, đừng ngại liên hệ với tôi qua:
           </p>
           <ul>
-            <li>Điện thoại: <a href="tel:0977096665">0977 096 665</a></li>
-            <li>Email: <a href="mailto:dungbk811@gmail.com">dungbk811@gmail.com</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com/in/dung-hoang-18092654" target="_blank" rel="noopener noreferrer">Dung Hoang</a></li>
+            <li>Điện thoại: <a href={`tel:${profile.phone.replace(/\s/g, '')}`}>{profile.phone}</a></li>
+            <li>Email: <a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+            <li>LinkedIn: <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">{profile.name}</a></li>
           </ul>
         </section>
       </div>

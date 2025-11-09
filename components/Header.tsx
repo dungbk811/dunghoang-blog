@@ -6,12 +6,12 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useI18n } from '@/lib/i18n';
-import { usePosition } from '@/contexts/PositionContext';
+import { useUserProfile } from '@/contexts/PositionContext';
 
 export default function Header() {
   const pathname = usePathname();
   const { t } = useI18n();
-  const { position } = usePosition();
+  const { profile } = useUserProfile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
@@ -39,7 +39,7 @@ export default function Header() {
             <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-700 group-hover:scale-110 transition-transform">
               <Image
                 src="/profile.jpg"
-                alt="Dung Hoang"
+                alt={profile.name}
                 fill
                 className="object-cover"
                 priority
@@ -47,10 +47,10 @@ export default function Header() {
             </div>
             <div className="hidden sm:block">
               <div className="text-lg font-bold text-gray-900 dark:text-gray-100">
-                Dung Hoang
+                {profile.name}
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                {position}
+                {profile.position}
               </div>
             </div>
           </Link>

@@ -20,6 +20,7 @@
     "learningRoadmap": "Learning Roadmap",
     "cooWork": "COO Work",
     "blogPosts": "Blog Posts",
+    "contact": "Contact",
     "settings": "Settings",
     "logout": "Logout"
   },
@@ -44,6 +45,18 @@
     "addTask": "Add Task",
     "editTask": "Edit Task",
     "deleteTask": "Delete Task"
+  },
+  "contact": {
+    "title": "Contact Information",
+    "description": "Manage contact information and social media",
+    "phone": "Phone Number",
+    "email": "Email",
+    "linkedin": "LinkedIn URL",
+    "phonePlaceholder": "Enter phone number...",
+    "emailPlaceholder": "Enter email address...",
+    "linkedinPlaceholder": "Enter LinkedIn URL...",
+    "saveSuccess": "Contact information updated successfully!",
+    "saveFailed": "Failed to update. Please try again."
   },
   "category": {
     "rename": "Rename Category",

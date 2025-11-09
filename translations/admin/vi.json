@@ -20,6 +20,7 @@
     "learningRoadmap": "Lộ trình Học tập",
     "cooWork": "Công việc COO",
     "blogPosts": "Bài viết Blog",
+    "contact": "Liên hệ",
     "settings": "Cài đặt",
     "logout": "Đăng xuất"
   },
@@ -44,6 +45,18 @@
     "addTask": "Thêm công việc",
     "editTask": "Sửa công việc",
     "deleteTask": "Xóa công việc"
+  },
+  "contact": {
+    "title": "Thông tin Liên hệ",
+    "description": "Quản lý thông tin liên hệ và mạng xã hội",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "linkedin": "LinkedIn URL",
+    "phonePlaceholder": "Nhập số điện thoại...",
+    "emailPlaceholder": "Nhập địa chỉ email...",
+    "linkedinPlaceholder": "Nhập LinkedIn URL...",
+    "saveSuccess": "Cập nhật thông tin liên hệ thành công!",
+    "saveFailed": "Cập nhật thất bại. Vui lòng thử lại."
   },
   "category": {
     "rename": "Đổi tên danh mục",

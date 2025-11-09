@@ -20,6 +20,7 @@
     "learningRoadmap": "学習ロードマップ",
     "cooWork": "COO業務",
     "blogPosts": "ブログ投稿",
+    "contact": "連絡先",
     "settings": "設定",
     "logout": "ログアウト"
   },
@@ -44,6 +45,18 @@
     "addTask": "タスクを追加",
     "editTask": "タスクを編集",
     "deleteTask": "タスクを削除"
+  },
+  "contact": {
+    "title": "連絡先情報",
+    "description": "連絡先情報とソーシャルメディアを管理する",
+    "phone": "電話番号",
+    "email": "メール",
+    "linkedin": "LinkedIn URL",
+    "phonePlaceholder": "電話番号を入力...",
+    "emailPlaceholder": "メールアドレスを入力...",
+    "linkedinPlaceholder": "LinkedIn URLを入力...",
+    "saveSuccess": "連絡先情報を更新しました！",
+    "saveFailed": "更新に失敗しました。もう一度お試しください。"
   },
   "category": {
     "rename": "カテゴリー名を変更",

@@ -1,9 +1,11 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n';
+import { useUserProfile } from '@/contexts/PositionContext';
 
 export default function ContactClient() {
   const { t } = useI18n();
+  const { profile } = useUserProfile();
 
   const contactMethods = [
     {
@@ -13,8 +15,8 @@ export default function ContactClient() {
         </svg>
       ),
       label: t.contact.phone,
-      value: t.contact.phoneNumber,
-      href: 'tel:0977096665',
+      value: profile.phone,
+      href: `tel:${profile.phone.replace(/\s/g, '')}`,
       action: t.contact.callMe,
       bgClass: 'bg-blue-100 dark:bg-blue-900/30',
       textClass: 'text-blue-600 dark:text-blue-400',
@@ -26,8 +28,8 @@ export default function ContactClient() {
         </svg>
       ),
       label: t.contact.zalo,
-      value: t.contact.phoneNumber,
-      href: 'https://zalo.me/0977096665',
+      value: profile.phone,
+      href: `https://zalo.me/${profile.phone.replace(/\s/g, '')}`,
       action: t.contact.chatZalo,
       bgClass: 'bg-sky-100 dark:bg-sky-900/30',
       textClass: 'text-sky-600 dark:text-sky-400',
@@ -39,8 +41,8 @@ export default function ContactClient() {
         </svg>
       ),
       label: t.contact.email,
-      value: t.contact.emailAddress,
-      href: 'mailto:dungbk811@gmail.com',
+      value: profile.email,
+      href: `mailto:${profile.email}`,
       action: t.contact.sendEmail,
       bgClass: 'bg-red-100 dark:bg-red-900/30',
       textClass: 'text-red-600 dark:text-red-400',
@@ -52,8 +54,8 @@ export default function ContactClient() {
         </svg>
       ),
       label: t.contact.linkedin,
-      value: 'linkedin.com/in/dung-hoang-18092654',
-      href: 'https://linkedin.com/in/dung-hoang-18092654',
+      value: profile.linkedin.replace(/^https?:\/\//, ''),
+      href: profile.linkedin,
       action: t.contact.viewProfile,
       bgClass: 'bg-indigo-100 dark:bg-indigo-900/30',
       textClass: 'text-indigo-600 dark:text-indigo-400',
