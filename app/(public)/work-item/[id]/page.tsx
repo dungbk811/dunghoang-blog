@@ -11,9 +11,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  // Only generate static params for visible COO tasks
+  // Generate static params for all visible work items (all roles)
   return cooRoadmap
-    .filter((item) => !item.hidden && item.role === 'COO')
+    .filter((item) => !item.hidden)
     .map((item) => ({
       id: item.id,
     }));
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const task = cooRoadmap.find((item) => item.id === id && !item.hidden && item.role === 'COO');
+  const task = cooRoadmap.find((item) => item.id === id && !item.hidden);
 
   if (!task) {
     return {
@@ -38,9 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function TaskDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const task = cooRoadmap.find((item) => item.id === id && !item.hidden && item.role === 'COO');
+  const task = cooRoadmap.find((item) => item.id === id && !item.hidden);
 
-  // Return 404 if task not found or is hidden or not COO role
+  // Return 404 if task not found or is hidden
   if (!task) {
     notFound();
   }
