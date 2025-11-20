@@ -46,6 +46,36 @@
     "editTask": "タスクを編集",
     "deleteTask": "タスクを削除"
   },
+  "cpoWork": {
+    "title": "CPO業務管理",
+    "description": "CPO業務タスクを管理し、進捗を追跡する",
+    "categories": "カテゴリー",
+    "searchPlaceholder": "タスクを検索...",
+    "noResults": "タスクが見つかりません",
+    "addTask": "タスクを追加",
+    "editTask": "タスクを編集",
+    "deleteTask": "タスクを削除"
+  },
+  "cfoWork": {
+    "title": "CFO業務管理",
+    "description": "CFO業務タスクを管理し、進捗を追跡する",
+    "categories": "カテゴリー",
+    "searchPlaceholder": "タスクを検索...",
+    "noResults": "タスクが見つかりません",
+    "addTask": "タスクを追加",
+    "editTask": "タスクを編集",
+    "deleteTask": "タスクを削除"
+  },
+  "cloWork": {
+    "title": "CLO業務管理",
+    "description": "CLO業務タスクを管理し、進捗を追跡する",
+    "categories": "カテゴリー",
+    "searchPlaceholder": "タスクを検索...",
+    "noResults": "タスクが見つかりません",
+    "addTask": "タスクを追加",
+    "editTask": "タスクを編集",
+    "deleteTask": "タスクを削除"
+  },
   "contact": {
     "title": "連絡先情報",
     "description": "連絡先情報とソーシャルメディアを管理する",

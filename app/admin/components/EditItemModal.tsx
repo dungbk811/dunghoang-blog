@@ -270,7 +270,7 @@ export default function EditItemModal({ item, type, onClose, onSave }: EditItemM
           {/* Related Items */}
           <div className="border-t border-slate-200 dark:border-slate-800 pt-6">
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
-              {type === 'learning' ? 'Related COO Work' : 'Related Learning Topics'}
+              {type === 'learning' ? 'Related Work' : 'Related Learning Topics'}
             </label>
             <div className="max-h-48 overflow-y-auto space-y-2 bg-slate-50 dark:bg-slate-800 rounded-lg p-3">
               {availableItems.length === 0 ? (

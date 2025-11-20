@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { RoadmapItem, RoadmapStatus, SkillLevel } from '@/lib/roadmap';
+import { RoadmapItem, RoadmapStatus, SkillLevel, WorkRole } from '@/lib/roadmap';
 import SearchAndFilter from '@/components/dashboard/SearchAndFilter';
 import TopicCard from '@/components/dashboard/TopicCard';
 import RelatedCategories from '@/components/RelatedCategories';
 import { useI18n } from '@/lib/i18n';
 
-interface COOWorkClientProps {
+interface WorkClientProps {
   roadmapWithCounts: { item: RoadmapItem; postCount: number }[];
   stats: {
     total: number;
@@ -19,17 +19,26 @@ interface COOWorkClientProps {
   activeCategory: string;
   onCategoryChange: (category: string) => void;
   renderHeader: () => React.ReactNode;
+  role: WorkRole;
 }
 
-export default function COOWorkClient({
+export default function WorkClient({
   roadmapWithCounts,
   stats,
   isSearchOpen,
   activeCategory,
   onCategoryChange,
-  renderHeader
-}: COOWorkClientProps) {
+  renderHeader,
+  role
+}: WorkClientProps) {
   const { t } = useI18n();
+
+  // Get role-specific translations
+  const roleTranslations = role === 'COO' ? t.coo :
+                          role === 'CPO' ? t.cpo :
+                          role === 'CFO' ? t.cfo :
+                          t.clo;
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<RoadmapStatus[]>([
     'planned',
@@ -188,7 +197,7 @@ export default function COOWorkClient({
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          {t.coo.allTasks}
+          {roleTranslations.allTasks}
         </button>
       </div>
 
@@ -210,7 +219,7 @@ export default function COOWorkClient({
             </button>
 
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">
-              {t.coo.allTasks}
+              {roleTranslations.allTasks}
             </h3>
             <nav className="space-y-1 mb-6">
               <button
@@ -244,7 +253,7 @@ export default function COOWorkClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.beginner ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 1: {t.coo.levels.beginner}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 1: {roleTranslations.levels.beginner}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.beginner}
@@ -277,7 +286,7 @@ export default function COOWorkClient({
                         </button>
                       ))
                     ) : (
-                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{roleTranslations.noTopicsYet}</p>
                     )}
                   </div>
                 )}
@@ -293,7 +302,7 @@ export default function COOWorkClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.intermediate ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 2: {t.coo.levels.intermediate}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 2: {roleTranslations.levels.intermediate}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.intermediate}
@@ -326,7 +335,7 @@ export default function COOWorkClient({
                         </button>
                       ))
                     ) : (
-                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{roleTranslations.noTopicsYet}</p>
                     )}
                   </div>
                 )}
@@ -342,7 +351,7 @@ export default function COOWorkClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.advanced ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 3: {t.coo.levels.advanced}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 3: {roleTranslations.levels.advanced}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.advanced}
@@ -375,7 +384,7 @@ export default function COOWorkClient({
                         </button>
                       ))
                     ) : (
-                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{roleTranslations.noTopicsYet}</p>
                     )}
                   </div>
                 )}
@@ -391,7 +400,7 @@ export default function COOWorkClient({
                     <svg className={`w-3.5 h-3.5 transition-transform ${expandedLevels.expert ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 4: {t.coo.levels.expert}</span>
+                    <span className="text-xs uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400">{t.common.level} 4: {roleTranslations.levels.expert}</span>
                   </div>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                     {levelCounts.expert}
@@ -424,7 +433,7 @@ export default function COOWorkClient({
                         </button>
                       ))
                     ) : (
-                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{t.coo.noTopicsYet}</p>
+                      <p className="ml-6 px-3 py-2 text-xs text-slate-400 dark:text-slate-500 italic">{roleTranslations.noTopicsYet}</p>
                     )}
                   </div>
                 )}
@@ -559,7 +568,7 @@ export default function COOWorkClient({
               <div className="flex items-center gap-2.5">
                 <div className="h-5 w-1 bg-purple-600 rounded-full"></div>
                 <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
-                  {filteredAndSortedItems.length} {filteredAndSortedItems.length === 1 ? t.coo.task : t.coo.tasks}
+                  {filteredAndSortedItems.length} {filteredAndSortedItems.length === 1 ? roleTranslations.task : roleTranslations.tasks}
                 </h2>
               </div>
             </div>
@@ -621,10 +630,10 @@ export default function COOWorkClient({
             </svg>
           </div>
           <p className="text-base font-medium text-slate-900 dark:text-white mb-1">
-            {t.coo.noTasksFound}
+            {roleTranslations.noTasksFound}
           </p>
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            {t.coo.adjustFilters}
+            {roleTranslations.adjustFilters}
           </p>
         </div>
       )}

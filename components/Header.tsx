@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useI18n } from '@/lib/i18n';
 import { useUserProfile } from '@/contexts/PositionContext';
+import { rolesSettings } from '@/lib/profile';
+import { WorkRole } from '@/lib/roadmap';
 
 export default function Header() {
   const pathname = usePathname();
@@ -19,10 +21,20 @@ export default function Header() {
     return pathname?.startsWith(path);
   };
 
+  // Build dynamic nav links based on enabled roles
+  const roleLinks = useMemo(() => {
+    return (Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][])
+      .filter(([_, config]) => config.enabled)
+      .map(([role, config]) => ({
+        href: `/${role.toLowerCase()}`,
+        label: config.shortLabel,
+      }));
+  }, []);
+
   const navLinks = [
     { href: '/', label: t.nav.home },
     { href: '/learning', label: t.nav.learning },
-    { href: '/coo-work', label: t.nav.coo },
+    ...roleLinks,
     { href: '/blog', label: t.nav.other },
     { href: '/contact', label: t.nav.contact },
   ];

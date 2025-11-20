@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { learningRoadmap, cooRoadmap, type RoadmapItem, type SkillLevel } from '@/lib/roadmap';
+import { learningRoadmap, cooRoadmap, type RoadmapItem, type SkillLevel, type WorkRole } from '@/lib/roadmap';
 import EditItemModal from './EditItemModal';
 import TopicContentEditor from './TopicContentEditor';
 import Link from 'next/link';
@@ -15,9 +15,10 @@ type FilterStatus = 'all' | 'planned' | 'in-progress' | 'completed';
 
 interface RoadmapManagerProps {
   type: RoadmapType;
+  role?: WorkRole; // Optional role filter for work items
 }
 
-export default function RoadmapManager({ type }: RoadmapManagerProps) {
+export default function RoadmapManager({ type, role }: RoadmapManagerProps) {
   const router = useRouter();
   const { t } = useAdminLanguage();
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
@@ -236,9 +237,42 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
     }
   };
 
-  const allItems = type === 'learning' ? learningRoadmap : cooRoadmap;
-  const pageTitle = type === 'learning' ? t.learning.title : t.cooWork.title;
-  const pageDescription = type === 'learning' ? t.learning.description : t.cooWork.description;
+  const baseItems = type === 'learning' ? learningRoadmap : cooRoadmap;
+  // Filter by role if provided
+  const allItems = role ? baseItems.filter(item => item.role === role) : baseItems;
+
+  // Get title and description based on type and role
+  const getWorkTranslations = () => {
+    if (type === 'learning') {
+      return { title: t.learning.title, description: t.learning.description };
+    }
+
+    // For work items, use role-specific translations
+    switch(role) {
+      case 'COO':
+        return { title: t.cooWork.title, description: t.cooWork.description };
+      case 'CPO':
+        return { title: t.cpoWork.title, description: t.cpoWork.description };
+      case 'CFO':
+        return { title: t.cfoWork.title, description: t.cfoWork.description };
+      case 'CLO':
+        return { title: t.cloWork.title, description: t.cloWork.description };
+      default:
+        return { title: t.cooWork.title, description: t.cooWork.description };
+    }
+  };
+
+  const { title: pageTitle, description: pageDescription } = getWorkTranslations();
+  const pageCategories = type === 'learning' ? t.learning.categories :
+    (role === 'CPO' ? t.cpoWork.categories :
+     role === 'CFO' ? t.cfoWork.categories :
+     role === 'CLO' ? t.cloWork.categories :
+     t.cooWork.categories);
+  const pageSearchPlaceholder = type === 'learning' ? t.learning.searchPlaceholder :
+    (role === 'CPO' ? t.cpoWork.searchPlaceholder :
+     role === 'CFO' ? t.cfoWork.searchPlaceholder :
+     role === 'CLO' ? t.cloWork.searchPlaceholder :
+     t.cooWork.searchPlaceholder);
 
   // Get unique categories
   const categories = Array.from(new Set(allItems.map((item) => item.category)));
@@ -460,7 +494,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
         <aside className="w-72 flex-shrink-0">
           <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6 sticky top-8">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">
-              {type === 'learning' ? t.learning.categories : t.cooWork.categories}
+              {pageCategories}
             </h3>
             <div className="space-y-1">
               <button
@@ -695,7 +729,7 @@ export default function RoadmapManager({ type }: RoadmapManagerProps) {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={type === 'learning' ? t.learning.searchPlaceholder : t.cooWork.searchPlaceholder}
+                placeholder={pageSearchPlaceholder}
                 className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
               />
             </div>

@@ -43,10 +43,10 @@ export default function NotFound() {
               Learning
             </Link>
             <Link
-              href="/coo-work"
+              href="/coo"
               className="px-3 py-1.5 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
             >
-              COO Work
+              Work
             </Link>
             <Link
               href="/contact"

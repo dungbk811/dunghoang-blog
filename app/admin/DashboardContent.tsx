@@ -3,20 +3,22 @@
 import Link from 'next/link';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
 import { useUserProfile } from '@/contexts/PositionContext';
+import { rolesSettings } from '@/lib/profile';
+import { WorkRole } from '@/lib/roadmap';
+
+interface RoleStats {
+  total: number;
+  planned: number;
+  inProgress: number;
+  completed: number;
+}
 
 interface DashboardContentProps {
-  learningStats: {
-    total: number;
-    planned: number;
-    inProgress: number;
-    completed: number;
-  };
-  cooStats: {
-    total: number;
-    planned: number;
-    inProgress: number;
-    completed: number;
-  };
+  learningStats: RoleStats;
+  cooStats: RoleStats;
+  cpoStats: RoleStats;
+  cfoStats: RoleStats;
+  cloStats: RoleStats;
   postStats: {
     total: number;
     visible: number;
@@ -24,9 +26,24 @@ interface DashboardContentProps {
   };
 }
 
-export default function DashboardContent({ learningStats, cooStats, postStats }: DashboardContentProps) {
+export default function DashboardContent({
+  learningStats,
+  cooStats,
+  cpoStats,
+  cfoStats,
+  cloStats,
+  postStats
+}: DashboardContentProps) {
   const { t } = useAdminLanguage();
   const { profile } = useUserProfile();
+
+  // Map role stats
+  const roleStatsMap: Record<WorkRole, RoleStats> = {
+    COO: cooStats,
+    CPO: cpoStats,
+    CFO: cfoStats,
+    CLO: cloStats,
+  };
 
   return (
     <div className="p-8">
@@ -58,22 +75,32 @@ export default function DashboardContent({ learningStats, cooStats, postStats }:
           </div>
         </Link>
 
-        <Link href="/admin/coo-work" className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 hover:border-purple-500 dark:hover:border-purple-500 transition-all hover:shadow-lg">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">{cooStats.total}</span>
-          </div>
-          <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t.dashboard.cooTasks}</h3>
-          <div className="flex gap-3 text-xs">
-            <span className="text-blue-600 dark:text-blue-400">{cooStats.planned} {t.dashboard.planned}</span>
-            <span className="text-yellow-600 dark:text-yellow-400">{cooStats.inProgress} {t.dashboard.active}</span>
-            <span className="text-green-600 dark:text-green-400">{cooStats.completed} {t.dashboard.done}</span>
-          </div>
-        </Link>
+        {/* Dynamic Role Cards */}
+        {(Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][])
+          .filter(([_, config]) => config.enabled)
+          .map(([role, config]) => {
+            const stats = roleStatsMap[role];
+            return (
+              <Link
+                key={role}
+                href={`/admin/${role.toLowerCase()}-work`}
+                className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 hover:border-purple-500 dark:hover:border-purple-500 transition-all hover:shadow-lg"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-2xl">
+                    {config.icon}
+                  </div>
+                  <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</span>
+                </div>
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{config.label}</h3>
+                <div className="flex gap-3 text-xs">
+                  <span className="text-blue-600 dark:text-blue-400">{stats.planned} {t.dashboard.planned}</span>
+                  <span className="text-yellow-600 dark:text-yellow-400">{stats.inProgress} {t.dashboard.active}</span>
+                  <span className="text-green-600 dark:text-green-400">{stats.completed} {t.dashboard.done}</span>
+                </div>
+              </Link>
+            );
+          })}
 
         <Link href="/admin/blog" className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all hover:shadow-lg">
           <div className="flex items-center justify-between mb-4">
@@ -124,19 +151,29 @@ export default function DashboardContent({ learningStats, cooStats, postStats }:
               </div>
             </div>
           </Link>
-          <Link href="/admin/coo-work" className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <div>
-                <div className="font-medium text-gray-900 dark:text-white">{t.dashboard.manageCooWork}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">{t.dashboard.updateTasksProgress}</div>
-              </div>
-            </div>
-          </Link>
+
+          {/* Dynamic Role Quick Actions */}
+          {(Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][])
+            .filter(([_, config]) => config.enabled)
+            .slice(0, 1)
+            .map(([role, config]) => (
+              <Link
+                key={role}
+                href={`/admin/${role.toLowerCase()}-work`}
+                className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-purple-500 dark:hover:border-purple-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center text-xl">
+                    {config.icon}
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">Manage {config.label}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Update work progress</div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+
           <Link href="/admin/blog" className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">

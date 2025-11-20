@@ -23,10 +23,13 @@ interface TaskDetailClientProps {
 export default function TaskDetailClient({ task, topicContent, taskPosts }: TaskDetailClientProps) {
   const { t } = useI18n();
 
-  // Get related Learning topics
+  // Get related Learning topics (only visible ones)
   const relatedLearningItems = task.relatedLearningIds
-    ? learningRoadmap.filter(item => task.relatedLearningIds?.includes(item.id))
+    ? learningRoadmap.filter(item => !item.hidden && task.relatedLearningIds?.includes(item.id))
     : [];
+
+  // Get breadcrumb path based on task role
+  const backPath = task.role ? `/${task.role.toLowerCase()}` : '/work-item';
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -36,10 +39,10 @@ export default function TaskDetailClient({ task, topicContent, taskPosts }: Task
           {/* Breadcrumb */}
           <div className="mb-6">
             <Link
-              href="/coo-work"
+              href={backPath}
               className="text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
-              ← {t.topic.backToCOO}
+              ← {t.topic.backToWork}
             </Link>
           </div>
 

@@ -10,14 +10,17 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return learningRoadmap.map((item) => ({
-    id: item.id,
-  }));
+  // Only generate static params for visible learning topics
+  return learningRoadmap
+    .filter((item) => !item.hidden)
+    .map((item) => ({
+      id: item.id,
+    }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const topic = learningRoadmap.find((item) => item.id === id);
+  const topic = learningRoadmap.find((item) => item.id === id && !item.hidden);
 
   if (!topic) {
     return {
@@ -33,8 +36,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function TopicDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const topic = learningRoadmap.find((item) => item.id === id);
+  const topic = learningRoadmap.find((item) => item.id === id && !item.hidden);
 
+  // Return 404 if topic not found or is hidden
   if (!topic) {
     notFound();
   }

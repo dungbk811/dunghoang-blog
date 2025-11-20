@@ -23,10 +23,13 @@ interface TopicDetailClientProps {
 export default function TopicDetailClient({ topic, topicContent, topicPosts }: TopicDetailClientProps) {
   const { t } = useI18n();
 
-  // Get related COO Work items
+  // Get related Work items (only visible ones)
   const relatedWorkItems = topic.relatedWorkIds
-    ? cooRoadmap.filter(item => topic.relatedWorkIds?.includes(item.id))
+    ? cooRoadmap.filter(item => !item.hidden && topic.relatedWorkIds?.includes(item.id))
     : [];
+
+  // Get unique roles from related work items
+  const relatedRoles = Array.from(new Set(relatedWorkItems.map(item => item.role).filter(Boolean))) as string[];
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -203,7 +206,7 @@ export default function TopicDetailClient({ topic, topicContent, topicPosts }: T
         )}
       </section>
 
-      {/* Related COO Work Section */}
+      {/* Related Work Section */}
       {relatedWorkItems.length > 0 && (
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-t-xl p-6 border border-gray-200 dark:border-gray-800 border-b-0">
@@ -215,7 +218,7 @@ export default function TopicDetailClient({ topic, topicContent, topicPosts }: T
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  Related COO Work
+                  Related Work
                 </h2>
               </div>
               <div className="px-4 py-2 rounded-full bg-purple-600 dark:bg-purple-500 text-white font-bold text-lg">
@@ -223,41 +226,51 @@ export default function TopicDetailClient({ topic, topicContent, topicPosts }: T
               </div>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
-              Các công việc COO liên quan đến chủ đề này
+              {relatedRoles.length > 0
+                ? `${relatedRoles.join(', ')} ${t.topic.workItemsUsingKnowledge}`
+                : t.topic.workItemsUsingKnowledge
+              }
             </p>
           </div>
 
           <div className="bg-white dark:bg-gray-900 rounded-b-xl border border-gray-200 dark:border-gray-800 border-t-0 p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {relatedWorkItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/coo-work/${item.id}`}
-                  className="block group"
-                >
-                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-4 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all">
-                    <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      {item.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 mb-2">
-                      <span>📁 {item.category}</span>
+              {relatedWorkItems.map((item) => {
+                return (
+                  <Link
+                    key={item.id}
+                    href={`/work-item/${item.id}`}
+                    className="block group"
+                  >
+                    <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg border-2 border-gray-200 dark:border-gray-700 p-4 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all">
+                      <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 mb-2">
+                        <span>📁 {item.category}</span>
+                        {item.role && (
+                          <span className="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium">
+                            {item.role}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                          item.level === 'beginner' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                          item.level === 'intermediate' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400' :
+                          item.level === 'advanced' ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' :
+                          'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400'
+                        }`}>
+                          {item.level === 'beginner' ? '🟢 Beginner' :
+                           item.level === 'intermediate' ? '🟡 Intermediate' :
+                           item.level === 'advanced' ? '🔴 Advanced' :
+                           '💎 Expert'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                        item.level === 'beginner' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
-                        item.level === 'intermediate' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400' :
-                        item.level === 'advanced' ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' :
-                        'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400'
-                      }`}>
-                        {item.level === 'beginner' ? '🟢 Beginner' :
-                         item.level === 'intermediate' ? '🟡 Intermediate' :
-                         item.level === 'advanced' ? '🔴 Advanced' :
-                         '💎 Expert'}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

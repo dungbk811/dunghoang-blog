@@ -39,7 +39,7 @@ export default async function Image() {
             maxWidth: 900,
           }}
         >
-          Chia sẻ kiến thức IT, công việc COO và định hướng nghề nghiệp
+          Chia sẻ kiến thức IT, công việc quản lý và định hướng nghề nghiệp
         </div>
       </div>
     ),

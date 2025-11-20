@@ -46,6 +46,36 @@
     "editTask": "Sửa công việc",
     "deleteTask": "Xóa công việc"
   },
+  "cpoWork": {
+    "title": "Quản lý Công việc CPO",
+    "description": "Quản lý các công việc CPO và theo dõi tiến độ",
+    "categories": "Danh mục",
+    "searchPlaceholder": "Tìm kiếm công việc...",
+    "noResults": "Không tìm thấy công việc nào",
+    "addTask": "Thêm công việc",
+    "editTask": "Sửa công việc",
+    "deleteTask": "Xóa công việc"
+  },
+  "cfoWork": {
+    "title": "Quản lý Công việc CFO",
+    "description": "Quản lý các công việc CFO và theo dõi tiến độ",
+    "categories": "Danh mục",
+    "searchPlaceholder": "Tìm kiếm công việc...",
+    "noResults": "Không tìm thấy công việc nào",
+    "addTask": "Thêm công việc",
+    "editTask": "Sửa công việc",
+    "deleteTask": "Xóa công việc"
+  },
+  "cloWork": {
+    "title": "Quản lý Công việc CLO",
+    "description": "Quản lý các công việc CLO và theo dõi tiến độ",
+    "categories": "Danh mục",
+    "searchPlaceholder": "Tìm kiếm công việc...",
+    "noResults": "Không tìm thấy công việc nào",
+    "addTask": "Thêm công việc",
+    "editTask": "Sửa công việc",
+    "deleteTask": "Xóa công việc"
+  },
   "contact": {
     "title": "Thông tin Liên hệ",
     "description": "Quản lý thông tin liên hệ và mạng xã hội",

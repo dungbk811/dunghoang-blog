@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "Dung Hoang - COO",
     template: "%s | Dung Hoang - COO",
   },
-  description: "Chia sẻ kiến thức IT, công việc COO và định hướng nghề nghiệp trong lĩnh vực công nghệ",
+  description: "Chia sẻ kiến thức IT, công việc quản lý và định hướng nghề nghiệp trong lĩnh vực công nghệ",
   keywords: ["IT", "COO", "Tech Blog", "Software Engineering", "Career", "Dung Hoang"],
   authors: [{ name: "Dung Hoang" }],
   creator: "Dung Hoang",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Dung Hoang - COO",
-    description: "Chia sẻ kiến thức IT, công việc COO và định hướng nghề nghiệp",
+    description: "Chia sẻ kiến thức IT, công việc quản lý và định hướng nghề nghiệp",
     type: "website",
     locale: "vi_VN",
     siteName: "Dung Hoang Blog",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dung Hoang - COO",
-    description: "Chia sẻ kiến thức IT và công việc COO",
+    description: "Chia sẻ kiến thức IT và công việc quản lý",
   },
 };
 

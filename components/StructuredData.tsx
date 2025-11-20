@@ -6,7 +6,7 @@ export function WebsiteSchema() {
     '@type': 'WebSite',
     name: 'Dung Hoang Blog',
     url: process.env.NEXT_PUBLIC_BASE_URL || 'https://dunghoang.com',
-    description: 'Chia sẻ kiến thức IT, công việc COO và định hướng nghề nghiệp',
+    description: 'Chia sẻ kiến thức IT, công việc quản lý và định hướng nghề nghiệp',
     author: {
       '@type': 'Person',
       name: 'Dung Hoang',

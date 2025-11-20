@@ -13,9 +13,9 @@ export default function RelatedCategories({ currentCategory, type }: RelatedCate
   }
 
   const relatedCategories = getRelatedCategories(currentCategory, type);
-  const targetPath = type === 'learning' ? '/coo-work' : '/learning';
+  const targetPath = type === 'learning' ? '/work' : '/learning';
   const title = type === 'learning'
-    ? '📋 Áp dụng vào công việc COO'
+    ? '📋 Áp dụng vào công việc'
     : '📚 Kiến thức cần học';
 
   // Show message when no related categories

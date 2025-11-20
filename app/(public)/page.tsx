@@ -11,12 +11,20 @@ export default function Home() {
   const visiblePosts = allPosts.filter(post => !post.hidden);
 
   const learningStats = getStats('learning', visibleLearningRoadmap);
-  const cooStats = getStats('coo', visibleCooRoadmap);
+
+  // Get stats for each role
+  const cooStats = getStats('coo', visibleCooRoadmap.filter(item => item.role === 'COO'));
+  const cpoStats = getStats('coo', visibleCooRoadmap.filter(item => item.role === 'CPO'));
+  const cfoStats = getStats('coo', visibleCooRoadmap.filter(item => item.role === 'CFO'));
+  const cloStats = getStats('coo', visibleCooRoadmap.filter(item => item.role === 'CLO'));
 
   return (
     <DashboardClient
       learningStats={learningStats}
       cooStats={cooStats}
+      cpoStats={cpoStats}
+      cfoStats={cfoStats}
+      cloStats={cloStats}
       postsCount={visiblePosts.length}
     />
   );

@@ -12,7 +12,8 @@ interface TopicCardProps {
 }
 
 export default function TopicCard({ item, postCount, type }: TopicCardProps) {
-  const detailUrl = `/${type === 'learning' ? 'learning' : 'coo-work'}/${item.id}`;
+  // Work items share /work-item/[id] detail page regardless of role
+  const detailUrl = `/${type === 'learning' ? 'learning' : 'work-item'}/${item.id}`;
   const { t } = useI18n();
 
   return (

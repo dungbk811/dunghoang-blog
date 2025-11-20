@@ -26,7 +26,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/coo-work`,
+      url: `${baseUrl}/coo`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cpo`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cfo`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/clo`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -62,9 +80,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // COO work items
+  // Work items
   const cooUrls: MetadataRoute.Sitemap = cooRoadmap.map((item) => ({
-    url: `${baseUrl}/coo-work/${item.id}`,
+    url: `${baseUrl}/work-item/${item.id}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.7,

@@ -6,7 +6,10 @@
 ```
 /admin                  → app/admin/page.tsx (uses DashboardContent.tsx)
 /admin/learning         → app/admin/learning/page.tsx (uses RoadmapManager)
-/admin/coo-work         → app/admin/coo-work/page.tsx (uses RoadmapManager)
+/admin/coo-work         → app/admin/coo-work/page.tsx (uses RoadmapManager - COO)
+/admin/cpo-work         → app/admin/cpo-work/page.tsx (uses RoadmapManager - CPO)
+/admin/cfo-work         → app/admin/cfo-work/page.tsx (uses RoadmapManager - CFO)
+/admin/clo-work         → app/admin/clo-work/page.tsx (uses RoadmapManager - CLO)
 /admin/blog             → app/admin/blog/page.tsx (uses BlogManager)
 /admin/blog/new         → app/admin/blog/new/page.tsx (uses BlogPostEditor)
 /admin/blog/edit/[slug] → app/admin/blog/edit/[slug]/page.tsx (uses BlogPostEditor)

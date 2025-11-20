@@ -288,8 +288,8 @@ export const learningRoadmap: RoadmapItem[] = [
   },
   {
     id: 'prompt-engineering-learning',
-    title: 'Prompt engineering cho công việc COO',
-    description: 'Học cách sử dụng AI assistants hiệu quả cho công việc COO',
+    title: 'Prompt engineering cho công việc',
+    description: 'Học cách sử dụng AI assistants hiệu quả cho công việc',
     category: 'Công Nghệ & Đổi Mới',
     subcategory: 'AI/ML & Tự Động Hóa',
     status: 'planned',

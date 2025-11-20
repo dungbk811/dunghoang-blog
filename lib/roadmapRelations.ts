@@ -11,24 +11,24 @@ export function getRelatedCategories(
   const targetItems = type === 'learning' ? cooRoadmap : learningRoadmap;
   const relationKey = type === 'learning' ? 'relatedWorkIds' : 'relatedLearningIds';
 
-  // Get all IDs of items in current category
+  // Get all IDs of items in current category (only visible ones)
   const currentCategoryItemIds = sourceItems
-    .filter((item) => item.category === currentCategory)
+    .filter((item) => !item.hidden && item.category === currentCategory)
     .map((item) => item.id);
 
   // Find all related target items
   const relatedTargetIds = new Set<string>();
 
-  // From source to target
+  // From source to target (only visible source items)
   sourceItems
-    .filter((item) => item.category === currentCategory && item[relationKey])
+    .filter((item) => !item.hidden && item.category === currentCategory && item[relationKey])
     .forEach((item) => {
       item[relationKey]?.forEach((id) => relatedTargetIds.add(id));
     });
 
-  // From target to source
+  // From target to source (only visible target items)
   targetItems
-    .filter((item) => item[relationKey])
+    .filter((item) => !item.hidden && item[relationKey])
     .forEach((item) => {
       const hasRelation = item[relationKey]?.some((id) =>
         currentCategoryItemIds.includes(id)
@@ -38,10 +38,10 @@ export function getRelatedCategories(
       }
     });
 
-  // Group by category and count
+  // Group by category and count (only visible target items)
   const categoryCount: Record<string, number> = {};
   targetItems
-    .filter((item) => relatedTargetIds.has(item.id))
+    .filter((item) => !item.hidden && relatedTargetIds.has(item.id))
     .forEach((item) => {
       categoryCount[item.category] = (categoryCount[item.category] || 0) + 1;
     });

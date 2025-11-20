@@ -5,12 +5,20 @@ import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
 import { useUserProfile } from '@/contexts/PositionContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import toast from 'react-hot-toast';
+import { rolesSettings } from '@/lib/profile';
+import { WorkRole } from '@/lib/roadmap';
 
 export default function SettingsPage() {
   const { t } = useAdminLanguage();
   const { profile, updateProfile } = useUserProfile();
   const [editName, setEditName] = useState(profile.name);
   const [editPosition, setEditPosition] = useState(profile.position);
+  const [enabledRoles, setEnabledRoles] = useState<Record<WorkRole, boolean>>({
+    COO: rolesSettings.COO.enabled,
+    CPO: rolesSettings.CPO.enabled,
+    CFO: rolesSettings.CFO.enabled,
+    CLO: rolesSettings.CLO.enabled,
+  });
 
   // Sync edit state with profile
   useEffect(() => {
@@ -160,6 +168,58 @@ export default function SettingsPage() {
             <div className="ml-4">
               <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Role Management */}
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Role Management
+              </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Enable or disable work sections displayed in navigation (Note: Changes require code update to persist)
+              </p>
+
+              <div className="space-y-3">
+                {(Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][]).map(([role, config]) => (
+                  <label
+                    key={role}
+                    className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={enabledRoles[role]}
+                      onChange={(e) => setEnabledRoles(prev => ({ ...prev, [role]: e.target.checked }))}
+                      className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">{config.icon}</span>
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          {config.label}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {enabledRoles[role] ? 'Enabled - Visible in navigation' : 'Disabled - Hidden from navigation'}
+                      </p>
+                    </div>
+                  </label>
+                ))}
+              </div>
+
+              <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                  <strong>Note:</strong> Role settings are currently managed in code. Changes here will update the UI temporarily but won&apos;t persist after page reload. To make permanent changes, update <code className="px-1 py-0.5 bg-blue-100 dark:bg-blue-900 rounded">lib/profile.ts</code>
+                </p>
+              </div>
+            </div>
+            <div className="ml-4">
+              <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
           </div>

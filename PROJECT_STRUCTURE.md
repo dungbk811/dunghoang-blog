@@ -19,7 +19,12 @@ dunghoang-blog/
 │   │   ├── page.tsx           # Homepage
 │   │   ├── layout.tsx         # Public layout
 │   │   ├── learning/          # Learning roadmap
-│   │   ├── coo-work/          # COO work tasks
+│   │   ├── work-item/         # Work item details (all roles)
+│   │   ├── coo-work/          # Legacy redirects to work-item
+│   │   ├── coo/               # COO work list
+│   │   ├── cpo/               # CPO work list
+│   │   ├── cfo/               # CFO work list
+│   │   ├── clo/               # CLO work list
 │   │   ├── blog/              # Blog posts
 │   │   ├── about/             # About page
 │   │   └── contact/           # Contact page
@@ -30,6 +35,9 @@ dunghoang-blog/
 │   │   ├── components/        # Admin-specific components
 │   │   ├── learning/          # Manage learning roadmap
 │   │   ├── coo-work/          # Manage COO work
+│   │   ├── cpo-work/          # Manage CPO work
+│   │   ├── cfo-work/          # Manage CFO work
+│   │   ├── clo-work/          # Manage CLO work
 │   │   ├── blog/              # Manage blog posts
 │   │   ├── settings/          # Profile settings
 │   │   └── contact/           # Contact info settings
@@ -112,8 +120,10 @@ dunghoang-blog/
 /                    # Homepage
 /learning            # Learning roadmap list
 /learning/[id]       # Topic detail
-/coo-work            # COO work list
-/coo-work/[id]       # Task detail
+/coo, /cpo, /cfo, /clo  # Role-specific work lists
+/work-item/[id]      # Work item detail (all roles)
+/coo-work            # Legacy redirect to /coo
+/coo-work/[id]       # Legacy redirect to /work-item/[id]
 /blog                # Blog posts
 /blog/[slug]         # Post detail
 /about               # About page

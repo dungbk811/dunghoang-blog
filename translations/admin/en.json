@@ -46,6 +46,36 @@
     "editTask": "Edit Task",
     "deleteTask": "Delete Task"
   },
+  "cpoWork": {
+    "title": "CPO Work Management",
+    "description": "Manage your CPO work tasks and track progress",
+    "categories": "Categories",
+    "searchPlaceholder": "Search tasks...",
+    "noResults": "No tasks found",
+    "addTask": "Add Task",
+    "editTask": "Edit Task",
+    "deleteTask": "Delete Task"
+  },
+  "cfoWork": {
+    "title": "CFO Work Management",
+    "description": "Manage your CFO work tasks and track progress",
+    "categories": "Categories",
+    "searchPlaceholder": "Search tasks...",
+    "noResults": "No tasks found",
+    "addTask": "Add Task",
+    "editTask": "Edit Task",
+    "deleteTask": "Delete Task"
+  },
+  "cloWork": {
+    "title": "CLO Work Management",
+    "description": "Manage your CLO work tasks and track progress",
+    "categories": "Categories",
+    "searchPlaceholder": "Search tasks...",
+    "noResults": "No tasks found",
+    "addTask": "Add Task",
+    "editTask": "Edit Task",
+    "deleteTask": "Delete Task"
+  },
   "contact": {
     "title": "Contact Information",
     "description": "Manage contact information and social media",
