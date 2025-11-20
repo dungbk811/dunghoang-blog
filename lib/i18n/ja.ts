@@ -64,6 +64,7 @@ export const ja = {
   coo: {
     title: 'COO業務',
     pageTitle: 'COO - 運営',
+    headerTitle: 'COO業務 - 運営管理',
     subtitle: 'プロセス構築からシステム開発まで、実施している運営管理業務',
     tasks: 'タスク',
     task: 'タスク',
@@ -89,6 +90,7 @@ export const ja = {
   cpo: {
     title: 'CPO業務',
     pageTitle: 'CPO - 人事',
+    headerTitle: 'CPO業務 - 人事管理',
     subtitle: '採用から文化構築まで、実施している人事業務',
     tasks: 'タスク',
     task: 'タスク',
@@ -114,6 +116,7 @@ export const ja = {
   cfo: {
     title: 'CFO業務',
     pageTitle: 'CFO - 財務',
+    headerTitle: 'CFO業務 - 財務管理',
     subtitle: '予算計画から財務報告まで、実施している財務業務',
     tasks: 'タスク',
     task: 'タスク',
@@ -139,6 +142,7 @@ export const ja = {
   clo: {
     title: 'CLO業務',
     pageTitle: 'CLO - 法務',
+    headerTitle: 'CLO業務 - 法務管理',
     subtitle: '契約からコンプライアンスまで、実施している法務業務',
     tasks: 'タスク',
     task: 'タスク',

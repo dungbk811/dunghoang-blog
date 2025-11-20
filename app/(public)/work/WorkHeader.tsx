@@ -2,7 +2,6 @@
 
 import { useI18n } from '@/lib/i18n';
 import { WorkRole } from '@/lib/roadmap';
-import { rolesSettings } from '@/lib/profile';
 
 interface WorkHeaderProps {
   onSearchToggle: () => void;
@@ -55,7 +54,12 @@ export default function WorkHeader({
 
   // Role-specific header
   const currentRole = role || 'COO';
-  const roleConfig = rolesSettings[currentRole];
+  const headerTitleMap: Record<WorkRole, string> = {
+    COO: t.coo.headerTitle,
+    CPO: t.cpo.headerTitle,
+    CFO: t.cfo.headerTitle,
+    CLO: t.clo.headerTitle,
+  };
   const subtitleMap: Record<WorkRole, string> = {
     COO: t.coo.subtitle,
     CPO: t.cpo.subtitle,
@@ -67,7 +71,7 @@ export default function WorkHeader({
     <div className="flex items-start justify-between gap-4">
       <div className="flex-1">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
-          {roleConfig.icon} {t.roles[currentRole].label}
+          {headerTitleMap[currentRole]}
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
           {subtitleMap[role || 'COO']}

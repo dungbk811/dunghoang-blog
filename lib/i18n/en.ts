@@ -64,6 +64,7 @@ export const en = {
   coo: {
     title: 'COO Work',
     pageTitle: 'COO - Operations',
+    headerTitle: 'COO Work - Operations Management',
     subtitle: 'Operations management work I am implementing - from process building to system development',
     tasks: 'tasks',
     task: 'task',
@@ -89,6 +90,7 @@ export const en = {
   cpo: {
     title: 'CPO Work',
     pageTitle: 'CPO - People & HR',
+    headerTitle: 'CPO Work - People Management',
     subtitle: 'People & HR work I am managing - from recruitment to culture building',
     tasks: 'tasks',
     task: 'task',
@@ -114,6 +116,7 @@ export const en = {
   cfo: {
     title: 'CFO Work',
     pageTitle: 'CFO - Finance',
+    headerTitle: 'CFO Work - Financial Management',
     subtitle: 'Finance work I am handling - from budget planning to financial reporting',
     tasks: 'tasks',
     task: 'task',
@@ -139,6 +142,7 @@ export const en = {
   clo: {
     title: 'CLO Work',
     pageTitle: 'CLO - Legal',
+    headerTitle: 'CLO Work - Legal Management',
     subtitle: 'Legal work I am managing - from contracts to compliance',
     tasks: 'tasks',
     task: 'task',

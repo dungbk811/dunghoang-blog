@@ -64,6 +64,7 @@ export const vi = {
   coo: {
     title: 'Công việc COO',
     pageTitle: 'COO - Vận hành',
+    headerTitle: 'Công việc COO - Quản trị vận hành',
     subtitle: 'Các công việc quản lý vận hành mà tôi đang triển khai - từ xây dựng quy trình đến phát triển hệ thống',
     tasks: 'công việc',
     task: 'công việc',
@@ -89,6 +90,7 @@ export const vi = {
   cpo: {
     title: 'Công việc CPO',
     pageTitle: 'CPO - Nhân sự',
+    headerTitle: 'Công việc CPO - Quản lý nhân sự',
     subtitle: 'Các công việc quản lý nhân sự mà tôi đang triển khai - từ tuyển dụng đến xây dựng văn hóa',
     tasks: 'công việc',
     task: 'công việc',
@@ -114,6 +116,7 @@ export const vi = {
   cfo: {
     title: 'Công việc CFO',
     pageTitle: 'CFO - Tài chính',
+    headerTitle: 'Công việc CFO - Quản lý tài chính',
     subtitle: 'Các công việc quản lý tài chính mà tôi đang triển khai - từ lập ngân sách đến báo cáo tài chính',
     tasks: 'công việc',
     task: 'công việc',
@@ -139,6 +142,7 @@ export const vi = {
   clo: {
     title: 'Công việc CLO',
     pageTitle: 'CLO - Pháp lý',
+    headerTitle: 'Công việc CLO - Quản lý pháp lý',
     subtitle: 'Các công việc pháp lý mà tôi đang triển khai - từ hợp đồng đến tuân thủ quy định',
     tasks: 'công việc',
     task: 'công việc',
