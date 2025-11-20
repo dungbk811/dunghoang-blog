@@ -1757,7 +1757,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     role: 'CPO',
-    hidden: true,
+    hidden: false,
     tags: ['remote-work', 'best-practices', 'productivity'],
   },
 
