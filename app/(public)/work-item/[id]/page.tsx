@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const roleLabel = rolesSettings[task.role]?.shortLabel || 'Work';
+  const roleLabel = task.role ? rolesSettings[task.role]?.shortLabel || 'Work' : 'Work';
   return {
     title: `${task.title} | ${roleLabel}`,
     description: task.description,
