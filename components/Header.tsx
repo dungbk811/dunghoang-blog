@@ -15,30 +15,35 @@ export default function Header() {
   const { t } = useI18n();
   const { profile } = useUserProfile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false);
+  const [isMobileWorkOpen, setIsMobileWorkOpen] = useState(false);
 
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
     return pathname?.startsWith(path);
   };
 
-  // Build dynamic nav links based on enabled roles
-  const roleLinks = useMemo(() => {
+  // Build dynamic work submenu based on enabled roles
+  const workSubmenu = useMemo(() => {
     return (Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][])
       .filter(([_, config]) => config.enabled)
       .map(([role, config]) => ({
         href: `/${role.toLowerCase()}`,
         label: config.shortLabel,
         icon: config.icon,
+        role,
       }));
   }, []);
 
   const navLinks = [
     { href: '/', label: t.nav.home },
     { href: '/learning', label: t.nav.learning },
-    ...roleLinks,
     { href: '/blog', label: t.nav.other },
     { href: '/contact', label: t.nav.contact },
   ];
+
+  // Check if any work page is active
+  const isWorkActive = workSubmenu.some(item => pathname?.startsWith(item.href));
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800">
@@ -71,7 +76,8 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-2">
             <div className="flex items-center gap-1">
-              {navLinks.map((link) => (
+              {/* Home & Learning */}
+              {navLinks.slice(0, 2).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -81,7 +87,61 @@ export default function Header() {
                       : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
-                  {'icon' in link ? `${link.icon} ${link.label}` : link.label}
+                  {link.label}
+                </Link>
+              ))}
+
+              {/* Work Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsWorkDropdownOpen(true)}
+                onMouseLeave={() => setIsWorkDropdownOpen(false)}
+              >
+                <button
+                  className={`px-3 py-2 rounded-lg font-medium transition-all text-sm flex items-center gap-1 ${
+                    isWorkActive
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  {t.nav.work}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Dropdown Menu */}
+                {isWorkDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg py-2 z-50">
+                    {workSubmenu.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block px-4 py-2 text-sm transition-colors ${
+                          isActive(item.href)
+                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        {item.icon} {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Blog & Contact */}
+              {navLinks.slice(2).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 rounded-lg font-medium transition-all text-sm ${
+                    isActive(link.href)
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  {link.label}
                 </Link>
               ))}
             </div>
@@ -116,7 +176,8 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800 pt-4">
             <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
+              {/* Home & Learning */}
+              {navLinks.slice(0, 2).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -127,7 +188,68 @@ export default function Header() {
                       : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
-                  {'icon' in link ? `${link.icon} ${link.label}` : link.label}
+                  {link.label}
+                </Link>
+              ))}
+
+              {/* Work Submenu */}
+              <div>
+                <button
+                  onClick={() => setIsMobileWorkOpen(!isMobileWorkOpen)}
+                  className={`w-full px-4 py-3 rounded-lg font-medium transition-all text-sm flex items-center justify-between ${
+                    isWorkActive
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  {t.nav.work}
+                  <svg
+                    className={`w-4 h-4 transition-transform ${isMobileWorkOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Work Submenu Items */}
+                {isMobileWorkOpen && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    {workSubmenu.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsMobileWorkOpen(false);
+                        }}
+                        className={`block px-4 py-2 rounded-lg text-sm transition-colors ${
+                          isActive(item.href)
+                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                            : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }`}
+                      >
+                        {item.icon} {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Blog & Contact */}
+              {navLinks.slice(2).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`px-4 py-3 rounded-lg font-medium transition-all text-sm ${
+                    isActive(link.href)
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                      : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  {link.label}
                 </Link>
               ))}
             </div>

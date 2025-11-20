@@ -3,6 +3,7 @@ export const vi = {
   nav: {
     home: 'Trang chủ',
     learning: 'Giỏ kiến thức',
+    work: 'Công việc',
     coo: 'Công việc COO',
     other: 'Chia sẻ',
     contact: 'Kết nối',

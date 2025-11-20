@@ -3,6 +3,7 @@ export const ja = {
   nav: {
     home: 'ホーム',
     learning: '学習',
+    work: '業務',
     coo: 'COO業務',
     other: '共有',
     contact: 'つながる',
