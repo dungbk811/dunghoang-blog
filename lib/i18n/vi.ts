@@ -283,4 +283,13 @@ export const vi = {
     language: 'Ngôn ngữ:',
     theme: 'Giao diện:',
   },
+
+  // 404 Page
+  notFound: {
+    title: 'Không tìm thấy trang',
+    description: 'Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.',
+    goHome: 'Về trang chủ',
+    viewBlog: 'Xem blog',
+    popularPages: 'Trang phổ biến',
+  },
 } as const;

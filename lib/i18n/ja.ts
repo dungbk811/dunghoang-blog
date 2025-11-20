@@ -283,4 +283,13 @@ export const ja = {
     language: '言語:',
     theme: 'テーマ:',
   },
+
+  // 404 Page
+  notFound: {
+    title: 'ページが見つかりません',
+    description: 'お探しのページは存在しないか、移動された可能性があります。',
+    goHome: 'ホームへ',
+    viewBlog: 'ブログを見る',
+    popularPages: '人気のページ',
+  },
 } as const;

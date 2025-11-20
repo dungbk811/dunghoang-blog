@@ -283,4 +283,13 @@ export const en = {
     language: 'Language:',
     theme: 'Theme:',
   },
+
+  // 404 Page
+  notFound: {
+    title: 'Page Not Found',
+    description: "The page you're looking for doesn't exist or has been moved.",
+    goHome: 'Go Home',
+    viewBlog: 'View Blog',
+    popularPages: 'Popular Pages',
+  },
 } as const;
