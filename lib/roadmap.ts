@@ -1376,7 +1376,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     role: 'CPO',
-    hidden: true,
+    hidden: false,
     tags: ['training', 'development', 'upskilling'],
   },
   {
