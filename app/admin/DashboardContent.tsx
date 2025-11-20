@@ -92,7 +92,7 @@ export default function DashboardContent({
                   </div>
                   <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.total}</span>
                 </div>
-                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{config.label}</h3>
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{t.roles[role].label}</h3>
                 <div className="flex gap-3 text-xs">
                   <span className="text-blue-600 dark:text-blue-400">{stats.planned} {t.dashboard.planned}</span>
                   <span className="text-yellow-600 dark:text-yellow-400">{stats.inProgress} {t.dashboard.active}</span>
@@ -167,7 +167,7 @@ export default function DashboardContent({
                     {config.icon}
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900 dark:text-white">Manage {config.label}</div>
+                    <div className="font-medium text-gray-900 dark:text-white">Manage {t.roles[role].label}</div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">Update work progress</div>
                   </div>
                 </div>

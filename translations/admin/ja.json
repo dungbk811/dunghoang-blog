@@ -254,5 +254,23 @@
     "failedToLoad": "記事の読み込みに失敗しました",
     "titleContentRequired": "タイトルとコンテンツは必須です",
     "failedToSave": "記事の保存に失敗しました。もう一度お試しください。"
+  },
+  "roles": {
+    "COO": {
+      "label": "COO - 運営管理",
+      "shortLabel": "COO"
+    },
+    "CPO": {
+      "label": "CPO - 人事管理",
+      "shortLabel": "CPO"
+    },
+    "CFO": {
+      "label": "CFO - 財務管理",
+      "shortLabel": "CFO"
+    },
+    "CLO": {
+      "label": "CLO - 法務管理",
+      "shortLabel": "CLO"
+    }
   }
 }

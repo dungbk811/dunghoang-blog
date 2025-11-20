@@ -254,5 +254,23 @@
     "failedToLoad": "Không thể tải bài viết",
     "titleContentRequired": "Tiêu đề và nội dung là bắt buộc",
     "failedToSave": "Không thể lưu bài viết. Vui lòng thử lại."
+  },
+  "roles": {
+    "COO": {
+      "label": "COO - Quản trị vận hành",
+      "shortLabel": "COO"
+    },
+    "CPO": {
+      "label": "CPO - Quản lý nhân sự",
+      "shortLabel": "CPO"
+    },
+    "CFO": {
+      "label": "CFO - Quản lý tài chính",
+      "shortLabel": "CFO"
+    },
+    "CLO": {
+      "label": "CLO - Quản lý pháp lý",
+      "shortLabel": "CLO"
+    }
   }
 }

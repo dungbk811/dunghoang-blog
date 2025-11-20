@@ -292,4 +292,24 @@ export const vi = {
     viewBlog: 'Xem blog',
     popularPages: 'Trang phổ biến',
   },
+
+  // Role Labels
+  roles: {
+    COO: {
+      label: 'COO - Quản trị vận hành',
+      shortLabel: 'COO',
+    },
+    CPO: {
+      label: 'CPO - Quản lý nhân sự',
+      shortLabel: 'CPO',
+    },
+    CFO: {
+      label: 'CFO - Quản lý tài chính',
+      shortLabel: 'CFO',
+    },
+    CLO: {
+      label: 'CLO - Quản lý pháp lý',
+      shortLabel: 'CLO',
+    },
+  },
 } as const;

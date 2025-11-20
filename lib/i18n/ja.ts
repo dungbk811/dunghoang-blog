@@ -292,4 +292,24 @@ export const ja = {
     viewBlog: 'ブログを見る',
     popularPages: '人気のページ',
   },
+
+  // Role Labels
+  roles: {
+    COO: {
+      label: 'COO - 運営管理',
+      shortLabel: 'COO',
+    },
+    CPO: {
+      label: 'CPO - 人事管理',
+      shortLabel: 'CPO',
+    },
+    CFO: {
+      label: 'CFO - 財務管理',
+      shortLabel: 'CFO',
+    },
+    CLO: {
+      label: 'CLO - 法務管理',
+      shortLabel: 'CLO',
+    },
+  },
 } as const;

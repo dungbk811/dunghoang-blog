@@ -254,5 +254,23 @@
     "failedToLoad": "Failed to load post",
     "titleContentRequired": "Title and content are required",
     "failedToSave": "Failed to save post. Please try again."
+  },
+  "roles": {
+    "COO": {
+      "label": "COO - Operations Management",
+      "shortLabel": "COO"
+    },
+    "CPO": {
+      "label": "CPO - People Management",
+      "shortLabel": "CPO"
+    },
+    "CFO": {
+      "label": "CFO - Financial Management",
+      "shortLabel": "CFO"
+    },
+    "CLO": {
+      "label": "CLO - Legal Management",
+      "shortLabel": "CLO"
+    }
   }
 }

@@ -292,4 +292,24 @@ export const en = {
     viewBlog: 'View Blog',
     popularPages: 'Popular Pages',
   },
+
+  // Role Labels
+  roles: {
+    COO: {
+      label: 'COO - Operations Management',
+      shortLabel: 'COO',
+    },
+    CPO: {
+      label: 'CPO - People Management',
+      shortLabel: 'CPO',
+    },
+    CFO: {
+      label: 'CFO - Financial Management',
+      shortLabel: 'CFO',
+    },
+    CLO: {
+      label: 'CLO - Legal Management',
+      shortLabel: 'CLO',
+    },
+  },
 } as const;

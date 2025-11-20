@@ -29,12 +29,12 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
     return (Object.entries(rolesSettings) as [WorkRole, typeof rolesSettings[WorkRole]][])
       .filter(([_, config]) => config.enabled)
       .map(([role, config]) => ({
-        name: config.label,
+        name: t.roles[role].label,
         href: `/admin/${role.toLowerCase()}-work`,
         icon: <span className="text-lg">{config.icon}</span>,
         badge: config.shortLabel,
       }));
-  }, []);
+  }, [t]);
 
   const navigation = [
     {

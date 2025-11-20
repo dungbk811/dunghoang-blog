@@ -200,7 +200,7 @@ export default function SettingsPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-xl">{config.icon}</span>
                         <span className="font-semibold text-gray-900 dark:text-white">
-                          {config.label}
+                          {t.roles[role].label}
                         </span>
                       </div>
                       <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
