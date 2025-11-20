@@ -1362,7 +1362,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     role: 'CPO',
-    hidden: true,
+    hidden: false,
     tags: ['performance', 'evaluation', '360-feedback', 'calibration'],
     relatedLearningIds: ['performance-evaluation-framework-learning'],
     notes: 'Có thể viết bài về evaluation framework chi tiết cho từng role, triển khai 360 feedback, calibration sessions',
