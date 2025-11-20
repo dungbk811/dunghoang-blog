@@ -28,6 +28,7 @@ export default function Header() {
       .map(([role, config]) => ({
         href: `/${role.toLowerCase()}`,
         label: config.shortLabel,
+        icon: config.icon,
       }));
   }, []);
 
@@ -80,7 +81,7 @@ export default function Header() {
                       : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
-                  {link.label}
+                  {'icon' in link ? `${link.icon} ${link.label}` : link.label}
                 </Link>
               ))}
             </div>
@@ -126,7 +127,7 @@ export default function Header() {
                       : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
-                  {link.label}
+                  {'icon' in link ? `${link.icon} ${link.label}` : link.label}
                 </Link>
               ))}
             </div>
