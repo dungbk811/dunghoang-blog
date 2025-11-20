@@ -112,7 +112,7 @@ export default function Header() {
 
                 {/* Dropdown Menu */}
                 {isWorkDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg py-2 z-50">
+                  <div className="absolute top-full left-0 w-56 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg py-2 z-50">
                     {workSubmenu.map((item) => (
                       <Link
                         key={item.href}
