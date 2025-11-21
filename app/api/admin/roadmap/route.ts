@@ -1,12 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
 import { readFileContent, writeFileContent, isGitHubConfigured } from '@/lib/github';
+import { learningRoadmap, cooRoadmap } from '@/lib/roadmap';
 import fs from 'fs/promises';
 import path from 'path';
 
 // Helper function to generate unique ID
 function generateId(): string {
   return `item-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
+// GET - Get all roadmap items
+export async function GET(request: NextRequest) {
+  try {
+    const isAuthenticated = await verifySession();
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    return NextResponse.json({
+      learning: learningRoadmap,
+      work: cooRoadmap
+    });
+  } catch (error) {
+    console.error('Get roadmap error:', error);
+    return NextResponse.json({ error: 'Failed to get roadmap' }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {

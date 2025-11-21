@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifySession } from '@/lib/auth';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, getPostsByTopic } from '@/lib/posts';
 import { deleteFileContent, isGitHubConfigured } from '@/lib/github';
 
-// GET - List all posts
+// GET - List all posts or posts by topic
 export async function GET(request: NextRequest) {
   try {
     const isAuthenticated = await verifySession();
@@ -11,7 +11,12 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const posts = getAllPosts();
+    const { searchParams } = new URL(request.url);
+    const topic = searchParams.get('topic');
+
+    // If topic parameter is provided, filter posts by topic
+    const posts = topic ? getPostsByTopic(topic, true) : getAllPosts();
+
     return NextResponse.json({ posts });
   } catch (error) {
     console.error('List posts error:', error);

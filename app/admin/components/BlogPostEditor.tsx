@@ -1,16 +1,42 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAdminLanguage } from '@/contexts/AdminLanguageContext';
+import { learningRoadmap, cooRoadmap } from '@/lib/roadmap';
 
 interface BlogPostEditorProps {
   mode: 'create' | 'edit';
   slug?: string;
 }
 
+interface TopicOption {
+  id: string;
+  title: string;
+  category: string;
+}
+
+// Helper function to get the correct route for a topic
+function getTopicRoute(topicId: string): string {
+  // Learning topics
+  if (topicId.endsWith('-learning')) {
+    return `/admin/learning/${topicId}`;
+  }
+
+  // Work items - need to determine role
+  const workItem = cooRoadmap.find(item => item.id === topicId);
+  if (workItem) {
+    const role = workItem.role?.toLowerCase() || 'coo';
+    return `/admin/${role}-work/${topicId}`;
+  }
+
+  // Fallback to blog list if not found
+  return '/admin/blog';
+}
+
 export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t } = useAdminLanguage();
   const [loading, setLoading] = useState(mode === 'edit');
   const [saving, setSaving] = useState(false);
@@ -20,31 +46,73 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
+  const [topic, setTopic] = useState('');
   const [tags, setTags] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [hidden, setHidden] = useState(true); // Default: hidden when creating
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
   const [existingCategories, setExistingCategories] = useState<string[]>([]);
+  const [availableTopics, setAvailableTopics] = useState<TopicOption[]>([]);
 
-  // Load existing categories on mount
+  // Load existing categories and topics on mount
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchMetadata = async () => {
       try {
-        const response = await fetch('/api/admin/blog-posts');
-        const data = await response.json();
-        if (data.posts) {
+        // Fetch categories
+        const postsResponse = await fetch('/api/admin/blog-posts');
+        const postsData = await postsResponse.json();
+        if (postsData.posts) {
           const cats = new Set<string>();
-          data.posts.forEach((post: any) => {
+          postsData.posts.forEach((post: any) => {
             if (post.category) cats.add(post.category);
           });
           setExistingCategories(Array.from(cats).sort());
         }
+
+        // Fetch topics from roadmap
+        const roadmapResponse = await fetch('/api/admin/roadmap');
+        const roadmapData = await roadmapResponse.json();
+        if (roadmapData.learning || roadmapData.work) {
+          const topics: TopicOption[] = [];
+
+          // Add learning topics
+          if (roadmapData.learning) {
+            roadmapData.learning.forEach((item: any) => {
+              topics.push({
+                id: item.id,
+                title: item.title,
+                category: `Learning: ${item.category}`
+              });
+            });
+          }
+
+          // Add work topics
+          if (roadmapData.work) {
+            roadmapData.work.forEach((item: any) => {
+              topics.push({
+                id: item.id,
+                title: item.title,
+                category: `${item.role || 'COO'}: ${item.category}`
+              });
+            });
+          }
+
+          setAvailableTopics(topics);
+        }
       } catch (error) {
-        console.error('Failed to fetch categories:', error);
+        console.error('Failed to fetch metadata:', error);
       }
     };
-    fetchCategories();
-  }, []);
+    fetchMetadata();
+
+    // Set topic from URL parameter if creating new post
+    if (mode === 'create') {
+      const topicParam = searchParams.get('topic');
+      if (topicParam) {
+        setTopic(topicParam);
+      }
+    }
+  }, [mode, searchParams]);
 
   useEffect(() => {
     if (mode === 'edit' && slug) {
@@ -65,6 +133,7 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
         setDescription(data.post.description || '');
         setContent(data.post.content || '');
         setCategory(data.post.category || '');
+        setTopic(data.post.topic || '');
         setTags(data.post.tags?.join(', ') || '');
         setDate(data.post.date || '');
         setHidden(data.post.hidden || false);
@@ -95,7 +164,7 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
     setSaving(true);
     try {
       const postSlug = mode === 'create' ? generateSlug(title) : slug;
-      const frontmatter = {
+      const frontmatter: any = {
         title: title.trim(),
         description: description.trim(),
         date,
@@ -103,6 +172,11 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
         tags: tags.split(',').map(t => t.trim()).filter(Boolean),
         hidden,
       };
+
+      // Add topic if selected
+      if (topic) {
+        frontmatter.topic = topic;
+      }
 
       const response = await fetch('/api/admin/blog-post', {
         method: 'POST',
@@ -137,6 +211,9 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
     );
   }
 
+  // Get selected topic info for display
+  const selectedTopic = availableTopics.find(t => t.id === topic);
+
   return (
     <div className="p-8">
       {/* Header */}
@@ -151,12 +228,41 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
             </p>
           </div>
           <button
-            onClick={() => router.push('/admin/blog')}
+            onClick={() => {
+              // If creating/editing for a topic, go back to that topic's detail page
+              const topicParam = searchParams.get('topic');
+              if (topicParam) {
+                router.push(getTopicRoute(topicParam));
+              } else if (topic) {
+                router.push(getTopicRoute(topic));
+              } else {
+                router.push('/admin/blog');
+              }
+            }}
             className="px-4 py-2 text-sm font-medium border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
             {t.blogEditor.backToList}
           </button>
         </div>
+
+        {/* Topic Indicator Banner */}
+        {selectedTopic && (
+          <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-lg">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-indigo-900 dark:text-indigo-100">
+                  Creating post for topic: <span className="font-bold">{selectedTopic.title}</span>
+                </p>
+                <p className="text-xs text-indigo-700 dark:text-indigo-300 mt-0.5">
+                  {selectedTopic.category}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -209,34 +315,67 @@ export default function BlogPostEditor({ mode, slug }: BlogPostEditorProps) {
               />
             </div>
 
-            {/* Category */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                {t.blogEditor.category}
-              </label>
-              <div className="relative">
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none cursor-pointer transition-all"
-                >
-                  <option value="">{t.blogEditor.selectCategory}</option>
-                  {existingCategories.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+            {/* Category - Only show when NOT creating/editing for a topic */}
+            {!topic && !searchParams.get('topic') && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t.blogEditor.category}
+                </label>
+                <div className="relative">
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none cursor-pointer transition-all"
+                  >
+                    <option value="">{t.blogEditor.selectCategory}</option>
+                    {existingCategories.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
                 </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  {t.blogEditor.categoryHint}
+                </p>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {t.blogEditor.categoryHint}
-              </p>
-            </div>
+            )}
+
+            {/* Topic - Only show when post has topic OR creating from topic page */}
+            {(topic || searchParams.get('topic')) && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Related Topic
+                </label>
+                <div className="relative">
+                  <select
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    className="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none cursor-pointer transition-all"
+                  >
+                    <option value="">Remove topic link</option>
+                    {availableTopics.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.title} ({t.category})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  This post is linked to a specific topic
+                </p>
+              </div>
+            )}
 
             {/* Tags */}
             <div className="mb-4">

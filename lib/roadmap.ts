@@ -157,7 +157,7 @@ export const learningRoadmap: RoadmapItem[] = [
     hidden: true,
     startDate: '2025-10-01',
     tags: ['performance', 'kpi', 'evaluation', 'redmine'],
-    relatedWorkIds: ['performance-review-process-work', 'redmine-kpi-system-work'],
+    relatedWorkIds: ['performance-review-process-work'],
     notes: 'Đã xác định tiêu chí đánh giá, cơ chế feedback. Có thể viết bài về cấu trúc framework, thiết kế KPI, tiêu chí đánh giá cho từng role',
   },
   {
@@ -215,7 +215,7 @@ export const learningRoadmap: RoadmapItem[] = [
     level: 'intermediate',
     hidden: true,
     tags: ['engagement', 'retention', 'culture'],
-    relatedWorkIds: ['employee-engagement-programs-work', 'thanks-bonus-program-work'],
+    relatedWorkIds: ['thanks-bonus-program-work', 'employee-engagement-programs-work'],
   },
   {
     id: 'conflict-resolution-learning',
@@ -414,7 +414,7 @@ export const learningRoadmap: RoadmapItem[] = [
     level: 'intermediate',
     hidden: true,
     tags: ['project-management', 'agile', 'scrum', 'outsourcing'],
-    relatedWorkIds: ['est-vs-actual-tracking-work', 'weekly-reporting-system-work', 'change-request-management-work'],
+    relatedWorkIds: ['est-vs-actual-tracking-work', 'weekly-reporting-system-work', 'change-request-management-work', 'project-estimation-quotation-work'],
   },
   {
     id: 'portfolio-management-learning',
@@ -482,7 +482,7 @@ export const learningRoadmap: RoadmapItem[] = [
     level: 'intermediate',
     hidden: true,
     tags: ['escalation', 'incident', 'response'],
-    relatedWorkIds: ['escalation-process-work', 'critical-issue-resolution-work', 'major-escalation-handling-work'],
+    relatedWorkIds: ['major-escalation-handling-work', 'escalation-process-work', 'critical-issue-resolution-work'],
   },
   {
     id: 'post-mortem-process-learning',
@@ -1003,7 +1003,7 @@ export const learningRoadmap: RoadmapItem[] = [
     level: 'expert',
     hidden: true,
     tags: ['contract', 'negotiation', 'legal'],
-    relatedWorkIds: ['client-contract-negotiation-work', 'vendor-contract-negotiation-work', 'terms-conditions-negotiation-work'],
+    relatedWorkIds: ['client-contract-negotiation-work', 'terms-conditions-negotiation-work', 'vendor-contract-negotiation-work'],
   },
   {
     id: 'contract-structure-learning',
@@ -1118,7 +1118,7 @@ export const learningRoadmap: RoadmapItem[] = [
     level: 'intermediate',
     hidden: true,
     tags: ['recruitment', 'talent', 'hiring'],
-    relatedWorkIds: ['hiring-pipeline-management-work', 'pipeline-based-hiring-forecast-work', 'hiring-timing-decisions-work'],
+    relatedWorkIds: ['pipeline-based-hiring-forecast-work', 'hiring-timing-decisions-work', 'hiring-pipeline-management-work'],
   },
   {
     id: 'employer-branding-learning',
@@ -1241,6 +1241,300 @@ export const learningRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['backup', 'succession', 'continuity'],
   },
+
+  // === CPO LEADERSHIP TOPICS ===
+  {
+    id: 'emotional-intelligence-hr-learning',
+    title: 'Trí Tuệ Cảm Xúc cho Lãnh Đạo HR',
+    description: 'Phát triển EQ: tự nhận thức, đồng cảm, quản lý cảm xúc trong quyết định nhân sự',
+    category: 'Kỹ Năng Lãnh Đạo',
+    subcategory: 'Leadership Cá Nhân',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['emotional-intelligence', 'leadership', 'hr', 'self-awareness'],
+    hidden: false,
+    relatedWorkIds: ['team-building-activities-work', 'feedback-mechanisms-work', 'culture-initiatives-work', 'employee-engagement-programs-work'],
+    notes: 'Top #1 competency cho CPO. Nội dung: self-awareness exercises, empathy development, managing emotions in difficult conversations, building psychological safety'
+  },
+  {
+    id: 'hr-data-analytics-learning',
+    title: 'Phân Tích Dữ Liệu HR & Phân Tích Nhân Sự',
+    description: 'Sử dụng dữ liệu trong HR: chỉ số đo lường, phân tích dự đoán, bảng điều khiển, đo lường ROI',
+    category: 'Quản Lý Nhân Sự',
+    subcategory: 'HR Analytics',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['data-analytics', 'hr-metrics', 'people-analytics', 'kpi'],
+    hidden: false,
+    relatedWorkIds: ['performance-review-process-work', 'workforce-analytics-implementation-work', 'performance-management-redesign-work', 'strategic-workforce-planning-work'],
+    notes: 'HR metrics: turnover rate, time-to-hire, cost-per-hire, engagement scores. Predictive analytics cho attrition. Dashboard design cho C-suite.'
+  },
+  {
+    id: 'dei-strategy-learning',
+    title: 'Đa Dạng, Công Bằng & Hòa Nhập (DEI)',
+    description: 'Xây dựng chiến lược DEI: tuyển dụng hòa nhập, thiên kiến vô thức, đo lường tiến độ',
+    category: 'Quản Lý Nhân Sự',
+    subcategory: 'Văn Hóa & DEI',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['dei', 'diversity', 'inclusion', 'equity', 'culture'],
+    hidden: false,
+    relatedWorkIds: ['culture-initiatives-work', 'employee-engagement-programs-work', 'talent-strategy-alignment-work', 'dei-strategy-leadership-work'],
+    notes: 'Critical cho 2025. DEI strategy development, unconscious bias training, inclusive hiring practices, measuring DEI progress, employee resource groups'
+  },
+  {
+    id: 'financial-savvy-hr-learning',
+    title: 'Hiểu Biết Tài Chính cho Lãnh Đạo HR',
+    description: 'Hiểu tài chính để có uy tín với C-Suite: ngân sách, ROI, kế hoạch biên chế',
+    category: 'Quản Lý Nhân Sự',
+    subcategory: 'HR Strategy',
+    status: 'planned',
+    level: 'beginner',
+    tags: ['finance', 'budget', 'roi', 'hr-strategy'],
+    hidden: false,
+    relatedWorkIds: ['pl-statement-basics-work', 'budget-vs-actual-tracking-work'],
+    notes: 'Reading financial statements, HR budget management, headcount planning vs revenue, cost-per-hire calculations, ROI of HR initiatives'
+  },
+  {
+    id: 'hr-technology-learning',
+    title: 'Công Nghệ HR & Chuyển Đổi Số',
+    description: 'Hệ thống HRIS, ATS, AI trong HR, nền tảng trải nghiệm nhân viên',
+    category: 'Quản Lý Nhân Sự',
+    subcategory: 'HR Technology',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['hrtech', 'digital-transformation', 'automation', 'ai'],
+    hidden: false,
+    relatedWorkIds: ['training-development-work', 'remote-work-best-practices-work', 'workforce-analytics-implementation-work', 'performance-management-redesign-work'],
+    notes: 'HRIS selection (Workday, BambooHR), ATS systems, performance management tools, AI in recruitment, employee engagement platforms, automation opportunities'
+  },
+  {
+    id: 'change-management-hr-learning',
+    title: 'Quản Lý Thay Đổi cho HR',
+    description: 'Dẫn dắt thay đổi tổ chức: mô hình ADKAR, mô hình Kotter, chiến lược giao tiếp',
+    category: 'Kỹ Năng Lãnh Đạo',
+    subcategory: 'Change Leadership',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['change-management', 'transformation', 'communication'],
+    hidden: false,
+    relatedWorkIds: ['training-development-work', 'culture-initiatives-work', 'organizational-design-transformation-work'],
+    notes: 'ADKAR model, Kotter\'s 8 steps, communication strategies during change, managing resistance, culture transformation'
+  },
+  {
+    id: 'strategic-workforce-planning-learning',
+    title: 'Kế Hoạch Lực Lượng Lao Động Chiến Lược',
+    description: 'Căn chỉnh nhân tài với mục tiêu kinh doanh: dự báo nhu cầu, khoảng cách kỹ năng, kế nhiệm',
+    category: 'Quản Lý Nhân Sự',
+    subcategory: 'Workforce Planning',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['workforce-planning', 'succession', 'talent-strategy'],
+    hidden: false,
+    relatedWorkIds: ['succession-planning-program-work', 'strategic-workforce-planning-work', 'talent-strategy-alignment-work'],
+    notes: 'Demand forecasting techniques, skills gap analysis, succession planning frameworks, talent pipeline development'
+  },
+
+  // === CFO FINANCIAL TOPICS ===
+  {
+    id: 'gaap-ifrs-standards-learning',
+    title: 'Chuẩn Mực Kế Toán GAAP & IFRS',
+    description: 'Hiểu các chuẩn mực kế toán: nguyên tắc GAAP, IFRS, ghi nhận doanh thu',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Accounting Standards',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['gaap', 'ifrs', 'accounting', 'standards'],
+    hidden: false,
+    relatedWorkIds: ['pl-ownership-work', 'financial-metrics-basics-work'],
+    notes: 'GAAP principles application, IFRS vs GAAP differences, ASC 606 (revenue recognition), ASC 842 (lease accounting), practical examples'
+  },
+  {
+    id: 'advanced-financial-modeling-learning',
+    title: 'Mô Hình Tài Chính Nâng Cao',
+    description: 'Mô hình 3 báo cáo tài chính, phân tích DCF, kế hoạch kịch bản, thực hành Excel tốt nhất',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Financial Analysis',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['financial-modeling', 'dcf', 'valuation', 'excel'],
+    hidden: false,
+    relatedWorkIds: ['revenue-profitability-analysis-work', 'margin-accountability-work', 'annual-budget-planning-work', 'cost-optimization-initiatives-work', 'pricing-approval-work', 'project-profitability-analysis-work', 'unit-economics-optimization-work', 'quarterly-revenue-forecast-work', 'cost-forecasting-work', 'fpa-fundamentals-work', 'scenario-planning-modeling-work', 'cfo-cost-optimization-strategic-work'],
+    notes: '3-statement modeling (P&L, Balance Sheet, Cash Flow), DCF analysis, scenario & sensitivity analysis, Excel shortcuts & best practices, dynamic models'
+  },
+  {
+    id: 'tax-planning-strategy-learning',
+    title: 'Kế Hoạch & Chiến Lược Thuế',
+    description: 'Tối ưu thuế: cấu trúc thuế doanh nghiệp, giá chuyển nhượng, tín dụng R&D',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Tax & Compliance',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['tax', 'tax-planning', 'optimization', 'compliance'],
+    hidden: false,
+    relatedWorkIds: ['pl-ownership-work', 'cost-optimization-initiatives-work', 'cfo-cost-optimization-strategic-work'],
+    notes: 'Corporate tax structures, transfer pricing basics, tax credits & incentives (R&D), international tax considerations, tax-efficient strategies'
+  },
+  {
+    id: 'treasury-cash-management-learning',
+    title: 'Quản Lý Kho Bạc & Tiền Mặt',
+    description: 'Quản lý thanh khoản: dự báo tiền mặt, vốn lưu động, quan hệ ngân hàng',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Treasury',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['treasury', 'cash-flow', 'working-capital', 'liquidity'],
+    hidden: false,
+    relatedWorkIds: ['quarterly-revenue-forecast-work', 'cash-flow-management-work', 'cash-flow-basics-work'],
+    notes: 'Cash forecasting techniques, working capital optimization, banking relationships, foreign exchange management, liquidity management'
+  },
+  {
+    id: 'ma-corporate-finance-learning',
+    title: 'M&A & Tài Chính Doanh Nghiệp',
+    description: 'Sáp nhập & Mua lại: định giá, thẩm định, cấu trúc giao dịch',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Corporate Finance',
+    status: 'planned',
+    level: 'expert',
+    tags: ['ma', 'valuation', 'due-diligence', 'deals'],
+    hidden: false,
+    relatedWorkIds: ['strategic-financial-leadership-work', 'ma-strategy-execution-work', 'capital-allocation-strategy-work'],
+    notes: 'Valuation methods (DCF, Comparables, Precedents), due diligence process, deal structuring, post-merger integration, synergies identification'
+  },
+  {
+    id: 'financial-systems-erp-learning',
+    title: 'Hệ Thống Tài Chính & ERP',
+    description: 'Hệ thống ERP: lựa chọn, triển khai, tự động hóa, kiểm soát',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Financial Technology',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['erp', 'systems', 'automation', 'technology'],
+    hidden: false,
+    relatedWorkIds: ['budget-tracking-control-work', 'financial-systems-implementation-work'],
+    notes: 'ERP system selection (SAP, Oracle, NetSuite), financial reporting automation, integration with operations, data security & controls'
+  },
+  {
+    id: 'investor-relations-learning',
+    title: 'Quan Hệ Nhà Đầu Tư & Thị Trường Vốn',
+    description: 'Gọi vốn & quan hệ nhà đầu tư: vốn cổ phần vs nợ, bản trình bày, điều khoản, báo cáo hội đồng',
+    category: 'Quản Lý Tài Chính',
+    subcategory: 'Capital Markets',
+    status: 'planned',
+    level: 'expert',
+    tags: ['investor-relations', 'fundraising', 'capital', 'board'],
+    hidden: false,
+    relatedWorkIds: ['strategic-financial-leadership-work'],
+    notes: 'Equity vs debt financing, pitch deck development, term sheets & negotiations, board reporting, investor communications'
+  },
+
+  // === CLO LEGAL TOPICS ===
+  {
+    id: 'litigation-management-learning',
+    title: 'Quản Lý & Chiến Lược Kiện Tụng',
+    description: 'Quản lý kiện tụng: đánh giá rủi ro, luật sư bên ngoài, thỏa thuận',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Litigation',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['litigation', 'lawsuits', 'legal-strategy', 'risk'],
+    hidden: false,
+    relatedWorkIds: ['client-dispute-management-work', 'legal-dispute-handling-work'],
+    notes: 'Litigation risk assessment, outside counsel management & budgeting, settlement negotiations, trial preparation & strategy, cost-benefit analysis'
+  },
+  {
+    id: 'corporate-governance-learning',
+    title: 'Quản Trị Doanh Nghiệp',
+    description: 'Quản trị doanh nghiệp: nhiệm vụ hội đồng, trách nhiệm tín thác, thực hành tốt nhất',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Governance',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['governance', 'board', 'compliance', 'fiduciary'],
+    hidden: false,
+    relatedWorkIds: ['legal-compliance-basics-work', 'compliance-program-setup-work', 'strategic-legal-counsel-work', 'esg-sustainability-legal-leadership-work'],
+    notes: 'Board composition & responsibilities, fiduciary duties (duty of care, loyalty), shareholder rights, corporate governance best practices, Sarbanes-Oxley basics'
+  },
+  {
+    id: 'regulatory-strategy-learning',
+    title: 'Chiến Lược Quy Định & Quan Hệ Chính Phủ',
+    description: 'Chiến lược tuân thủ chủ động: giám sát, vận động hành lang, xây dựng quy tắc',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Regulatory Affairs',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['regulatory', 'compliance', 'government-relations', 'strategy'],
+    hidden: false,
+    relatedWorkIds: ['legal-compliance-basics-work', 'compliance-program-setup-work', 'esg-sustainability-legal-leadership-work'],
+    notes: 'Regulatory landscape monitoring, lobbying & advocacy basics, comment letters & rule-making participation, regulatory examinations, proactive compliance'
+  },
+  {
+    id: 'crisis-management-legal-learning',
+    title: 'Quản Lý Khủng Hoảng (Góc Độ Pháp Lý)',
+    description: 'Quản lý khủng hoảng pháp lý: quy trình phản hồi, điều tra, truyền thông',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Crisis Management',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['crisis', 'investigations', 'communications', 'risk'],
+    hidden: false,
+    relatedWorkIds: ['client-dispute-management-work'],
+    notes: 'Crisis response protocols, media relations & legal communications, investigation management, privilege considerations, damage control strategies'
+  },
+  {
+    id: 'business-acumen-legal-learning',
+    title: 'Nhạy Bén Kinh Doanh cho Lãnh Đạo Pháp Lý',
+    description: 'Hiểu kinh doanh để căn chỉnh pháp lý với mục tiêu: P&L, đàm phán, chiến lược',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Legal Strategy',
+    status: 'planned',
+    level: 'intermediate',
+    tags: ['business-acumen', 'strategy', 'commercial', 'leadership'],
+    hidden: false,
+    relatedWorkIds: ['client-contract-negotiation-work', 'terms-conditions-negotiation-work', 'contract-approval-work', 'vendor-contract-negotiation-work', 'contract-review-work', 'contract-basics-fundamentals-work', 'clm-implementation-work', 'negotiation-strategies-work', 'strategic-legal-counsel-work'],
+    notes: 'Understanding P&L basics, commercial negotiations, business model analysis, strategic legal planning, being a business partner not just legal advisor'
+  },
+  {
+    id: 'advanced-employment-law-learning',
+    title: 'Luật Lao Động & Quan Hệ Lao Động (Nâng Cao)',
+    description: 'Luật lao động chuyên sâu: sa thải trái phép, điều tra, phân loại',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Employment Law',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['employment-law', 'labor', 'hr-legal', 'compliance'],
+    hidden: false,
+    relatedWorkIds: ['labor-law-compliance-work'],
+    notes: 'Wrongful termination defense, union negotiations (if applicable), employee classification (contractor vs employee), workplace investigations, discrimination claims'
+  },
+  {
+    id: 'technology-law-cybersecurity-learning',
+    title: 'Luật Công Nghệ & An Ninh Mạng Pháp Lý',
+    description: 'Luật công nghệ: vi phạm dữ liệu, quy định an ninh mạng, hợp đồng đám mây, trách nhiệm AI',
+    category: 'Quản Lý Pháp Lý',
+    subcategory: 'Technology Law',
+    status: 'planned',
+    level: 'advanced',
+    tags: ['tech-law', 'cybersecurity', 'data-breach', 'ai'],
+    hidden: false,
+    relatedWorkIds: ['gdpr-compliance-work', 'ip-policy-enforcement-work', 'ip-fundamentals-work', 'data-privacy-implementation-work', 'ai-compliance-governance-work'],
+    notes: 'Data breach response & notification requirements, cybersecurity regulations, cloud contracts & SLAs, AI & algorithm liability, software licensing'
+  },
+
+  // === CROSS-FUNCTIONAL ===
+  {
+    id: 'data-literacy-leaders-learning',
+    title: 'Hiểu Biết Dữ Liệu cho Lãnh Đạo',
+    description: 'Hiểu & sử dụng dữ liệu: cơ bản phân tích, trực quan hóa, quyết định dựa trên dữ liệu',
+    category: 'Kỹ Năng Lãnh Đạo',
+    subcategory: 'Data & Analytics',
+    status: 'planned',
+    level: 'beginner',
+    tags: ['data', 'analytics', 'visualization', 'decision-making'],
+    hidden: false,
+    relatedWorkIds: ['quality-metrics-improvement-work', 'sla-compliance-tracking-work', 'customer-health-tracking-work', 'quarterly-demand-forecast-work', 'pipeline-analysis-work', 'operational-metrics-basics-work'],
+    notes: 'Basic analytics concepts, data visualization best practices, understanding data quality, making data-driven decisions, KPIs & metrics'
+  },
 ];
 
 // 💼 COO Work Roadmap - Actual operational WORK being done
@@ -1255,7 +1549,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     role: 'COO',
-    hidden: true,
+    hidden: false,
     startDate: '2024-01-01',
     targetDate: '2026-12-31',
     tags: ['transformation', 'ai-ml', 'strategy', 'upskilling'],
@@ -1350,7 +1644,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['kpi', 'redmine', 'metrics', 'tracking'],
-    relatedLearningIds: ['performance-evaluation-framework-learning'],
+    relatedLearningIds: [],
     notes: 'Có thể viết bài về cách extract KPIs từ Redmine, metrics quan trọng cho IT outsourcing, thiết kế dashboard',
   },
   {
@@ -1364,7 +1658,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: false,
     tags: ['performance', 'evaluation', '360-feedback', 'calibration'],
-    relatedLearningIds: ['performance-evaluation-framework-learning'],
+    relatedLearningIds: ['performance-evaluation-framework-learning', 'hr-data-analytics-learning'],
     notes: 'Có thể viết bài về evaluation framework chi tiết cho từng role, triển khai 360 feedback, calibration sessions',
   },
   {
@@ -1378,6 +1672,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: false,
     tags: ['training', 'development', 'upskilling'],
+    relatedLearningIds: ['hr-technology-learning', 'change-management-hr-learning'],
   },
   {
     id: 'team-building-activities-work',
@@ -1390,7 +1685,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: true,
     tags: ['team-building', 'engagement', 'culture'],
-    relatedLearningIds: ['team-building-culture-learning'],
+    relatedLearningIds: ['team-building-culture-learning', 'emotional-intelligence-hr-learning'],
   },
   {
     id: 'feedback-mechanisms-work',
@@ -1403,6 +1698,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: true,
     tags: ['feedback', 'communication', 'culture'],
+    relatedLearningIds: ['emotional-intelligence-hr-learning'],
   },
 
   // === 3. LÃNH ĐẠO CÔNG NGHỆ ===
@@ -1491,7 +1787,7 @@ export const cooRoadmap: RoadmapItem[] = [
   {
     id: 'gdpr-compliance-work',
     title: 'Tuân thủ GDPR/Bảo vệ dữ liệu',
-    description: 'GDPR compliance: data mapping, policies, rights, audits',
+    description: 'Tuân thủ GDPR: lập bản đồ dữ liệu, chính sách, quyền người dùng, kiểm toán',
     category: 'Vận Hành & Chất Lượng',
     subcategory: 'Kiểm Toán & Tuân Thủ',
     status: 'planned',
@@ -1499,6 +1795,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['gdpr', 'data-protection', 'compliance'],
+    relatedLearningIds: ['technology-law-cybersecurity-learning'],
   },
   {
     id: 'est-vs-actual-tracking-work',
@@ -1553,6 +1850,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['quality', 'metrics', 'improvement'],
+    relatedLearningIds: ['data-literacy-leaders-learning'],
   },
   {
     id: 'process-documentation-work',
@@ -1747,7 +2045,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: true,
     tags: ['culture', 'values', 'engagement'],
-    relatedLearningIds: ['team-building-culture-learning'],
+    relatedLearningIds: ['team-building-culture-learning', 'emotional-intelligence-hr-learning', 'dei-strategy-learning', 'change-management-hr-learning'],
   },
   {
     id: 'employee-engagement-programs-work',
@@ -1760,12 +2058,12 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: true,
     tags: ['engagement', 'retention', 'culture'],
-    relatedLearningIds: ['employee-engagement-learning'],
+    relatedLearningIds: ['employee-engagement-learning', 'emotional-intelligence-hr-learning', 'dei-strategy-learning'],
   },
   {
     id: 'remote-work-best-practices-work',
     title: 'Quản lý làm việc remote',
-    description: 'Remote work policies: tools, norms, work-life balance',
+    description: 'Chính sách làm việc remote: công cụ, quy tắc, cân bằng công việc-cuộc sống',
     category: 'Văn Hóa & Giao Tiếp Nội Bộ',
     subcategory: 'Văn Hóa Công Ty',
     status: 'planned',
@@ -1773,6 +2071,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CPO',
     hidden: false,
     tags: ['remote-work', 'best-practices', 'productivity'],
+    relatedLearningIds: ['hr-technology-learning'],
   },
 
   // === 7. QUẢN LÝ TÀI CHÍNH ===
@@ -1787,12 +2086,12 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['p&l', 'financial', 'accountability'],
-    relatedLearningIds: ['financial-management-coo-learning'],
+    relatedLearningIds: ['financial-management-coo-learning', 'gaap-ifrs-standards-learning', 'tax-planning-strategy-learning'],
   },
   {
     id: 'revenue-profitability-analysis-work',
     title: 'Phân tích revenue & profitability',
-    description: 'Phân tích revenue, profitability by project/client',
+    description: 'Phân tích revenue, profitability theo từng project/client',
     category: 'Quản Lý Tài Chính',
     subcategory: 'Quản Lý P&L',
     status: 'planned',
@@ -1800,11 +2099,12 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['revenue', 'profitability', 'analysis'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'margin-accountability-work',
     title: 'Chịu trách nhiệm về margin',
-    description: 'Đảm bảo margins: pricing, cost control, monitoring',
+    description: 'Đảm bảo margin: định giá, kiểm soát chi phí, giám sát',
     category: 'Quản Lý Tài Chính',
     subcategory: 'Quản Lý P&L',
     status: 'planned',
@@ -1812,6 +2112,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['margin', 'profitability', 'optimization'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'annual-budget-planning-work',
@@ -1824,7 +2125,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['budget', 'planning', 'annual'],
-    relatedLearningIds: ['financial-management-coo-learning'],
+    relatedLearningIds: ['financial-management-coo-learning', 'advanced-financial-modeling-learning'],
   },
   {
     id: 'budget-tracking-control-work',
@@ -1837,6 +2138,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['budget', 'control', 'variance'],
+    relatedLearningIds: ['financial-systems-erp-learning'],
   },
   {
     id: 'cost-optimization-initiatives-work',
@@ -1849,6 +2151,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['cost', 'optimization', 'efficiency'],
+    relatedLearningIds: ['tax-planning-strategy-learning', 'advanced-financial-modeling-learning'],
   },
   {
     id: 'spending-approvals-work',
@@ -1873,6 +2176,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['pricing', 'decision', 'approval'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'project-profitability-analysis-work',
@@ -1885,6 +2189,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['project', 'profitability', 'analysis'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'unit-economics-optimization-work',
@@ -1897,6 +2202,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['unit-economics', 'optimization', 'efficiency'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'quarterly-revenue-forecast-work',
@@ -1909,6 +2215,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['revenue', 'forecast', 'quarterly'],
+    relatedLearningIds: ['advanced-financial-modeling-learning', 'treasury-cash-management-learning'],
   },
   {
     id: 'cost-forecasting-work',
@@ -1921,6 +2228,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['cost', 'forecast', 'planning'],
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'cash-flow-management-work',
@@ -1933,7 +2241,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CFO',
     hidden: true,
     tags: ['cash-flow', 'liquidity', 'working-capital'],
-    relatedLearningIds: ['cash-flow-management-learning'],
+    relatedLearningIds: ['cash-flow-management-learning', 'treasury-cash-management-learning'],
   },
 
   // === 8. QUẢN LÝ RỦI RO & KHỦNG HOẢNG ===
@@ -2060,6 +2368,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['dispute', 'client', 'resolution'],
+    relatedLearningIds: ['litigation-management-learning', 'crisis-management-legal-learning'],
   },
   {
     id: 'crisis-communication-work',
@@ -2087,7 +2396,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['sla', 'compliance', 'monitoring'],
-    relatedLearningIds: ['sla-slo-management-learning'],
+    relatedLearningIds: ['sla-slo-management-learning', 'data-literacy-leaders-learning'],
   },
   {
     id: 'sla-reporting-work',
@@ -2176,6 +2485,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['customer-health', 'monitoring', 'retention'],
+    relatedLearningIds: ['data-literacy-leaders-learning'],
   },
   {
     id: 'service-quality-initiatives-work',
@@ -2202,7 +2512,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['contract', 'negotiation', 'client'],
-    relatedLearningIds: ['contract-negotiation-learning'],
+    relatedLearningIds: ['contract-negotiation-learning', 'business-acumen-legal-learning'],
   },
   {
     id: 'terms-conditions-negotiation-work',
@@ -2215,7 +2525,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['terms', 'conditions', 'negotiation'],
-    relatedLearningIds: ['contract-negotiation-learning'],
+    relatedLearningIds: ['contract-negotiation-learning', 'business-acumen-legal-learning'],
   },
   {
     id: 'contract-approval-work',
@@ -2228,6 +2538,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['contract', 'approval', 'review'],
+    relatedLearningIds: ['business-acumen-legal-learning'],
   },
   {
     id: 'vendor-contract-negotiation-work',
@@ -2240,7 +2551,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['vendor', 'contract', 'negotiation'],
-    relatedLearningIds: ['contract-negotiation-learning'],
+    relatedLearningIds: ['contract-negotiation-learning', 'business-acumen-legal-learning'],
   },
   {
     id: 'contract-review-work',
@@ -2253,6 +2564,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['contract', 'review', 'vendor'],
+    relatedLearningIds: ['business-acumen-legal-learning'],
   },
   {
     id: 'contract-renewal-management-work',
@@ -2277,11 +2589,12 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['legal', 'dispute', 'resolution'],
+    relatedLearningIds: ['litigation-management-learning'],
   },
   {
     id: 'ip-policy-enforcement-work',
     title: 'Thực thi chính sách IP',
-    description: 'IP enforcement: ownership, licensing, monitoring',
+    description: 'Thực thi chính sách IP: quyền sở hữu, cấp phép, giám sát',
     category: 'Hợp Đồng & Pháp Lý',
     subcategory: 'Tuân Thủ Pháp Lý',
     status: 'planned',
@@ -2289,6 +2602,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['ip', 'policy', 'protection'],
+    relatedLearningIds: ['technology-law-cybersecurity-learning'],
   },
   {
     id: 'labor-law-compliance-work',
@@ -2301,6 +2615,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'CLO',
     hidden: true,
     tags: ['labor-law', 'compliance', 'hr'],
+    relatedLearningIds: ['advanced-employment-law-learning'],
   },
 
   // === 11. QUẢN LÝ NĂNG LỰC & DỰ BÁO ===
@@ -2315,7 +2630,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['demand', 'forecast', 'quarterly'],
-    relatedLearningIds: ['demand-forecasting-learning'],
+    relatedLearningIds: ['demand-forecasting-learning', 'data-literacy-leaders-learning'],
   },
   {
     id: 'pipeline-analysis-work',
@@ -2328,7 +2643,7 @@ export const cooRoadmap: RoadmapItem[] = [
     role: 'COO',
     hidden: true,
     tags: ['pipeline', 'analysis', 'forecasting'],
-    relatedLearningIds: ['demand-forecasting-learning'],
+    relatedLearningIds: ['demand-forecasting-learning', 'data-literacy-leaders-learning'],
   },
   {
     id: 'seasonal-demand-planning-work',
@@ -2463,6 +2778,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['metrics', 'kpi', 'measurement', 'operations'],
     notes: 'Foundation cho data-driven operations. Viết về cách chọn right metrics, common pitfalls, dashboarding',
+    relatedLearningIds: ['data-literacy-leaders-learning'],
   },
   {
     id: 'quality-control-checkpoints-work',
@@ -2489,6 +2805,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['analytics', 'data-driven', 'predictive', 'workforce'],
     notes: 'Research 2025: Modern CPOs must demonstrate ROI through analytics. Viết về tools, metrics that matter, privacy concerns',
+    relatedLearningIds: ['hr-data-analytics-learning', 'hr-technology-learning'],
   },
   {
     id: 'succession-planning-program-work',
@@ -2502,6 +2819,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['succession', 'leadership', 'talent-pipeline', 'development'],
     notes: 'Trend 2025: Succession planning expanding beyond executives. Viết về identification criteria, development plans, metrics',
+    relatedLearningIds: ['strategic-workforce-planning-learning'],
   },
   {
     id: 'performance-management-redesign-work',
@@ -2515,6 +2833,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['performance', 'feedback', 'competencies', 'modern-hr'],
     notes: 'Move away from annual reviews. Viết về continuous feedback culture, OKRs vs KPIs, calibration sessions',
+    relatedLearningIds: ['hr-data-analytics-learning', 'hr-technology-learning'],
   },
   {
     id: 'strategic-workforce-planning-work',
@@ -2529,6 +2848,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-06-30',
     tags: ['workforce-planning', 'strategy', 'skills-based', 'scenario'],
     notes: 'Research: 40% CHROs cite this as top priority. Viết về framework, ROI (reduced hiring costs, succession pipeline)',
+    relatedLearningIds: ['strategic-workforce-planning-learning', 'hr-data-analytics-learning'],
   },
   {
     id: 'organizational-design-transformation-work',
@@ -2543,6 +2863,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-12-31',
     tags: ['org-design', 'restructuring', 'transformation', 'ai-impact'],
     notes: 'AI reshaping work structure. Viết về org design principles, change management, communication strategy',
+    relatedLearningIds: ['change-management-hr-learning'],
   },
   {
     id: 'talent-strategy-alignment-work',
@@ -2557,6 +2878,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-06-30',
     tags: ['talent-strategy', 'alignment', 'business-partner', 'strategic-hr'],
     notes: 'CPO as strategic partner to CEO. Viết về building business case, metrics, board reporting',
+    relatedLearningIds: ['dei-strategy-learning', 'strategic-workforce-planning-learning'],
   },
   {
     id: 'dei-strategy-leadership-work',
@@ -2570,6 +2892,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['dei', 'diversity', 'inclusion', 'culture'],
     notes: 'Key CPO responsibility 2025. Viết về measurement, embedding in processes, authentic vs performative DEI',
+    relatedLearningIds: ['dei-strategy-learning'],
   },
   {
     id: 'pl-statement-basics-work',
@@ -2583,6 +2906,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['pl', 'financials', 'fundamentals', 'accounting'],
     notes: 'Foundation cho financial literacy. Viết về common mistakes, how to spot issues, industry benchmarks',
+    relatedLearningIds: ['financial-savvy-hr-learning'],
   },
   {
     id: 'budget-vs-actual-tracking-work',
@@ -2596,6 +2920,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['budget', 'variance', 'tracking', 'forecasting'],
     notes: 'Essential CFO skill. Viết về variance analysis techniques, when to reforecast, communication to stakeholders',
+    relatedLearningIds: ['financial-savvy-hr-learning'],
   },
   {
     id: 'pricing-models-fundamentals-work',
@@ -2635,6 +2960,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['cash-flow', 'working-capital', 'liquidity', 'fundamentals'],
     notes: 'Cash is king. Viết về why profitable companies fail, managing receivables/payables, cash runway',
+    relatedLearningIds: ['treasury-cash-management-learning'],
   },
   {
     id: 'financial-metrics-basics-work',
@@ -2648,6 +2974,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['metrics', 'ratios', 'financial-analysis', 'fundamentals'],
     notes: 'Language of business. Viết về industry benchmarks, ratio analysis interpretation, red flags',
+    relatedLearningIds: ['gaap-ifrs-standards-learning'],
   },
   {
     id: 'fpa-fundamentals-work',
@@ -2661,6 +2988,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['fpa', 'planning', 'forecasting', 'business-partner'],
     notes: 'Trend 2025: FP&A shifting to strategic partner. Viết về agile planning, real-time reporting',
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
     id: 'scenario-planning-modeling-work',
@@ -2674,9 +3002,10 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['scenario', 'modeling', 'forecasting', 'risk'],
     notes: 'Essential for volatile environment. Viết về Monte Carlo, decision trees, communicating scenarios',
+    relatedLearningIds: ['advanced-financial-modeling-learning'],
   },
   {
-    id: 'cost-optimization-initiatives-work',
+    id: 'cfo-cost-optimization-strategic-work',
     title: 'Cost optimization initiatives',
     description: 'Xác định và thực hiện tối ưu chi phí: lập ngân sách từ con số không, hợp nhất nhà cung cấp, hiệu quả quy trình, ROI tự động hóa',
     category: 'Quản Lý Tài Chính',
@@ -2687,6 +3016,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['cost', 'optimization', 'efficiency', 'zbb'],
     notes: 'Balancing cost cuts vs growth investment. Viết về sustainable cost reduction, change management',
+    relatedLearningIds: ['tax-planning-strategy-learning', 'advanced-financial-modeling-learning'],
   },
   {
     id: 'revenue-analysis-planning-work',
@@ -2713,6 +3043,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['systems', 'erp', 'automation', 'digitalization'],
     notes: 'Technology enabling finance. Viết về vendor selection, implementation pitfalls, change management',
+    relatedLearningIds: ['financial-systems-erp-learning'],
   },
   {
     id: 'strategic-financial-leadership-work',
@@ -2727,6 +3058,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-06-30',
     tags: ['strategic', 'leadership', 'board', 'ceo-partner'],
     notes: 'CFO 2025: Strategic partner not just comptroller. Viết về boardroom communication, influencing strategy',
+    relatedLearningIds: ['investor-relations-learning', 'ma-corporate-finance-learning'],
   },
   {
     id: 'ma-strategy-execution-work',
@@ -2741,6 +3073,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2027-12-31',
     tags: ['ma', 'acquisition', 'due-diligence', 'integration'],
     notes: 'Growth through M&A. Viết về valuation methods, cultural integration, common failure reasons',
+    relatedLearningIds: ['ma-corporate-finance-learning'],
   },
   {
     id: 'capital-allocation-strategy-work',
@@ -2755,6 +3088,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-12-31',
     tags: ['capital', 'allocation', 'roic', 'value-creation'],
     notes: 'Core CFO responsibility. Viết về capital allocation frameworks, trade-offs, shareholder communication',
+    relatedLearningIds: ['ma-corporate-finance-learning'],
   },
   {
     id: 'contract-basics-fundamentals-work',
@@ -2768,6 +3102,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['contract', 'fundamentals', 'clauses', 'legal'],
     notes: 'Foundation for legal ops. Viết về common contract types, red flags, plain language contracting',
+    relatedLearningIds: ['business-acumen-legal-learning'],
   },
   {
     id: 'ip-fundamentals-work',
@@ -2781,6 +3116,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['ip', 'intellectual-property', 'patents', 'trademarks'],
     notes: 'Critical for tech companies. Viết về IP strategy, work-for-hire, open source risks',
+    relatedLearningIds: ['technology-law-cybersecurity-learning'],
   },
   {
     id: 'legal-compliance-basics-work',
@@ -2794,6 +3130,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['compliance', 'regulations', 'labor-law', 'fundamentals'],
     notes: 'Avoid legal pitfalls. Viết về common compliance failures, creating compliance culture',
+    relatedLearningIds: ['corporate-governance-learning', 'regulatory-strategy-learning'],
   },
   {
     id: 'contract-review-process-work',
@@ -2820,6 +3157,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['clm', 'technology', 'automation', 'ai'],
     notes: 'Trend 2025: CLM critical for legal ops. Viết về vendor evaluation, AI use cases, ROI',
+    relatedLearningIds: ['business-acumen-legal-learning'],
   },
   {
     id: 'legal-operations-setup-work',
@@ -2846,6 +3184,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['negotiation', 'strategy', 'batna', 'deal-making'],
     notes: 'Essential CLO skill. Viết về negotiation frameworks, common tactics, deal killers',
+    relatedLearningIds: ['business-acumen-legal-learning'],
   },
   {
     id: 'compliance-program-setup-work',
@@ -2859,6 +3198,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['compliance', 'program', 'governance', 'risk'],
     notes: '78% CLOs responsible for compliance. Viết về program design, effectiveness metrics',
+    relatedLearningIds: ['corporate-governance-learning', 'regulatory-strategy-learning'],
   },
   {
     id: 'data-privacy-implementation-work',
@@ -2872,6 +3212,7 @@ export const cooRoadmap: RoadmapItem[] = [
     hidden: true,
     tags: ['privacy', 'gdpr', 'cybersecurity', 'data-protection'],
     notes: 'Critical 2025 responsibility. Viết về privacy by design, incident response, cross-border data',
+    relatedLearningIds: ['technology-law-cybersecurity-learning'],
   },
   {
     id: 'strategic-legal-counsel-work',
@@ -2886,6 +3227,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-06-30',
     tags: ['strategic', 'board', 'governance', 'counsel'],
     notes: '81% CLOs report to CEO. Viết về boardroom presence, risk communication, strategic influence',
+    relatedLearningIds: ['business-acumen-legal-learning', 'corporate-governance-learning'],
   },
   {
     id: 'four-faces-mastery-work',
@@ -2914,6 +3256,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2027-06-30',
     tags: ['esg', 'sustainability', 'governance', 'regulatory'],
     notes: 'Emerging CLO responsibility 2025. Viết về ESG reporting, greenwashing risks, stakeholder expectations',
+    relatedLearningIds: ['corporate-governance-learning', 'regulatory-strategy-learning'],
   },
   {
     id: 'ai-compliance-governance-work',
@@ -2928,6 +3271,7 @@ export const cooRoadmap: RoadmapItem[] = [
     targetDate: '2026-12-31',
     tags: ['ai', 'governance', 'compliance', 'ethics'],
     notes: '42% legal leaders cite AI compliance as top priority 2024. Viết về EU AI Act, responsible AI framework',
+    relatedLearningIds: ['technology-law-cybersecurity-learning'],
   },
 ];
 

@@ -13,6 +13,7 @@ interface BlogPost {
   description: string;
   date: string;
   category?: string;
+  topic?: string;
   tags?: string[];
   hidden?: boolean;
 }

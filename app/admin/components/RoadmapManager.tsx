@@ -821,7 +821,10 @@ export default function RoadmapManager({ type, role }: RoadmapManagerProps) {
                 >
                   <div className="flex items-start justify-between gap-4">
                     {/* Item Info */}
-                    <div className="flex-1 min-w-0">
+                    <Link
+                      href={type === 'learning' ? `/admin/learning/${item.id}` : `/admin/${(item.role || role || 'coo').toLowerCase()}-work/${item.id}`}
+                      className="flex-1 min-w-0 cursor-pointer"
+                    >
                         <div className="flex items-center gap-3 mb-2 flex-wrap">
                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {item.title}
@@ -889,7 +892,7 @@ export default function RoadmapManager({ type, role }: RoadmapManagerProps) {
                             ))}
                           </div>
                         )}
-                      </div>
+                      </Link>
 
                       {/* Actions */}
                       <div className="flex-shrink-0 flex gap-2">

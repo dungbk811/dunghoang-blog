@@ -71,15 +71,42 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Build frontmatter string
+    // Build frontmatter string with proper YAML formatting
     const frontmatterString = Object.entries(frontmatter)
       .filter(([_, value]) => value !== undefined && value !== '')
       .map(([key, value]) => {
+        // Handle arrays (tags) - use YAML list format
         if (Array.isArray(value)) {
-          return `${key}: [${value.map(v => `"${v}"`).join(', ')}]`;
+          if (value.length === 0) return null;
+          return `${key}:\n${value.map(v => `  - ${v}`).join('\n')}`;
         }
-        return `${key}: "${value}"`;
+        // Handle booleans - no quotes
+        if (typeof value === 'boolean') {
+          return `${key}: ${value}`;
+        }
+        // Handle strings with newlines (description) - use YAML block scalar
+        if (typeof value === 'string' && value.includes('\n')) {
+          const lines = value.split('\n').map(line => `  ${line}`).join('\n');
+          return `${key}: >-\n${lines}`;
+        }
+        // Handle regular strings - add quotes if needed (dates, titles, etc)
+        if (typeof value === 'string') {
+          // For dates, keep single quotes
+          if (key === 'date') {
+            return `${key}: '${value}'`;
+          }
+          // For category and topic, no quotes needed (simple identifiers)
+          if (key === 'category' || key === 'topic') {
+            return `${key}: ${value}`;
+          }
+          // For title and other strings, always use quotes for safety
+          // Escape single quotes by doubling them
+          const escapedValue = value.replace(/'/g, "''");
+          return `${key}: '${escapedValue}'`;
+        }
+        return `${key}: ${value}`;
       })
+      .filter(Boolean)
       .join('\n');
 
     // Build full MDX content
