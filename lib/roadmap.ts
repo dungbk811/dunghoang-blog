@@ -34,6 +34,7 @@ export interface RoadmapItem {
   status: RoadmapStatus;
   level: SkillLevel; // Beginner, Intermediate, Advanced, Expert
   role?: WorkRole; // For work items: COO, CPO, CFO, CLO (only applies to cooRoadmap)
+  priority?: 'low' | 'medium' | 'high'; // Task priority
   startDate?: string;
   targetDate?: string;
   tags?: string[];
@@ -74,7 +75,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Luyện Giọng & Phát Âm',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['voice', 'breathing', 'speaking'],
   },
   {
@@ -85,7 +86,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Luyện Giọng & Phát Âm',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['articulation', 'pronunciation'],
   },
   {
@@ -96,7 +97,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['japanese-business', 'culture', 'etiquette'],
     relatedWorkIds: ['japanese-client-relations-work'],
   },
@@ -108,7 +109,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['writing', 'email', 'documentation'],
   },
   {
@@ -119,7 +120,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['feedback', 'negotiation', 'conflict'],
   },
   {
@@ -130,7 +131,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Thuyết Trình & Nói Trước Công Chúng',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['presentation', 'executive', 'public-speaking'],
   },
   {
@@ -141,7 +142,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Thuyết Trình & Nói Trước Công Chúng',
     status: 'planned',
     level: 'beginner',
-    hidden: false,
+    hidden: true,
     tags: ['executive', 'c-level', 'leadership'],
   },
 
