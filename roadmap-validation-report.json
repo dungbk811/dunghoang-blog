@@ -1,0 +1,509 @@
+{
+  "timestamp": "2025-11-21T01:03:41.716Z",
+  "stats": {
+    "totalLearning": 124,
+    "totalWork": 127,
+    "learningWithWork": 42,
+    "workWithLearning": 88,
+    "emptyRelations": 82
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "voice-training-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Voice Training tại THALIC VOICE"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "breathing-techniques-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Kỹ thuật thở cho speaking"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "articulation-exercises-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Bài tập articulation"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "written-communication-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Kỹ năng giao tiếp văn bản"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "difficult-conversations-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Cuộc trò chuyện khó khăn"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "executive-presentation-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Kỹ năng thuyết trình cho C-level"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "executive-communication-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Giao tiếp cấp điều hành"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "goal-setting-okr-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Đặt mục tiêu với OKR/SMART"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "career-development-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Lộ trình phát triển nghề nghiệp"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "onboarding-process-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Thiết kế quy trình onboarding"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "conflict-resolution-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Giải quyết xung đột trong team"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "coaching-mentoring-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Coaching & mentoring"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "psychological-safety-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Tạo môi trường an toàn tâm lý"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "emotional-intelligence-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Trí tuệ cảm xúc (EQ)"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "change-leadership-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Dẫn dắt team qua thay đổi"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "stakeholder-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý các bên liên quan"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "cross-functional-leadership-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Lãnh đạo liên chức năng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "ai-roadmap-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Roadmap áp dụng AI"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "prompt-engineering-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Prompt engineering cho công việc"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "cloud-computing-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Chuyển đổi lên cloud computing"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "information-security-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý bảo mật thông tin"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "corporate-compliance-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Corporate compliance & governance"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "quality-assurance-system-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Hệ thống đảm bảo chất lượng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "portfolio-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý danh mục dự án"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "resource-planning-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phân bổ nguồn lực"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "vendor-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý nhà cung cấp"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "service-excellence-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Đảm bảo chất lượng dịch vụ"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "post-mortem-process-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quy trình rút kinh nghiệm sau sự cố"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "scenario-planning-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Kế hoạch kịch bản"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "market-analysis-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phân tích & định vị thị trường"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "service-expansion-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Mở rộng dịch vụ"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "investment-decisions-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quyết định đầu tư"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "customer-health-score-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Điểm số sức khỏe khách hàng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "churn-analysis-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phân tích churn"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "upsell-expansion-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Upsell và mở rộng doanh thu"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "customer-lifecycle-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý vòng đời khách hàng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "time-management-executive-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Time management cho C-level"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "decision-making-uncertainty-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Ra quyết định trong tình huống không chắc chắn"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "pl-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý P&L cho COO"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "financial-statements-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Đọc hiểu báo cáo tài chính"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "profit-accountability-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Chịu trách nhiệm về lợi nhuận"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "budget-planning-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý & kiểm soát ngân sách"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "cost-optimization-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Tối ưu hóa chi phí"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "financial-forecasting-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Dự báo tài chính"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "pricing-strategy-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phương pháp định giá"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "unit-economics-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phân tích unit economics"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "project-profitability-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Phân tích lợi nhuận theo dự án"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "pricing-decisions-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quyết định về pricing"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "enterprise-risk-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Enterprise Risk Management (ERM)"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "risk-assessment-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Đánh giá & giảm thiểu rủi ro"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "insurance-liability-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý bảo hiểm & trách nhiệm pháp lý"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "crisis-scenario-planning-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Kế hoạch kịch bản khủng hoảng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "crisis-communication-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Giao tiếp trong khủng hoảng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "change-communication-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Giao tiếp về thay đổi tổ chức"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "change-resistance-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Xử lý phản ứng với thay đổi"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "digital-transformation-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Dẫn dắt chuyển đổi số"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "process-change-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Thay đổi quy trình làm việc"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "pipeline-analysis-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Pipeline analysis"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "seasonal-planning-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Seasonal planning"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "utilization-optimization-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Tối ưu tỷ lệ sử dụng nguồn lực"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "bench-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý nguồn lực dự phòng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "hiring-forecast-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Dự báo tuyển dụng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "contract-structure-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Cấu trúc hợp đồng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "msa-sow-frameworks-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý MSA/SOW"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "legal-risk-management-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Quản lý rủi ro pháp lý"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "ip-nda-protection-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Bảo vệ IP & NDA"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "labor-law-compliance-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Tuân thủ luật lao động"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "dispute-resolution-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Giải quyết tranh chấp"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "business-intelligence-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Business Intelligence"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "data-driven-decisions-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Ra quyết định dựa trên data"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "data-governance-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Data governance"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "employer-branding-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Employer branding"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "recruitment-funnel-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Tối ưu phễu tuyển dụng"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "interview-process-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Thiết kế quy trình phỏng vấn"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "compensation-benchmarking-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Benchmarking lương"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "compensation-philosophy-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Triết lý compensation"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "benefits-design-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Thiết kế benefits"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "bonus-incentive-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Cấu trúc bonus/incentive"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "key-person-risk-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Rủi ro người then chốt"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "leadership-pipeline-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Pipeline lãnh đạo"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "knowledge-transfer-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Chuyển giao kiến thức"
+    },
+    {
+      "type": "EMPTY_WORK_IDS",
+      "id": "critical-role-backup-learning",
+      "severity": "WARNING",
+      "message": "Learning topic has no related work items: Backup cho vai trò quan trọng"
+    }
+  ],
+  "orphaned": {
+    "learning": 82,
+    "work": 39
+  }
+}

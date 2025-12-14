@@ -1,0 +1,435 @@
+// =================================================================
+// NEW LEARNING TOPICS TO ADD TO ROADMAP
+// Priority: Phase 1 (Critical) topics first
+// =================================================================
+
+// =================================================================
+// CPO (CHIEF PEOPLE OFFICER) - 7 New Topics
+// =================================================================
+
+{
+  id: 'emotional-intelligence-hr-learning',
+  title: 'Emotional Intelligence cho HR Leaders',
+  description: 'Phát triển EQ: self-awareness, empathy, quản lý cảm xúc trong quyết định HR',
+  category: 'Kỹ Năng Lãnh Đạo',
+  subcategory: 'Leadership Cá Nhân',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['emotional-intelligence', 'leadership', 'hr', 'self-awareness'],
+  hidden: false,
+  relatedWorkIds: [
+    'employee-engagement-work',
+    'conflict-resolution-work',
+    'team-building-work',
+    'difficult-conversations-work',
+    'coaching-mentoring-work'
+  ],
+  notes: 'Top #1 competency cho CPO. Nội dung: self-awareness exercises, empathy development, managing emotions in difficult conversations, building psychological safety'
+},
+
+{
+  id: 'hr-data-analytics-learning',
+  title: 'HR Data Analytics & People Analytics',
+  description: 'Sử dụng data trong HR: metrics, predictive analytics, dashboards, ROI measurement',
+  category: 'Quản Lý Nhân Sự',
+  subcategory: 'HR Analytics',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['data-analytics', 'hr-metrics', 'people-analytics', 'kpi'],
+  hidden: false,
+  relatedWorkIds: [
+    'recruitment-strategy-work',
+    'performance-management-work',
+    'compensation-planning-work',
+    'turnover-analysis-work',
+    'workforce-planning-work'
+  ],
+  notes: 'HR metrics: turnover rate, time-to-hire, cost-per-hire, engagement scores. Predictive analytics cho attrition. Dashboard design cho C-suite.'
+},
+
+{
+  id: 'dei-strategy-learning',
+  title: 'Diversity, Equity & Inclusion (DEI)',
+  description: 'Xây dựng chiến lược DEI: inclusive hiring, unconscious bias, đo lường tiến độ',
+  category: 'Quản Lý Nhân Sự',
+  subcategory: 'Văn Hóa & DEI',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['dei', 'diversity', 'inclusion', 'equity', 'culture'],
+  hidden: false,
+  relatedWorkIds: [
+    'recruitment-strategy-work',
+    'culture-building-work',
+    'leadership-development-work',
+    'employee-engagement-work'
+  ],
+  notes: 'Critical cho 2025. DEI strategy development, unconscious bias training, inclusive hiring practices, measuring DEI progress, employee resource groups'
+},
+
+{
+  id: 'financial-savvy-hr-learning',
+  title: 'Financial Savvy cho HR Leaders',
+  description: 'Hiểu tài chính để có credibility với C-Suite: budget, ROI, headcount planning',
+  category: 'Quản Lý Nhân Sự',
+  subcategory: 'HR Strategy',
+  status: 'planned',
+  level: 'beginner',
+  tags: ['finance', 'budget', 'roi', 'hr-strategy'],
+  hidden: false,
+  relatedWorkIds: [
+    'compensation-planning-work',
+    'recruitment-strategy-work',
+    'workforce-planning-work',
+    'training-budget-work'
+  ],
+  notes: 'Reading financial statements, HR budget management, headcount planning vs revenue, cost-per-hire calculations, ROI of HR initiatives'
+},
+
+{
+  id: 'hr-technology-learning',
+  title: 'HR Technology & Digital Transformation',
+  description: 'HRIS systems, ATS, AI trong HR, employee experience platforms',
+  category: 'Quản Lý Nhân Sự',
+  subcategory: 'HR Technology',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['hrtech', 'digital-transformation', 'automation', 'ai'],
+  hidden: false,
+  relatedWorkIds: [
+    'recruitment-strategy-work',
+    'performance-management-work',
+    'remote-work-best-practices-work',
+    'employee-engagement-work'
+  ],
+  notes: 'HRIS selection (Workday, BambooHR), ATS systems, performance management tools, AI in recruitment, employee engagement platforms, automation opportunities'
+},
+
+{
+  id: 'change-management-hr-learning',
+  title: 'Change Management cho HR',
+  description: 'Dẫn dắt thay đổi tổ chức: ADKAR, Kotter, communication strategies',
+  category: 'Kỹ Năng Lãnh Đạo',
+  subcategory: 'Change Leadership',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['change-management', 'transformation', 'communication'],
+  hidden: false,
+  relatedWorkIds: [
+    'culture-building-work',
+    'leadership-development-work',
+    'internal-communications-work',
+    'employee-engagement-work'
+  ],
+  notes: 'ADKAR model, Kotter\'s 8 steps, communication strategies during change, managing resistance, culture transformation'
+},
+
+{
+  id: 'strategic-workforce-planning-learning',
+  title: 'Strategic Workforce Planning',
+  description: 'Align talent với business goals: demand forecasting, skills gaps, succession',
+  category: 'Quản Lý Nhân Sự',
+  subcategory: 'Workforce Planning',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['workforce-planning', 'succession', 'talent-strategy'],
+  hidden: false,
+  relatedWorkIds: [
+    'recruitment-strategy-work',
+    'career-development-work',
+    'leadership-pipeline-work',
+    'capacity-planning-work'
+  ],
+  notes: 'Demand forecasting techniques, skills gap analysis, succession planning frameworks, talent pipeline development'
+},
+
+// =================================================================
+// CFO (CHIEF FINANCIAL OFFICER) - 7 New Topics
+// =================================================================
+
+{
+  id: 'gaap-ifrs-standards-learning',
+  title: 'GAAP & IFRS Accounting Standards',
+  description: 'Hiểu các chuẩn mực kế toán: GAAP principles, IFRS, revenue recognition',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Accounting Standards',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['gaap', 'ifrs', 'accounting', 'standards'],
+  hidden: false,
+  relatedWorkIds: [
+    'pl-ownership-work',
+    'financial-reporting-work',
+    'audit-preparation-work'
+  ],
+  notes: 'GAAP principles application, IFRS vs GAAP differences, ASC 606 (revenue recognition), ASC 842 (lease accounting), practical examples'
+},
+
+{
+  id: 'advanced-financial-modeling-learning',
+  title: 'Advanced Financial Modeling',
+  description: '3-statement modeling, DCF analysis, scenario planning, Excel best practices',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Financial Analysis',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['financial-modeling', 'dcf', 'valuation', 'excel'],
+  hidden: false,
+  relatedWorkIds: [
+    'annual-budget-planning-work',
+    'financial-forecasting-work',
+    'investment-decisions-work',
+    'scenario-planning-work'
+  ],
+  notes: '3-statement modeling (P&L, Balance Sheet, Cash Flow), DCF analysis, scenario & sensitivity analysis, Excel shortcuts & best practices, dynamic models'
+},
+
+{
+  id: 'tax-planning-strategy-learning',
+  title: 'Tax Planning & Strategy',
+  description: 'Tối ưu thuế: corporate tax structures, transfer pricing, R&D credits',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Tax & Compliance',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['tax', 'tax-planning', 'optimization', 'compliance'],
+  hidden: false,
+  relatedWorkIds: [
+    'pl-ownership-work',
+    'cost-optimization-work',
+    'international-expansion-work'
+  ],
+  notes: 'Corporate tax structures, transfer pricing basics, tax credits & incentives (R&D), international tax considerations, tax-efficient strategies'
+},
+
+{
+  id: 'treasury-cash-management-learning',
+  title: 'Treasury & Cash Management',
+  description: 'Quản lý thanh khoản: cash forecasting, working capital, banking relationships',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Treasury',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['treasury', 'cash-flow', 'working-capital', 'liquidity'],
+  hidden: false,
+  relatedWorkIds: [
+    'cash-flow-management-work',
+    'financial-forecasting-work',
+    'working-capital-work'
+  ],
+  notes: 'Cash forecasting techniques, working capital optimization, banking relationships, foreign exchange management, liquidity management'
+},
+
+{
+  id: 'ma-corporate-finance-learning',
+  title: 'M&A & Corporate Finance',
+  description: 'Mergers & Acquisitions: valuation, due diligence, deal structuring',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Corporate Finance',
+  status: 'planned',
+  level: 'expert',
+  tags: ['ma', 'valuation', 'due-diligence', 'deals'],
+  hidden: false,
+  relatedWorkIds: [
+    'strategic-planning-work',
+    'investment-decisions-work',
+    'partnership-evaluation-work'
+  ],
+  notes: 'Valuation methods (DCF, Comparables, Precedents), due diligence process, deal structuring, post-merger integration, synergies identification'
+},
+
+{
+  id: 'financial-systems-erp-learning',
+  title: 'Financial Systems & ERP',
+  description: 'Hệ thống ERP: selection, implementation, automation, controls',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Financial Technology',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['erp', 'systems', 'automation', 'technology'],
+  hidden: false,
+  relatedWorkIds: [
+    'financial-reporting-work',
+    'process-optimization-work',
+    'internal-controls-work'
+  ],
+  notes: 'ERP system selection (SAP, Oracle, NetSuite), financial reporting automation, integration with operations, data security & controls'
+},
+
+{
+  id: 'investor-relations-learning',
+  title: 'Investor Relations & Capital Markets',
+  description: 'Gọi vốn & IR: equity vs debt, pitch decks, term sheets, board reporting',
+  category: 'Quản Lý Tài Chính',
+  subcategory: 'Capital Markets',
+  status: 'planned',
+  level: 'expert',
+  tags: ['investor-relations', 'fundraising', 'capital', 'board'],
+  hidden: false,
+  relatedWorkIds: [
+    'financial-reporting-work',
+    'strategic-planning-work',
+    'board-communication-work'
+  ],
+  notes: 'Equity vs debt financing, pitch deck development, term sheets & negotiations, board reporting, investor communications'
+},
+
+// =================================================================
+// CLO (CHIEF LEGAL OFFICER) - 7 New Topics
+// =================================================================
+
+{
+  id: 'litigation-management-learning',
+  title: 'Litigation Management & Strategy',
+  description: 'Quản lý kiện tụng: risk assessment, outside counsel, settlements',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Litigation',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['litigation', 'lawsuits', 'legal-strategy', 'risk'],
+  hidden: false,
+  relatedWorkIds: [
+    'risk-management-work',
+    'dispute-resolution-work',
+    'contract-management-work'
+  ],
+  notes: 'Litigation risk assessment, outside counsel management & budgeting, settlement negotiations, trial preparation & strategy, cost-benefit analysis'
+},
+
+{
+  id: 'corporate-governance-learning',
+  title: 'Corporate Governance',
+  description: 'Quản trị doanh nghiệp: board duties, fiduciary responsibilities, best practices',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Governance',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['governance', 'board', 'compliance', 'fiduciary'],
+  hidden: false,
+  relatedWorkIds: [
+    'compliance-programs-work',
+    'risk-management-work',
+    'board-reporting-work'
+  ],
+  notes: 'Board composition & responsibilities, fiduciary duties (duty of care, loyalty), shareholder rights, corporate governance best practices, Sarbanes-Oxley basics'
+},
+
+{
+  id: 'regulatory-strategy-learning',
+  title: 'Regulatory Strategy & Government Relations',
+  description: 'Chiến lược tuân thủ proactive: monitoring, lobbying, rule-making',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Regulatory Affairs',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['regulatory', 'compliance', 'government-relations', 'strategy'],
+  hidden: false,
+  relatedWorkIds: [
+    'compliance-programs-work',
+    'risk-management-work',
+    'industry-regulations-work'
+  ],
+  notes: 'Regulatory landscape monitoring, lobbying & advocacy basics, comment letters & rule-making participation, regulatory examinations, proactive compliance'
+},
+
+{
+  id: 'crisis-management-legal-learning',
+  title: 'Crisis Management (Legal Perspective)',
+  description: 'Quản lý khủng hoảng pháp lý: response protocols, investigations, communications',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Crisis Management',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['crisis', 'investigations', 'communications', 'risk'],
+  hidden: false,
+  relatedWorkIds: [
+    'risk-management-work',
+    'crisis-communications-work',
+    'data-breach-response-work'
+  ],
+  notes: 'Crisis response protocols, media relations & legal communications, investigation management, privilege considerations, damage control strategies'
+},
+
+{
+  id: 'business-acumen-legal-learning',
+  title: 'Business Acumen cho Legal Leaders',
+  description: 'Hiểu business để align legal với goals: P&L, negotiations, strategy',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Legal Strategy',
+  status: 'planned',
+  level: 'intermediate',
+  tags: ['business-acumen', 'strategy', 'commercial', 'leadership'],
+  hidden: false,
+  relatedWorkIds: [
+    'contract-negotiation-work',
+    'strategic-planning-work',
+    'partnership-management-work'
+  ],
+  notes: 'Understanding P&L basics, commercial negotiations, business model analysis, strategic legal planning, being a business partner not just legal advisor'
+},
+
+{
+  id: 'advanced-employment-law-learning',
+  title: 'Employment Law & Labor Relations (Advanced)',
+  description: 'Employment law chuyên sâu: wrongful termination, investigations, classification',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Employment Law',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['employment-law', 'labor', 'hr-legal', 'compliance'],
+  hidden: false,
+  relatedWorkIds: [
+    'labor-law-compliance-work',
+    'hr-policies-work',
+    'employee-relations-work'
+  ],
+  notes: 'Wrongful termination defense, union negotiations (if applicable), employee classification (contractor vs employee), workplace investigations, discrimination claims'
+},
+
+{
+  id: 'technology-law-cybersecurity-learning',
+  title: 'Technology Law & Cybersecurity Legal',
+  description: 'Tech law: data breaches, cybersecurity regulations, cloud contracts, AI liability',
+  category: 'Quản Lý Pháp Lý',
+  subcategory: 'Technology Law',
+  status: 'planned',
+  level: 'advanced',
+  tags: ['tech-law', 'cybersecurity', 'data-breach', 'ai'],
+  hidden: false,
+  relatedWorkIds: [
+    'data-protection-work',
+    'gdpr-compliance-work',
+    'ip-protection-work',
+    'cybersecurity-work'
+  ],
+  notes: 'Data breach response & notification requirements, cybersecurity regulations, cloud contracts & SLAs, AI & algorithm liability, software licensing'
+},
+
+// =================================================================
+// CROSS-FUNCTIONAL (All C-Level) - 1 New Topic
+// =================================================================
+
+{
+  id: 'data-literacy-leaders-learning',
+  title: 'Data Literacy cho Leaders',
+  description: 'Hiểu & sử dụng data: analytics basics, visualization, data-driven decisions',
+  category: 'Kỹ Năng Lãnh Đạo',
+  subcategory: 'Data & Analytics',
+  status: 'planned',
+  level: 'beginner',
+  tags: ['data', 'analytics', 'visualization', 'decision-making'],
+  hidden: false,
+  relatedWorkIds: [
+    'data-driven-decisions-work',
+    'business-intelligence-work',
+    'performance-metrics-work'
+  ],
+  notes: 'Basic analytics concepts, data visualization best practices, understanding data quality, making data-driven decisions, KPIs & metrics'
+},
+
+// =================================================================
+// TOTAL: 22 NEW LEARNING TOPICS
+// CPO: 7 topics
+// CFO: 7 topics
+// CLO: 7 topics
+// Cross-functional: 1 topic
+// =================================================================
