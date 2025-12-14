@@ -74,7 +74,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Luyện Giọng & Phát Âm',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['voice', 'breathing', 'speaking'],
   },
   {
@@ -85,7 +85,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Luyện Giọng & Phát Âm',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['articulation', 'pronunciation'],
   },
   {
@@ -96,7 +96,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['japanese-business', 'culture', 'etiquette'],
     relatedWorkIds: ['japanese-client-relations-work'],
   },
@@ -108,7 +108,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['writing', 'email', 'documentation'],
   },
   {
@@ -119,7 +119,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Giao Tiếp Chuyên Nghiệp',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['feedback', 'negotiation', 'conflict'],
   },
   {
@@ -130,7 +130,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Thuyết Trình & Nói Trước Công Chúng',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['presentation', 'executive', 'public-speaking'],
   },
   {
@@ -141,7 +141,7 @@ export const learningRoadmap: RoadmapItem[] = [
     subcategory: 'Thuyết Trình & Nói Trước Công Chúng',
     status: 'planned',
     level: 'beginner',
-    hidden: true,
+    hidden: false,
     tags: ['executive', 'c-level', 'leadership'],
   },
 
@@ -1252,7 +1252,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['emotional-intelligence', 'leadership', 'hr', 'self-awareness'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['team-building-activities-work', 'feedback-mechanisms-work', 'culture-initiatives-work', 'employee-engagement-programs-work'],
     notes: 'Top #1 competency cho CPO. Nội dung: self-awareness exercises, empathy development, managing emotions in difficult conversations, building psychological safety'
   },
@@ -1265,7 +1265,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['data-analytics', 'hr-metrics', 'people-analytics', 'kpi'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['performance-review-process-work', 'workforce-analytics-implementation-work', 'performance-management-redesign-work', 'strategic-workforce-planning-work'],
     notes: 'HR metrics: turnover rate, time-to-hire, cost-per-hire, engagement scores. Predictive analytics cho attrition. Dashboard design cho C-suite.'
   },
@@ -1278,7 +1278,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['dei', 'diversity', 'inclusion', 'equity', 'culture'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['culture-initiatives-work', 'employee-engagement-programs-work', 'talent-strategy-alignment-work', 'dei-strategy-leadership-work'],
     notes: 'Critical cho 2025. DEI strategy development, unconscious bias training, inclusive hiring practices, measuring DEI progress, employee resource groups'
   },
@@ -1291,7 +1291,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     tags: ['finance', 'budget', 'roi', 'hr-strategy'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['pl-statement-basics-work', 'budget-vs-actual-tracking-work'],
     notes: 'Reading financial statements, HR budget management, headcount planning vs revenue, cost-per-hire calculations, ROI of HR initiatives'
   },
@@ -1304,7 +1304,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['hrtech', 'digital-transformation', 'automation', 'ai'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['training-development-work', 'remote-work-best-practices-work', 'workforce-analytics-implementation-work', 'performance-management-redesign-work'],
     notes: 'HRIS selection (Workday, BambooHR), ATS systems, performance management tools, AI in recruitment, employee engagement platforms, automation opportunities'
   },
@@ -1317,7 +1317,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['change-management', 'transformation', 'communication'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['training-development-work', 'culture-initiatives-work', 'organizational-design-transformation-work'],
     notes: 'ADKAR model, Kotter\'s 8 steps, communication strategies during change, managing resistance, culture transformation'
   },
@@ -1330,7 +1330,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['workforce-planning', 'succession', 'talent-strategy'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['succession-planning-program-work', 'strategic-workforce-planning-work', 'talent-strategy-alignment-work'],
     notes: 'Demand forecasting techniques, skills gap analysis, succession planning frameworks, talent pipeline development'
   },
@@ -1345,7 +1345,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['gaap', 'ifrs', 'accounting', 'standards'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['pl-ownership-work', 'financial-metrics-basics-work'],
     notes: 'GAAP principles application, IFRS vs GAAP differences, ASC 606 (revenue recognition), ASC 842 (lease accounting), practical examples'
   },
@@ -1358,7 +1358,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['financial-modeling', 'dcf', 'valuation', 'excel'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['revenue-profitability-analysis-work', 'margin-accountability-work', 'annual-budget-planning-work', 'cost-optimization-initiatives-work', 'pricing-approval-work', 'project-profitability-analysis-work', 'unit-economics-optimization-work', 'quarterly-revenue-forecast-work', 'cost-forecasting-work', 'fpa-fundamentals-work', 'scenario-planning-modeling-work', 'cfo-cost-optimization-strategic-work'],
     notes: '3-statement modeling (P&L, Balance Sheet, Cash Flow), DCF analysis, scenario & sensitivity analysis, Excel shortcuts & best practices, dynamic models'
   },
@@ -1371,7 +1371,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['tax', 'tax-planning', 'optimization', 'compliance'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['pl-ownership-work', 'cost-optimization-initiatives-work', 'cfo-cost-optimization-strategic-work'],
     notes: 'Corporate tax structures, transfer pricing basics, tax credits & incentives (R&D), international tax considerations, tax-efficient strategies'
   },
@@ -1384,7 +1384,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['treasury', 'cash-flow', 'working-capital', 'liquidity'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['quarterly-revenue-forecast-work', 'cash-flow-management-work', 'cash-flow-basics-work'],
     notes: 'Cash forecasting techniques, working capital optimization, banking relationships, foreign exchange management, liquidity management'
   },
@@ -1397,7 +1397,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     tags: ['ma', 'valuation', 'due-diligence', 'deals'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['strategic-financial-leadership-work', 'ma-strategy-execution-work', 'capital-allocation-strategy-work'],
     notes: 'Valuation methods (DCF, Comparables, Precedents), due diligence process, deal structuring, post-merger integration, synergies identification'
   },
@@ -1410,7 +1410,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['erp', 'systems', 'automation', 'technology'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['budget-tracking-control-work', 'financial-systems-implementation-work'],
     notes: 'ERP system selection (SAP, Oracle, NetSuite), financial reporting automation, integration with operations, data security & controls'
   },
@@ -1423,7 +1423,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     tags: ['investor-relations', 'fundraising', 'capital', 'board'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['strategic-financial-leadership-work'],
     notes: 'Equity vs debt financing, pitch deck development, term sheets & negotiations, board reporting, investor communications'
   },
@@ -1438,7 +1438,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['litigation', 'lawsuits', 'legal-strategy', 'risk'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['client-dispute-management-work', 'legal-dispute-handling-work'],
     notes: 'Litigation risk assessment, outside counsel management & budgeting, settlement negotiations, trial preparation & strategy, cost-benefit analysis'
   },
@@ -1451,7 +1451,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['governance', 'board', 'compliance', 'fiduciary'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['legal-compliance-basics-work', 'compliance-program-setup-work', 'strategic-legal-counsel-work', 'esg-sustainability-legal-leadership-work'],
     notes: 'Board composition & responsibilities, fiduciary duties (duty of care, loyalty), shareholder rights, corporate governance best practices, Sarbanes-Oxley basics'
   },
@@ -1464,7 +1464,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['regulatory', 'compliance', 'government-relations', 'strategy'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['legal-compliance-basics-work', 'compliance-program-setup-work', 'esg-sustainability-legal-leadership-work'],
     notes: 'Regulatory landscape monitoring, lobbying & advocacy basics, comment letters & rule-making participation, regulatory examinations, proactive compliance'
   },
@@ -1477,7 +1477,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['crisis', 'investigations', 'communications', 'risk'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['client-dispute-management-work'],
     notes: 'Crisis response protocols, media relations & legal communications, investigation management, privilege considerations, damage control strategies'
   },
@@ -1490,7 +1490,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     tags: ['business-acumen', 'strategy', 'commercial', 'leadership'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['client-contract-negotiation-work', 'terms-conditions-negotiation-work', 'contract-approval-work', 'vendor-contract-negotiation-work', 'contract-review-work', 'contract-basics-fundamentals-work', 'clm-implementation-work', 'negotiation-strategies-work', 'strategic-legal-counsel-work'],
     notes: 'Understanding P&L basics, commercial negotiations, business model analysis, strategic legal planning, being a business partner not just legal advisor'
   },
@@ -1503,7 +1503,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['employment-law', 'labor', 'hr-legal', 'compliance'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['labor-law-compliance-work'],
     notes: 'Wrongful termination defense, union negotiations (if applicable), employee classification (contractor vs employee), workplace investigations, discrimination claims'
   },
@@ -1516,7 +1516,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'advanced',
     tags: ['tech-law', 'cybersecurity', 'data-breach', 'ai'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['gdpr-compliance-work', 'ip-policy-enforcement-work', 'ip-fundamentals-work', 'data-privacy-implementation-work', 'ai-compliance-governance-work'],
     notes: 'Data breach response & notification requirements, cybersecurity regulations, cloud contracts & SLAs, AI & algorithm liability, software licensing'
   },
@@ -1531,7 +1531,7 @@ export const learningRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     tags: ['data', 'analytics', 'visualization', 'decision-making'],
-    hidden: false,
+    hidden: true,
     relatedWorkIds: ['quality-metrics-improvement-work', 'sla-compliance-tracking-work', 'customer-health-tracking-work', 'quarterly-demand-forecast-work', 'pipeline-analysis-work', 'operational-metrics-basics-work'],
     notes: 'Basic analytics concepts, data visualization best practices, understanding data quality, making data-driven decisions, KPIs & metrics'
   },
@@ -1549,7 +1549,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'expert',
     role: 'COO',
-    hidden: false,
+    hidden: true,
     startDate: '2024-01-01',
     targetDate: '2026-12-31',
     tags: ['transformation', 'ai-ml', 'strategy', 'upskilling'],
@@ -1656,7 +1656,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     role: 'CPO',
-    hidden: false,
+    hidden: true,
     tags: ['performance', 'evaluation', '360-feedback', 'calibration'],
     relatedLearningIds: ['performance-evaluation-framework-learning', 'hr-data-analytics-learning'],
     notes: 'Có thể viết bài về evaluation framework chi tiết cho từng role, triển khai 360 feedback, calibration sessions',
@@ -1670,7 +1670,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'intermediate',
     role: 'CPO',
-    hidden: false,
+    hidden: true,
     tags: ['training', 'development', 'upskilling'],
     relatedLearningIds: ['hr-technology-learning', 'change-management-hr-learning'],
   },
@@ -1953,7 +1953,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'in-progress',
     level: 'advanced',
     role: 'COO',
-    hidden: false,
+    hidden: true,
     tags: ['estimation', 'quotation', 'process', 'sales-support', 'pricing'],
     notes: 'Tích hợp với proposal quality và est-vs-actual tracking. Viết về estimation techniques (Story Points, T-shirt sizing, analogous), template standardization, approval workflow',
     relatedLearningIds: ['it-project-management-learning'],
@@ -2069,7 +2069,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'planned',
     level: 'beginner',
     role: 'CPO',
-    hidden: false,
+    hidden: true,
     tags: ['remote-work', 'best-practices', 'productivity'],
     relatedLearningIds: ['hr-technology-learning'],
   },
@@ -2944,7 +2944,7 @@ export const cooRoadmap: RoadmapItem[] = [
     status: 'in-progress',
     level: 'intermediate',
     role: 'CFO',
-    hidden: false,
+    hidden: true,
     tags: ['cost-analysis', 'roi', 'profitability', 'pricing', 'margin'],
     notes: 'Kết hợp với pricing models để ra quyết định pricing đúng. Viết về cost structure, when to say no to projects, minimum acceptable margin, risk-adjusted ROI',
   },
